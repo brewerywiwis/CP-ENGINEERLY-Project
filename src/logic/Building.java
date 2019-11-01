@@ -1,12 +1,12 @@
 package logic;
 
-public abstract class Place {
+public abstract class Building {
 	private String name;
 	private double price;
 	private double toll;
 	private Player owner;
 
-	public Place(String name, Double price, Double toll) {
+	public Building(String name, Double price, Double toll) {
 		this.name = name;
 		this.price = price;
 		this.toll = toll;

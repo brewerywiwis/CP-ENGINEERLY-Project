@@ -56,4 +56,8 @@ public class Game extends Application {
 		GameLoop.start();
 	}
 
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 }

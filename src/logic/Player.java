@@ -11,7 +11,7 @@ public class Player {
 		this.turn = turn;
 	}
 
-	public void payFee(Place p) {
+	public void payFee(Building p) {
 
 	}
 
