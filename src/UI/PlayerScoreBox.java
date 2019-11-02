@@ -1,4 +1,4 @@
-package application;
+package UI;
 
 public class PlayerScoreBox {
 
