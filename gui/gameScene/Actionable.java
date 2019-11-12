@@ -1,7 +1,7 @@
 package gameScene;
 
 public interface Actionable {
-	
-	public void doAction() ;
-	
+
+	public void doAction();
+
 }

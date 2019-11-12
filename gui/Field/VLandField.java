@@ -2,6 +2,8 @@ package Field;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -17,7 +19,7 @@ public class VLandField extends BorderPane {
 
 	private Land land;
 
-	public VLandField(Land land, Color color) {
+	public VLandField(Land land, Color color, Direction dir) {
 		super();
 		this.land = land;
 		setBorder(new Border(
@@ -34,10 +36,15 @@ public class VLandField extends BorderPane {
 		BorderPane.setAlignment(lPrice, Pos.CENTER);
 		inside.setTop(lName);
 		inside.setBottom(lPrice);
+		inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 
 		setMinHeight(120);
 		setCenter(inside);
-		setBottom(new Rectangle(80, 30, color));
+		if (dir == Direction.DOWN) {
+			setBottom(new Rectangle(80, 30, color));
+		} else if (dir == Direction.UP) {
+			setTop(new Rectangle(80, 30, color));
+		}
 	}
 
 	public Land getLand() {

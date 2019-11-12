@@ -1,12 +1,13 @@
 package sharedObject;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import application.Main;
 import application.StateScene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class IRenderableHolder {
 
@@ -14,8 +15,11 @@ public class IRenderableHolder {
 	private static IRenderableHolder instance;
 	private static Comparator<IRenderable> comparator;
 	private ArrayList<IRenderable> entities;
-	public static ImageView board;
-
+	public static Image boardBackground;
+	public static Image freeParking;
+	public static Image manPoint;
+	public static Image start;
+	public static Image registration;
 	static {
 		comparator = new Comparator<IRenderable>() {
 			@Override
@@ -41,7 +45,16 @@ public class IRenderableHolder {
 
 	private static void loadResource() {
 		instance = new IRenderableHolder();
-		board = new ImageView(new Image("./resource/Monopoly Board.jpg"));
+		try {
+			boardBackground = new Image(new FileInputStream("./res/GearBackground.png"));
+			registration = new Image(new FileInputStream("./res/registrationRoom.png"));
+			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
+			manPoint = new Image(new FileInputStream("./res/manPoint.png"));
+			start = new Image(new FileInputStream("./res/start.png"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static IRenderableHolder getInstance() {
