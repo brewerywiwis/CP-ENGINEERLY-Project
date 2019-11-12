@@ -1,24 +1,32 @@
 package logic;
 
-public class Land implements Buyable, Sellable {
+import java.util.ArrayList;
+import java.util.HashMap;
 
-	private House[] houses;
-	private Hotel hotel;
+public class Land extends Asset {
+
+	private int houses;
+	private int hotel;
 	private String name;
 	private int price;
 
-	public Land(String name, int price) {
-		this.houses = new House[3];
-		this.hotel = null;
-		this.name = name;
-		this.price = price;
+	private static HashMap<Integer, ArrayList<Land>> PlayerToLands;
+
+	static {
+		PlayerToLands = new HashMap<Integer, ArrayList<Land>>();
 	}
 
-	public House[] getHouses() {
+	public Land(String name, int price) {
+		super(name, price);
+		this.houses = 0;
+		this.hotel = 0;
+	}
+
+	public int getHouses() {
 		return houses;
 	}
 
-	public Hotel getHotel() {
+	public int getHotel() {
 		return hotel;
 	}
 
@@ -28,6 +36,12 @@ public class Land implements Buyable, Sellable {
 
 	public int getPrice() {
 		return price;
+	}
+
+	@Override
+	public boolean buyFrom(Player p) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

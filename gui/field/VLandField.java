@@ -1,4 +1,4 @@
-package Field;
+package field;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -15,11 +15,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import logic.Land;
 
-public class HLandField extends BorderPane {
+public class VLandField extends BorderPane {
 
 	private Land land;
 
-	public HLandField(Land land, Color color, Direction dir) {
+	public VLandField(Land land, Color color, Direction dir) {
 		super();
 		this.land = land;
 		setBorder(new Border(
@@ -36,13 +36,13 @@ public class HLandField extends BorderPane {
 		inside.setTop(lName);
 		inside.setBottom(lPrice);
 		inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
-		
-		setMinWidth(120);
+
+		setMinHeight(120);
 		setCenter(inside);
-		if (dir == Direction.RIGHT) {
-			setRight(new Rectangle(30, 80, color));
-		} else if (dir == Direction.LEFT) {
-			setLeft(new Rectangle(30, 80, color));
+		if (dir == Direction.DOWN) {
+			setBottom(new Rectangle(80, 30, color));
+		} else if (dir == Direction.UP) {
+			setTop(new Rectangle(80, 30, color));
 		}
 	}
 

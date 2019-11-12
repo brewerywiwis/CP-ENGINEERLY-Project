@@ -11,8 +11,8 @@ public class Player {
 		this.turn = turn;
 	}
 
-	public void payFee(Building p) {
-
+	public boolean buy(Asset asset) {
+		return asset.buyFrom(this);
 	}
 
 	public double getMoney() {

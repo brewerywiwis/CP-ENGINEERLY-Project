@@ -1,4 +1,4 @@
-package gameScene;
+package playerDisplay;
 
 public class PlayerScoreBox {
 

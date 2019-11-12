@@ -46,7 +46,7 @@ public class IRenderableHolder {
 	private static void loadResource() {
 		instance = new IRenderableHolder();
 		try {
-			boardBackground = new Image(new FileInputStream("./res/GearBackground.png"));
+			boardBackground = new Image(new FileInputStream("./res/gearBackground3.png"));
 			registration = new Image(new FileInputStream("./res/registrationRoom.png"));
 			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
 			manPoint = new Image(new FileInputStream("./res/manPoint.png"));

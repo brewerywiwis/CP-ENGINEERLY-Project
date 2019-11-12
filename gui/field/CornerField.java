@@ -1,13 +1,9 @@
-package Field;
+package field;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -15,7 +11,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import sharedObject.IRenderableHolder;
 
 public class CornerField extends BorderPane {
 	public CornerField(Image img) {
@@ -30,7 +25,6 @@ public class CornerField extends BorderPane {
 		im.setPreserveRatio(true);
 		im.setFitWidth(120);
 		setCenter(im);
-		setMinWidth(120);
-		setMinHeight(120);
+
 	}
 }
