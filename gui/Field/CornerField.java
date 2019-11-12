@@ -1,0 +1,19 @@
+package Field;
+
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+
+public class CornerField extends BorderPane {
+	public CornerField() {
+		super();
+		setBorder(new Border(
+				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setMinWidth(120);
+		setMinHeight(120);
+	}
+}

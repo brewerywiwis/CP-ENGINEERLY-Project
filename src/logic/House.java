@@ -1,12 +1,9 @@
 package logic;
 
 public class House extends Building {
-	
-	private HouseSize size;
 
-	public House(String name, Double price, Double toll, HouseSize size) {
+	public House(String name, Double price, Double toll) {
 		super(name, price, toll);
-		this.size = size;
 	}
 
 	@Override

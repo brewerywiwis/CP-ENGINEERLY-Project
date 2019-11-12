@@ -1,6 +1,6 @@
 package logic;
 
-public abstract class Building {
+public abstract class Building implements Buyable, Sellable{
 	private String name;
 	private double price;
 	private double toll;

@@ -1,10 +1,9 @@
 package application;
 
+import gameScene.CheckException;
 import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.LogicGame;
@@ -14,7 +13,8 @@ public class Main extends Application {
 	public static final int displayX = 1080, displayY = 720;
 	public static final int borderX = 220, borderY = 40;
 	private static StateScene state;
-	
+	private BorderPane gameRoot;
+
 	public static StateScene getState() {
 		return state;
 	}
@@ -44,11 +44,13 @@ public class Main extends Application {
 					break;
 				}
 				case GAMESCENE: {
-					BorderPane bp = new BorderPane();
-					Canvas cv = new Canvas(Game.displayX, Game.displayY);
-					bp.getChildren().add(cv);
-					Scene gs = new GameScene(bp, Game.displayX, Game.displayY);
-					primaryStage.setScene(gs);
+					gameRoot = new BorderPane();
+					try {
+						primaryStage.setScene(new GameScene(gameRoot));
+					} catch (CheckException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					setState(StateScene.CURRENT);
 					break;
 				}

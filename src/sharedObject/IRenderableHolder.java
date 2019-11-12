@@ -3,13 +3,10 @@ package sharedObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
-import application.Game;
 import application.Main;
 import application.StateScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 
 public class IRenderableHolder {
 
