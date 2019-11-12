@@ -1,4 +1,4 @@
-package UI;
+package gameScene;
 
 public class MenuBar {
 

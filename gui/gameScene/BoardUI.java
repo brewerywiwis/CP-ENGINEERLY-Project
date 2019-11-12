@@ -1,14 +1,46 @@
-package UI;
+package gameScene;
 
 import application.Game;
+import application.StateScene;
 import javafx.scene.canvas.GraphicsContext;
+import sharedObject.IRenderable;
 
-public class BoardUI {
+public class BoardUI implements IRenderable {
 
 	private int startX = Game.borderX, startY = Game.borderY;
-	private GraphicsContext gc = Game.getGc();
+	private boolean visible;
+	private final StateScene state = StateScene.GAMESCENE;
 
 	public BoardUI() {
+		visible = true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 998;
+	}
+
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return visible;
+	}
+
+	@Override
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		visible = b;
+	}
+
+	@Override
+	public StateScene getState() {
+		return state;
+	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
 		int distanceY = Game.displayY - 2 * startY;
 		int distanceX = Game.displayX - 2 * startX;
 		for (int i = 0; i < 2; i++) {
@@ -28,5 +60,6 @@ public class BoardUI {
 			gc.fillRect(Game.displayX - startX - i * distanceX / 7, startY, 2, distanceY + 2);
 		}
 	}
-	
+
+
 }

@@ -5,12 +5,15 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import application.Game;
+import application.Main;
+import application.StateScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 
 public class IRenderableHolder {
 
+	private static StateScene state;
 	private static IRenderableHolder instance;
 	private static Comparator<IRenderable> comparator;
 	private ArrayList<IRenderable> entities;
@@ -49,8 +52,9 @@ public class IRenderableHolder {
 	}
 
 	public static void update() {
+		state = Main.getState();
 		for (int i = 0; i < instance.entities.size(); i++) {
-			if (!instance.entities.get(i).isVisible()) {
+			if (!instance.entities.get(i).isVisible() || instance.entities.get(i).getState() != state) {
 				instance.entities.remove(instance.entities.get(i));
 			}
 		}

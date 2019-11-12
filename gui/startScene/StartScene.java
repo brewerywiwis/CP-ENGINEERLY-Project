@@ -1,26 +1,29 @@
-package UI;
+package startScene;
 
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import application.Game;
+import application.Main;
+import application.StateScene;
 import javafx.event.EventHandler;
 import javafx.geometry.Side;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;;
 
-public class StartScene {
+public class StartScene extends Scene {
 
-	private static int state = 0;
 	public static StartScene scene;
-	private Scene sc;
-
+	private static BorderPane pane;
 	static {
-		scene = new StartScene();
+		pane = new BorderPane();
+		scene = new StartScene(pane, Game.displayX, Game.displayY);
 	}
 
-	public StartScene() {
+	public StartScene(Parent p, double w, double h) {
+		super(p, w, h);
 		Button start_button = new Button("START");
 		start_button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -34,22 +37,11 @@ public class StartScene {
 				context.getItems().addAll(onePlayer, twoPlayer, threePlayer, fourPlayer);
 				start_button.setContextMenu(context);
 				context.show(start_button, Side.BOTTOM, 0, 0);
+				Main.getGame().setState(StateScene.GAMESCENE);
 				System.out.println("YEAH");
 			}
 		});
-		BorderPane firstPane = new BorderPane();
-		firstPane.setCenter(start_button);
-		sc = new Scene(firstPane, Game.displayX, Game.displayY);
-	}
-
-	public static void update() {
-		switch (state) {
-
-		}
-	}
-
-	public Scene getSc() {
-		return sc;
+		pane.setCenter(start_button);
 	}
 
 }
