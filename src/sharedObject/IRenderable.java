@@ -12,4 +12,5 @@ public interface IRenderable {
 
 	public void draw(GraphicsContext gc);
 
+	public void update();
 }

@@ -20,6 +20,7 @@ public class IRenderableHolder {
 	public static Image manPoint;
 	public static Image start;
 	public static Image registration;
+	
 	static {
 		comparator = new Comparator<IRenderable>() {
 			@Override
@@ -51,6 +52,7 @@ public class IRenderableHolder {
 			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
 			manPoint = new Image(new FileInputStream("./res/manPoint.png"));
 			start = new Image(new FileInputStream("./res/start.png"));
+		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,9 +3,12 @@ package startScene;
 import application.Main;
 import application.StateScene;
 import javafx.event.EventHandler;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;;
 
@@ -21,6 +24,7 @@ public class StartScene extends Scene {
 	public StartScene(Parent p, double w, double h) {
 		super(p, w, h);
 		Button start_button = new Button("START");
+
 		start_button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -34,7 +38,6 @@ public class StartScene extends Scene {
 //				start_button.setContextMenu(context);
 //				context.show(start_button, Side.BOTTOM, 0, 0);
 				Main.setState(StateScene.GAMESCENE);
-				System.out.println("YEAH");
 			}
 		});
 		pane.setCenter(start_button);

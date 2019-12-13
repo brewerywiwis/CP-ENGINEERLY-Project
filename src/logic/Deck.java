@@ -27,7 +27,7 @@ public abstract class Deck {
 		} else {
 			return -99;
 		}
-	};
+	}
 
 	public void shuffle() {
 

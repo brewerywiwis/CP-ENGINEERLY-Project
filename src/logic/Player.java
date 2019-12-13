@@ -3,7 +3,7 @@ package logic;
 import field.Field;
 
 public class Player {
-	
+
 	private String name;
 	private double money;
 	private int turn;
@@ -21,7 +21,7 @@ public class Player {
 
 	public void toField(Field nextField) {
 		currentField.removePlayer(this);
-		nextField.recievePlayer(this);
+		nextField.addPlayer(this);
 	}
 
 	public double getMoney() {

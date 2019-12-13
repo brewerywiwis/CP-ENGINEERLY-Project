@@ -13,7 +13,7 @@ public abstract class Field extends BorderPane implements IRenderable {
 		players = new ArrayList<Player>();
 	}
 
-	public void recievePlayer(Player player) {
+	public void addPlayer(Player player) {
 		players.add(player);
 	};
 
@@ -21,4 +21,15 @@ public abstract class Field extends BorderPane implements IRenderable {
 		players.remove(player);
 	}
 
+	public boolean hasPlayer() {
+		return players.size() > 0 ? true : false;
+	}
+
+	public void update() {
+		if (hasPlayer()) {
+			for (int i = 0; i < players.size(); i++) {
+				
+			}
+		}
+	}
 }

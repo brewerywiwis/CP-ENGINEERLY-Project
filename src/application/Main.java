@@ -34,7 +34,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("CP Engineerly");
 		primaryStage.setResizable(true);
-		primaryStage.show();
 
 		AnimationTimer GameLoop = new AnimationTimer() {
 			@Override
@@ -64,6 +63,8 @@ public class Main extends Application {
 			}
 		};
 		GameLoop.start();
+		primaryStage.setAlwaysOnTop(true);
+		primaryStage.show();
 	}
 
 	public static void main(String[] args) {

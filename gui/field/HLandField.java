@@ -27,8 +27,6 @@ public class HLandField extends Field {
 				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 		Label lPrice = new Label(String.format("$%d", land.getPrice()));
-		System.out.println(land.getName());
-
 		Label lName = new Label(land.getName());
 		lPrice.setFont(new Font(18));
 		lName.setFont(new Font(20));

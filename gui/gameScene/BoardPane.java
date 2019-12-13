@@ -162,5 +162,9 @@ public class BoardPane extends GridPane {
 
 		setAlignment(Pos.CENTER);
 	};
-
+	public void update() {
+		for (int i=0;i<fields.size();i++) {
+//			fields.get(i).
+		}
+	}
 }
