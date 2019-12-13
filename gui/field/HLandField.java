@@ -19,6 +19,8 @@ import logic.Land;
 public class HLandField extends Field {
 
 	private Land land;
+	private final double width = 120;
+	private final double height = 80;
 
 	public HLandField(Land land, Color color, Direction dir) {
 		super();
@@ -38,12 +40,12 @@ public class HLandField extends Field {
 		inside.setBottom(lPrice);
 		inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 
-		setMinWidth(120);
+		setMinWidth(width);
 		setCenter(inside);
 		if (dir == Direction.RIGHT) {
-			setRight(new Rectangle(30, 80, color));
+			setRight(new Rectangle(30, height, color));
 		} else if (dir == Direction.LEFT) {
-			setLeft(new Rectangle(30, 80, color));
+			setLeft(new Rectangle(30, height, color));
 		}
 	}
 
@@ -62,5 +64,16 @@ public class HLandField extends Field {
 		// TODO Auto-generated method stub
 //		if (land.ge)
 	}
+	public double getHeightField() {
+		return height;
+	}
+	public double getWidthField() {
+		return width;
+	}
 
+	@Override
+	public void eventAction() {
+		// TODO Auto-generated method stub
+		
+	}
 }

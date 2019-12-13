@@ -34,4 +34,10 @@ public class Land extends Asset {
 		return false;
 	}
 
+	@Override
+	public void eventAction() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

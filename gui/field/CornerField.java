@@ -13,6 +13,10 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
 public class CornerField extends Field {
+
+	private final double width = 120;
+	private final double height = 120;
+
 	public CornerField(Image img) {
 		super();
 		setBorder(new Border(
@@ -36,6 +40,20 @@ public class CornerField extends Field {
 
 	@Override
 	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public double getHeightField() {
+		return height;
+	}
+
+	public double getWidthField() {
+		return width;
+	}
+
+	@Override
+	public void eventAction() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,5 +1,6 @@
 package application;
 
 public enum StateScene {
-	STARTSCENE, GAMESCENE, CURRENT;
+	STARTSCENE, GAMESCENE, SWAPGAMESCENE;
+	
 }

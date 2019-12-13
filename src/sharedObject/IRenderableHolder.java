@@ -20,6 +20,8 @@ public class IRenderableHolder {
 	public static Image manPoint;
 	public static Image start;
 	public static Image registration;
+	public static Image blackPawn;
+	public static Image whitePawn;
 	
 	static {
 		comparator = new Comparator<IRenderable>() {
@@ -52,7 +54,8 @@ public class IRenderableHolder {
 			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
 			manPoint = new Image(new FileInputStream("./res/manPoint.png"));
 			start = new Image(new FileInputStream("./res/start.png"));
-		
+			blackPawn = new Image(new FileInputStream("./res/blackPawn.png"));
+			whitePawn = new Image(new FileInputStream("./res/whitePawn.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

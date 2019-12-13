@@ -2,6 +2,8 @@ package startScene;
 
 import application.Main;
 import application.StateScene;
+import gameScene.CheckException;
+import gameScene.GameScene;
 import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
@@ -37,7 +39,7 @@ public class StartScene extends Scene {
 //				context.getItems().addAll(onePlayer, twoPlayer, threePlayer, fourPlayer);
 //				start_button.setContextMenu(context);
 //				context.show(start_button, Side.BOTTOM, 0, 0);
-				Main.setState(StateScene.GAMESCENE);
+				Main.setState(StateScene.SWAPGAMESCENE);
 			}
 		});
 		pane.setCenter(start_button);

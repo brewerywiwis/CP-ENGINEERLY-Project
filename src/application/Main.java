@@ -1,5 +1,6 @@
 package application;
 
+import gameScene.BoardPane;
 import gameScene.CheckException;
 import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
@@ -15,6 +16,7 @@ public class Main extends Application {
 	public static final int borderX = 220, borderY = 40;
 	private static StateScene state;
 	private BorderPane gameRoot;
+	public static GameScene gameScene;
 
 	public static StateScene getState() {
 		return state;
@@ -27,7 +29,6 @@ public class Main extends Application {
 	@Override
 	public void init() {
 		state = StateScene.STARTSCENE;
-		ChanceCard cc = new ChanceCard();
 	}
 
 	@Override
@@ -41,23 +42,22 @@ public class Main extends Application {
 				switch (getState()) {
 				case STARTSCENE: {
 					primaryStage.setScene(StartScene.scene);
-					setState(StateScene.CURRENT);
+					break;
+				}
+				case SWAPGAMESCENE: {
+					gameRoot = new BorderPane();
+					try {
+						gameScene = new GameScene(gameRoot);
+						primaryStage.setScene(gameScene);
+						setState(StateScene.GAMESCENE);
+					} catch (CheckException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 				}
 				case GAMESCENE: {
-					gameRoot = new BorderPane();
-					try {
-						primaryStage.setScene(new GameScene(gameRoot));
-					} catch (CheckException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					setState(StateScene.CURRENT);
-					break;
-				}
-				case CURRENT: {
 					LogicGame.update();
-					break;
 				}
 				}
 			}

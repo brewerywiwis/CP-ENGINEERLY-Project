@@ -1,7 +1,6 @@
 package gameScene;
 
 import java.util.ArrayList;
-
 import field.ControlField;
 import field.CornerField;
 import field.Direction;
@@ -21,6 +20,8 @@ public class BoardPane extends GridPane {
 //	private int startX = Game.borderX, startY = Game.borderY;
 //	private boolean visible;
 //	private final StateScene state = StateScene.GAMESCENE;
+	private static final int numOfField = 24;
+
 	private VBox left;
 	private HBox top;
 	private VBox right;
@@ -62,72 +63,79 @@ public class BoardPane extends GridPane {
 //		visible = true;
 		fields = new ArrayList<Field>();
 		one = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
-		two = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
-		three = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
-		four = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
-		five = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
+		two = new HLandField(new Land("HOME", 200), Color.PINK, Direction.RIGHT);
+		three = new HLandField(new Land("HOME", 300), Color.PINK, Direction.RIGHT);
+		four = new HLandField(new Land("HOME", 400), Color.PINK, Direction.RIGHT);
+		five = new HLandField(new Land("HOME", 500), Color.PINK, Direction.RIGHT);
 
-		one2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
-		two2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
-		three2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
-		four2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
+		one2 = new VLandField(new Land("HOME2", 100), Color.AQUAMARINE, Direction.DOWN);
+		two2 = new VLandField(new Land("HOME2", 200), Color.AQUAMARINE, Direction.DOWN);
+		three2 = new VLandField(new Land("HOME2", 300), Color.AQUAMARINE, Direction.DOWN);
+		four2 = new VLandField(new Land("HOME2", 400), Color.AQUAMARINE, Direction.DOWN);
 		five2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
 
 		one3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
-		two3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
-		three3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
-		four3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
-		five3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
+		two3 = new HLandField(new Land("HOME", 200), Color.BROWN, Direction.LEFT);
+		three3 = new HLandField(new Land("HOME", 300), Color.BROWN, Direction.LEFT);
+		four3 = new HLandField(new Land("HOME", 400), Color.BROWN, Direction.LEFT);
+		five3 = new HLandField(new Land("HOME", 500), Color.BROWN, Direction.LEFT);
 
-		one4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
-		two4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
-		three4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
-		four4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
+		one4 = new VLandField(new Land("HOME2", 100), Color.GREEN, Direction.UP);
+		two4 = new VLandField(new Land("HOME2", 200), Color.GREEN, Direction.UP);
+		three4 = new VLandField(new Land("HOME2", 300), Color.GREEN, Direction.UP);
+		four4 = new VLandField(new Land("HOME2", 400), Color.GREEN, Direction.UP);
 		five4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
 
 		start = new CornerField(IRenderableHolder.start);
 		registration = new CornerField(IRenderableHolder.registration);
-		manPoint = new CornerField(IRenderableHolder.manPoint);
 		freeParking = new CornerField(IRenderableHolder.freeParking);
+		manPoint = new CornerField(IRenderableHolder.manPoint);
 
 		controlField = new ControlField();
 
 		fields.add(start);
 
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
+		fields.add(one2);
+		fields.add(two2);
+		fields.add(three2);
+		fields.add(four2 );
+		fields.add(five2 );
 
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
-		fields.add(start);
+		fields.add(registration);
+		
+		fields.add(one3);
+		fields.add(two3);
+		fields.add(three3);
+		fields.add(four3 );
+		fields.add(five3 );
+		
+		fields.add(freeParking);
+		
+		fields.add(one4);
+		fields.add(two4);
+		fields.add(three4);
+		fields.add(four4 );
+		fields.add(five4 );
+		
+		fields.add(manPoint);
+		
+		fields.add(one);
+		fields.add(two);
+		fields.add(three);
+		fields.add(four);
+		fields.add(five);
+		
 		init();
 	}
 
 	private void init() {
 		// TODO Auto-generated method stub
 		left = new VBox();
-		left.getChildren().add(one);
-		left.getChildren().add(two);
-		left.getChildren().add(three);
-		left.getChildren().add(four);
 		left.getChildren().add(five);
+		left.getChildren().add(four);
+		left.getChildren().add(three);
+		left.getChildren().add(two);
+		left.getChildren().add(one);
 
 		top = new HBox();
 		top.getChildren().add(one2);
@@ -144,11 +152,11 @@ public class BoardPane extends GridPane {
 		right.getChildren().add(five3);
 
 		bottom = new HBox();
-		bottom.getChildren().add(one4);
-		bottom.getChildren().add(two4);
-		bottom.getChildren().add(three4);
-		bottom.getChildren().add(four4);
 		bottom.getChildren().add(five4);
+		bottom.getChildren().add(four4);
+		bottom.getChildren().add(three4);
+		bottom.getChildren().add(two4);
+		bottom.getChildren().add(one4);
 
 		add(start, 0, 0);
 		add(registration, 2, 0);
@@ -162,9 +170,19 @@ public class BoardPane extends GridPane {
 
 		setAlignment(Pos.CENTER);
 	};
+
 	public void update() {
-		for (int i=0;i<fields.size();i++) {
+		for (int i = 0; i < fields.size(); i++) {
 //			fields.get(i).
 		}
 	}
+
+	public ArrayList<Field> getFields() {
+		return fields;
+	}
+
+	public static int getNumoffield() {
+		return numOfField;
+	}
+
 }

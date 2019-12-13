@@ -1,6 +1,6 @@
 package logic;
 
-public abstract class Asset {
+public abstract class Asset implements Actionable {
 
 	private String name;
 	private int price;
