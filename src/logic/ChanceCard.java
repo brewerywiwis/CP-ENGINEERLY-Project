@@ -1,6 +1,6 @@
 package logic;
 
-public class ChanceCard extends Card {
+public class ChanceCard extends Deck {
 
 	public ChanceCard() {
 		super();
@@ -9,7 +9,14 @@ public class ChanceCard extends Card {
 	@Override
 	public void doEffect(int n) {
 		// prepare for implement effect each effect card
-
+		switch (n) {
+		case 0: {
+			///
+		}
+		case 1: {
+			///
+		}
+		}
 	}
 
 }

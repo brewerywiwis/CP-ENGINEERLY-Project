@@ -10,8 +10,6 @@ public interface IRenderable {
 
 	public void setVisible(boolean b);
 
-	public StateScene getState();
-
 	public void draw(GraphicsContext gc);
 
 }

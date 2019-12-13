@@ -1,6 +1,7 @@
 package field;
 
 import javafx.geometry.Pos;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -15,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import logic.Land;
 
-public class VLandField extends BorderPane {
+public class VLandField extends Field {
 
 	private Land land;
 
@@ -48,6 +49,18 @@ public class VLandField extends BorderPane {
 
 	public Land getLand() {
 		return land;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 999;
+	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

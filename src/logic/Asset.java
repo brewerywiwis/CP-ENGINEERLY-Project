@@ -11,7 +11,7 @@ public abstract class Asset {
 	}
 
 	public abstract boolean buyFrom(Player p);
-
+	
 	public String getName() {
 		return name;
 	}

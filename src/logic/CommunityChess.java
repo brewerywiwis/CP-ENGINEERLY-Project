@@ -1,6 +1,6 @@
 package logic;
 
-public class CommunityChess extends Card {
+public class CommunityChess extends Deck {
 
 	public CommunityChess() {
 		super();
@@ -9,6 +9,14 @@ public class CommunityChess extends Card {
 	@Override
 	public void doEffect(int n) {
 		// prepare for implement effect each effect card
+		switch (n) {
+		case 0: {
+			///
+		}
+		case 1: {
+			///
+		}
+		}
 	}
 
 }

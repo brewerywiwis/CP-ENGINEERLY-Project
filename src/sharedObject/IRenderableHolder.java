@@ -64,7 +64,7 @@ public class IRenderableHolder {
 	public static void update() {
 		state = Main.getState();
 		for (int i = 0; i < instance.entities.size(); i++) {
-			if (!instance.entities.get(i).isVisible() || instance.entities.get(i).getState() != state) {
+			if (!instance.entities.get(i).isVisible()) {
 				instance.entities.remove(instance.entities.get(i));
 			}
 		}

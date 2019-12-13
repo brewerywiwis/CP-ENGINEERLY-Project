@@ -10,7 +10,8 @@ public class LogicGame {
 	private ArrayList<Player> players;
 
 	public LogicGame() {
-
+		Player one = new Player("ONE", 500, 1);
+		
 	}
 
 	public static void update() {

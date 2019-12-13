@@ -1,6 +1,7 @@
 package field;
 
 import javafx.geometry.Pos;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -15,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import logic.Land;
 
-public class HLandField extends BorderPane {
+public class HLandField extends Field {
 
 	private Land land;
 
@@ -26,6 +27,8 @@ public class HLandField extends BorderPane {
 				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 		Label lPrice = new Label(String.format("$%d", land.getPrice()));
+		System.out.println(land.getName());
+
 		Label lName = new Label(land.getName());
 		lPrice.setFont(new Font(18));
 		lName.setFont(new Font(20));
@@ -48,6 +51,18 @@ public class HLandField extends BorderPane {
 
 	public Land getLand() {
 		return land;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 999;
+	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+//		if (land.ge)
 	}
 
 }

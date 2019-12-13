@@ -6,6 +6,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import logic.ChanceCard;
 import logic.LogicGame;
 import startScene.StartScene;
 
@@ -26,6 +27,7 @@ public class Main extends Application {
 	@Override
 	public void init() {
 		state = StateScene.STARTSCENE;
+		ChanceCard cc = new ChanceCard();
 	}
 
 	@Override

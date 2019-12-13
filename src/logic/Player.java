@@ -1,11 +1,15 @@
 package logic;
 
+import field.Field;
+
 public class Player {
+	
 	private String name;
 	private double money;
 	private int turn;
+	private Field currentField;
 
-	public Player(String name, Double money, int turn) {
+	public Player(String name, double money, int turn) {
 		this.name = name;
 		this.money = money;
 		this.turn = turn;
@@ -13,6 +17,11 @@ public class Player {
 
 	public boolean buy(Asset asset) {
 		return asset.buyFrom(this);
+	}
+
+	public void toField(Field nextField) {
+		currentField.removePlayer(this);
+		nextField.recievePlayer(this);
 	}
 
 	public double getMoney() {

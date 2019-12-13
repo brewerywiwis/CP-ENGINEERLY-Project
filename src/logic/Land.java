@@ -7,8 +7,6 @@ public class Land extends Asset {
 
 	private int houses;
 	private int hotel;
-	private String name;
-	private int price;
 
 	private static HashMap<Integer, ArrayList<Land>> PlayerToLands;
 
@@ -28,14 +26,6 @@ public class Land extends Asset {
 
 	public int getHotel() {
 		return hotel;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getPrice() {
-		return price;
 	}
 
 	@Override

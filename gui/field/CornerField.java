@@ -1,18 +1,18 @@
 package field;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class CornerField extends BorderPane {
+public class CornerField extends Field {
 	public CornerField(Image img) {
 		super();
 		setBorder(new Border(
@@ -26,5 +26,17 @@ public class CornerField extends BorderPane {
 		im.setFitWidth(120);
 		setCenter(im);
 
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 999;
+	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		
 	}
 }
