@@ -22,9 +22,9 @@ public class Island extends Asset {
 	}
 
 	@Override
-	public void eventAction() {
+	public void doAction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

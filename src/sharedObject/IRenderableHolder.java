@@ -22,7 +22,8 @@ public class IRenderableHolder {
 	public static Image registration;
 	public static Image blackPawn;
 	public static Image whitePawn;
-	
+	public static Image woodenBg;
+
 	static {
 		comparator = new Comparator<IRenderable>() {
 			@Override
@@ -56,6 +57,7 @@ public class IRenderableHolder {
 			start = new Image(new FileInputStream("./res/start.png"));
 			blackPawn = new Image(new FileInputStream("./res/blackPawn.png"));
 			whitePawn = new Image(new FileInputStream("./res/whitePawn.png"));
+			woodenBg = new Image(new FileInputStream("./res/woodenBg.jpg"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

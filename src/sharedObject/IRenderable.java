@@ -1,6 +1,5 @@
 package sharedObject;
 
-import application.StateScene;
 import javafx.scene.canvas.GraphicsContext;
 
 public interface IRenderable {

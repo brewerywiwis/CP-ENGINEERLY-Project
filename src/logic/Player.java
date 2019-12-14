@@ -59,13 +59,6 @@ public class Player extends ImageView {
 		return turn;
 	}
 
-	private void setPosition(Field nextField) {
-		double dx = nextField.getWidth() / 2;
-		double dy = nextField.getHeight() / 2;
-		double leftUpCorner = nextField.getLayoutX();
-		System.out.println(leftUpCorner);
-	}
-
 	public int getCurrentField() {
 		return currentField;
 	}

@@ -44,7 +44,10 @@ public class ControlField extends Field {
 				System.out.println("MOUSE RELEASED ROLL BUTTON");
 				int point = Dice.roll();
 				System.out.println(point);
-				LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(point);
+				if (LogicGame.getChangeTurn()) {
+					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(point);
+					LogicGame.setChangeTurn(false);
+				}
 			}
 
 		});
@@ -68,6 +71,6 @@ public class ControlField extends Field {
 	@Override
 	public void eventAction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

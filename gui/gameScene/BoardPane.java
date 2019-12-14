@@ -7,7 +7,13 @@ import field.Direction;
 import field.Field;
 import field.HLandField;
 import field.VLandField;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -98,33 +104,33 @@ public class BoardPane extends GridPane {
 		fields.add(one2);
 		fields.add(two2);
 		fields.add(three2);
-		fields.add(four2 );
-		fields.add(five2 );
+		fields.add(four2);
+		fields.add(five2);
 
 		fields.add(registration);
-		
+
 		fields.add(one3);
 		fields.add(two3);
 		fields.add(three3);
-		fields.add(four3 );
-		fields.add(five3 );
-		
+		fields.add(four3);
+		fields.add(five3);
+
 		fields.add(freeParking);
-		
+
 		fields.add(one4);
 		fields.add(two4);
 		fields.add(three4);
-		fields.add(four4 );
-		fields.add(five4 );
-		
+		fields.add(four4);
+		fields.add(five4);
+
 		fields.add(manPoint);
-		
+
 		fields.add(one);
 		fields.add(two);
 		fields.add(three);
 		fields.add(four);
 		fields.add(five);
-		
+
 		init();
 	}
 
@@ -169,6 +175,9 @@ public class BoardPane extends GridPane {
 		add(controlField, 1, 1);
 
 		setAlignment(Pos.CENTER);
+		setBorder(new Border(
+				new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setPadding(new Insets(10));
 	};
 
 	public void update() {
