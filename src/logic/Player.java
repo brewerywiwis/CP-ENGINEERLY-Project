@@ -13,7 +13,6 @@ public class Player extends ImageView {
 	private static HashMap<Player, Integer> whereOfPlayer;
 	private String name;
 	private double money;
-	private int turn;
 	private int currentField;
 	private int nextField;
 	private double centerPx;
@@ -23,10 +22,9 @@ public class Player extends ImageView {
 		whereOfPlayer = new HashMap<Player, Integer>();
 	}
 
-	public Player(String name, double money, int turn, Image img) {
+	public Player(String name, double money, Image img) {
 		this.name = name;
 		this.money = money;
-		this.turn = turn;
 		setImage(img);
 		Bounds playerBound = this.localToScene(this.getBoundsInLocal());
 		centerPx = playerBound.getWidth() / 2;
@@ -53,10 +51,6 @@ public class Player extends ImageView {
 
 	public String getName() {
 		return name;
-	}
-
-	public int getTurn() {
-		return turn;
 	}
 
 	public int getCurrentField() {

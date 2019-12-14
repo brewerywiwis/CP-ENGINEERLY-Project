@@ -5,6 +5,7 @@ import application.Main;
 import application.StateScene;
 import field.Field;
 import gameScene.BoardPane;
+import gameScene.GameScene;
 import javafx.geometry.Bounds;
 import sharedObject.IRenderableHolder;
 
@@ -17,8 +18,8 @@ public class LogicGame {
 
 	static {
 		players = new ArrayList<Player>();
-		Player one = new Player("ONE", 500, 1, IRenderableHolder.blackPawn);
-		Player two = new Player("TWO", 500, 1, IRenderableHolder.whitePawn);
+		Player one = new Player("ONE", 500, IRenderableHolder.blackPawn);
+		Player two = new Player("TWO", 500, IRenderableHolder.whitePawn);
 		players.add(one);
 		players.add(two);
 		for (int i = 0; i < players.size(); i++) {
@@ -39,6 +40,7 @@ public class LogicGame {
 		}
 		changeTurn = true;
 		tick = 0;
+		Main.gameScene.setUpPlayer();
 	}
 
 	public LogicGame() {

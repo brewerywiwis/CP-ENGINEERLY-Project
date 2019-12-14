@@ -44,6 +44,7 @@ public class Main extends Application {
 						gameScene = new GameScene(gameRoot);
 						primaryStage.setScene(gameScene);
 						setState(StateScene.GAMESCENE);
+						primaryStage.setMaximized(true);;
 					} catch (CheckException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -52,6 +53,7 @@ public class Main extends Application {
 				}
 				case GAMESCENE: {
 					LogicGame.update();
+					break;
 				}
 				}
 			}
