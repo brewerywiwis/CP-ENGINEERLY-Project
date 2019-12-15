@@ -1,71 +1,32 @@
 package field;
 
-import javafx.event.EventHandler;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import logic.Dice;
-import logic.LogicGame;
-import sharedObject.IRenderableHolder;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
-public class ControlField extends Field {
+public class ControlField extends VBox {
+	private Label condition;
+	private Label description;
+	private BorderPane img;
+	private GridPane chooseSection;
 
 	public ControlField() {
-		super();
-//		setBorder(new Border(
-//				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		setBackground(new Background(new BackgroundImage(IRenderableHolder.boardBackground, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
-		Button roll = new Button("ROLL!");
-		roll.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent arg0) {
-				System.out.println("MOUSE PRESSED ROLL BUTTON");
-			}
-
-		});
-		roll.setOnMouseReleased(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent arg0) {
-				System.out.println("MOUSE RELEASED ROLL BUTTON");
-				int point = Dice.roll();
-				System.out.println(point);
-				if (LogicGame.getChangeTurn()) {
-					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(1);
-					LogicGame.setChangeTurn(false);
-				}
-			}
-
-		});
-		GridPane center = new GridPane();
-		center.add(roll, 5, 5);
-		setCenter(center);
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 999;
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void eventAction() {
-		// TODO Auto-generated method stub
-
+		condition = new Label("CONDITION");
+		description = new Label("DESCRIPTION");
+		img = new BorderPane();
+		chooseSection = new GridPane();
+		getChildren().addAll(condition, description, img, chooseSection);
+		setBorder(new Border(
+				new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 	}
 }

@@ -20,6 +20,10 @@ public class IRenderableHolder {
 	public static Image manPoint;
 	public static Image start;
 	public static Image registration;
+	public static Image chanceCardV;
+	public static Image communityChestV;
+	public static Image chanceCardH;
+	public static Image communityChestH;
 	public static Image blackPawn;
 	public static Image whitePawn;
 	public static Image woodenBg;
@@ -58,6 +62,10 @@ public class IRenderableHolder {
 			blackPawn = new Image(new FileInputStream("./res/blackPawn.png"));
 			whitePawn = new Image(new FileInputStream("./res/whitePawn.png"));
 			woodenBg = new Image(new FileInputStream("./res/woodenBg.jpg"));
+			chanceCardV = new Image(new FileInputStream("./res/chanceCardV.jpg"));
+			communityChestV = new Image(new FileInputStream("./res/communityChestV.jpg"));
+			chanceCardH = new Image(new FileInputStream("./res/chanceCardH.jpg"));
+			communityChestH = new Image(new FileInputStream("./res/communityChestH.jpg"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,13 +14,15 @@ public class LogicGame {
 	private static ArrayList<Player> players;
 	private static int tick = 0;
 	private static boolean changeTurn;
-
+	private final static int startX = 15;
 	static {
 		players = new ArrayList<Player>();
 		changeTurn = true;
 		tick = 0;
 		setUpPlayer();
 		Main.getGameScene().setUpAssetShow();
+		Main.getGameScene().setUpUserControl();
+		Main.getGameScene().setUpLogDisplay();
 	}
 
 	public LogicGame() {
@@ -49,7 +51,8 @@ public class LogicGame {
 					double centerX = g.getWidth() / 2;
 					double centerY = g.getHeight() / 2;
 
-					nowPlayer.setLayoutX(field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20));
+					nowPlayer.setLayoutX(
+							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
 
@@ -71,9 +74,14 @@ public class LogicGame {
 	public static void setUpPlayer() {
 		Player one = new Player("ONE", 500, IRenderableHolder.blackPawn);
 		Player two = new Player("TWO", 500, IRenderableHolder.whitePawn);
+		Player three = new Player("THREE", 500, IRenderableHolder.blackPawn);
+		Player four = new Player("FOUR", 500, IRenderableHolder.whitePawn);
 		one.setNotMoveCount(3);
 		players.add(one);
 		players.add(two);
+		players.add(three);
+		players.add(four);
+		System.out.println("SETUP PLAYER");
 		for (int i = 0; i < players.size(); i++) {
 			Bounds field = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
 					.localToScene(Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
@@ -84,7 +92,7 @@ public class LogicGame {
 			double centerX = g.getWidth() / 2;
 			double centerY = g.getHeight() / 2;
 
-			players.get(i).setLayoutX(field.getMinX() + players.get(i).getCenterPx() + i * (20));
+			players.get(i).setLayoutX(field.getMinX() + players.get(i).getCenterPx() + i * (20) - startX);
 			players.get(i).setLayoutY(field.getMinY() + centerY - players.get(i).getCenterPy());
 		}
 	}
@@ -98,10 +106,13 @@ public class LogicGame {
 							.get((nowPlayer.getCurrentField()) % BoardPane.getNumoffield()).getBoundsInLocal());
 			Field g = Main.getGameScene().getBoard().getFields()
 					.get((nowPlayer.getCurrentField()) % BoardPane.getNumoffield());
+
 			double centerY = g.getHeight() / 2;
+
 			if (nowPlayer.getLayoutX() != field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20)
-					|| nowPlayer.getLayoutY() != field.getMinY() + centerY - nowPlayer.getCenterPy()) {
-				nowPlayer.setLayoutX(field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20));
+					- startX || nowPlayer.getLayoutY() != field.getMinY() + centerY - nowPlayer.getCenterPy()) {
+				nowPlayer.setLayoutX(
+						field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 				nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 			}
 		}

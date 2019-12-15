@@ -9,22 +9,25 @@ public class ChanceCard extends Deck {
 	@Override
 	public void doAction() {
 		// TODO Auto-generated method stub
-		drawAndEffect();
+		System.out.println("You are getting card with " + drawAndEffect() + " number.");
+//		System.out.println("PLAYER is in ChanceCard field");
 	}
 
 	@Override
-	public void drawAndEffect() {
+	public int drawAndEffect() {
 		// TODO Auto-generated method stub
 		int n = this.pickCard();
 		// prepare for implement effect each effect card
 		switch (n) {
 		case 0: {
 			///
+			break;
 		}
 		case 1: {
 			///
+			break;
 		}
 		}
+		return n;
 	}
-
 }

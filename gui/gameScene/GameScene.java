@@ -1,5 +1,11 @@
 package gameScene;
 
+import java.util.ArrayList;
+
+import field.AssetShow;
+import field.ControlField;
+import field.LogDisplay;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -15,13 +21,17 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import logic.LogicGame;
-import playerDisplay.AssetShow;
 import sharedObject.IRenderableHolder;
 
 public class GameScene extends Scene {
 
 	private BoardPane board;
 	private BorderPane pane;
+	private BorderPane bLeft;
+	private BorderPane bRight;
+	private ArrayList<AssetShow> assetShows;
+	private ControlField controlField;
+	private LogDisplay logDisplay;
 
 	public GameScene(Parent root) throws CheckException {
 		super(root);
@@ -29,6 +39,9 @@ public class GameScene extends Scene {
 		BackgroundImage img = new BackgroundImage(IRenderableHolder.woodenBg, BackgroundRepeat.REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(img));
+		bLeft = new BorderPane();
+		bRight = new BorderPane();
+		assetShows = new ArrayList<AssetShow>();
 	}
 
 	private void resetGame() throws CheckException {
@@ -56,19 +69,35 @@ public class GameScene extends Scene {
 	}
 
 	public void setUpAssetShow() {
-		BorderPane h1 = new BorderPane();
-		h1.setTop(new AssetShow(LogicGame.getPlayers().get(0)));
-		h1.setBottom(new AssetShow(LogicGame.getPlayers().get(0)));
-		BorderPane h2 = new BorderPane();
-		h2.setTop(new AssetShow(LogicGame.getPlayers().get(0)));
-		h2.setBottom(new AssetShow(LogicGame.getPlayers().get(0)));
-
-		h1.setBorder(new Border(
+		for (int i = 0; i < LogicGame.getPlayers().size(); i++) {
+			assetShows.add(new AssetShow(LogicGame.getPlayers().get(i)));
+			if (i == 0) {
+				bLeft.setTop(assetShows.get(i));
+			} else if (i == 1) {
+				bRight.setTop(assetShows.get(i));
+			} else if (i == 2) {
+				bLeft.setBottom(assetShows.get(i));
+			} else if (i == 3) {
+				bRight.setBottom(assetShows.get(i));
+			}
+		}
+		bLeft.setBorder(new Border(
 				new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		h2.setBorder(new Border(
+		bRight.setBorder(new Border(
 				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		pane.setLeft(h1);
-		pane.setRight(h2);
+		pane.setLeft(bLeft);
+		pane.setRight(bRight);
+	}
+
+	public void setUpUserControl() {
+		controlField = new ControlField();
+		controlField.setAlignment(Pos.CENTER);
+		bLeft.setCenter(controlField);
+	}
+
+	public void setUpLogDisplay() {
+		logDisplay = new LogDisplay();
+		bRight.setCenter(logDisplay);
 	}
 
 }

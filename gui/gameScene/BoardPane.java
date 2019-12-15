@@ -1,7 +1,7 @@
 package gameScene;
 
 import java.util.ArrayList;
-import field.ControlField;
+import field.DiceField;
 import field.CornerField;
 import field.Direction;
 import field.Field;
@@ -18,6 +18,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import logic.ChanceCard;
+import logic.CommunityChest;
 import logic.Land;
 import logic.SpecialAsset;
 import sharedObject.IRenderableHolder;
@@ -64,31 +66,37 @@ public class BoardPane extends GridPane {
 	private CornerField manPoint;
 	private CornerField freeParking;
 
-	private ControlField controlField;
+	private DiceField diceField;
+
+	private ChanceCard chanceCard;
+	private CommunityChest communityChest;
 
 	public BoardPane() {
 //		visible = true;
+		chanceCard = new ChanceCard();
+		communityChest = new CommunityChest();
+		
 		fields = new ArrayList<Field>();
 		one = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
 		two = new HLandField(new Land("HOME", 200), Color.PINK, Direction.RIGHT);
 		three = new HLandField(new Land("HOME", 300), Color.PINK, Direction.RIGHT);
 		four = new HLandField(new Land("HOME", 400), Color.PINK, Direction.RIGHT);
-		five = new HLandField(new Land("HOME", 500), Color.PINK, Direction.RIGHT);
+		five = new HLandField(communityChest, Color.PINK, Direction.RIGHT);
 
 		one2 = new VLandField(new Land("HOME2", 100), Color.AQUAMARINE, Direction.DOWN);
 		two2 = new VLandField(new Land("HOME2", 200), Color.AQUAMARINE, Direction.DOWN);
 		three2 = new VLandField(new Land("HOME2", 300), Color.AQUAMARINE, Direction.DOWN);
-		four2 = new VLandField(new Land("HOME2", 400), Color.AQUAMARINE, Direction.DOWN);
+		four2 = new VLandField(chanceCard, Color.AQUAMARINE, Direction.DOWN);
 		five2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
 
 		one3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
-		two3 = new HLandField(new Land("HOME", 200), Color.BROWN, Direction.LEFT);
+		two3 = new HLandField(communityChest, Color.BROWN, Direction.LEFT);
 		three3 = new HLandField(new Land("HOME", 300), Color.BROWN, Direction.LEFT);
 		four3 = new HLandField(new Land("HOME", 400), Color.BROWN, Direction.LEFT);
 		five3 = new HLandField(new Land("HOME", 500), Color.BROWN, Direction.LEFT);
 
 		one4 = new VLandField(new Land("HOME2", 100), Color.GREEN, Direction.UP);
-		two4 = new VLandField(new Land("HOME2", 200), Color.GREEN, Direction.UP);
+		two4 = new VLandField(chanceCard, Color.GREEN, Direction.UP);
 		three4 = new VLandField(new Land("HOME2", 300), Color.GREEN, Direction.UP);
 		four4 = new VLandField(new Land("HOME2", 400), Color.GREEN, Direction.UP);
 		five4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
@@ -98,7 +106,7 @@ public class BoardPane extends GridPane {
 		freeParking = new CornerField(new SpecialAsset("Free Parking!", 3), IRenderableHolder.freeParking);
 		manPoint = new CornerField(new SpecialAsset("manPoint", 4), IRenderableHolder.manPoint);
 
-		controlField = new ControlField();
+		diceField = new DiceField();
 
 		fields.add(start);
 
@@ -173,7 +181,7 @@ public class BoardPane extends GridPane {
 		add(right, 2, 1);
 		add(top, 1, 0);
 		add(bottom, 1, 2);
-		add(controlField, 1, 1);
+		add(diceField, 1, 1);
 
 		setAlignment(Pos.CENTER);
 		setBorder(new Border(
