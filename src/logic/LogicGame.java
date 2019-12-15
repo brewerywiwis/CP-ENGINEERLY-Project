@@ -56,9 +56,9 @@ public class LogicGame {
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
 
-					nowPlayer.doAction();
 //					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
-
+					nowPlayer.doAction();
+					Main.getGameScene().update();
 					tick = 0;
 				} else {
 					tick++;
@@ -72,16 +72,15 @@ public class LogicGame {
 	}
 
 	public static void setUpPlayer() {
-		Player one = new Player("ONE", 500, IRenderableHolder.blackPawn);
-		Player two = new Player("TWO", 500, IRenderableHolder.whitePawn);
-		Player three = new Player("THREE", 500, IRenderableHolder.blackPawn);
-		Player four = new Player("FOUR", 500, IRenderableHolder.whitePawn);
+		Player one = new Player("ONE", 5000, IRenderableHolder.blackPawn);
+		Player two = new Player("TWO", 5000, IRenderableHolder.whitePawn);
+//		Player three = new Player("THREE", 500, IRenderableHolder.blackPawn);
+//		Player four = new Player("FOUR", 500, IRenderableHolder.whitePawn);
 		one.setNotMoveCount(3);
 		players.add(one);
 		players.add(two);
-		players.add(three);
-		players.add(four);
-		System.out.println("SETUP PLAYER");
+//		players.add(three);
+//		players.add(four);
 		for (int i = 0; i < players.size(); i++) {
 			Bounds field = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
 					.localToScene(Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
@@ -137,4 +136,5 @@ public class LogicGame {
 	public static void setChangeTurn(boolean changeTurn) {
 		LogicGame.changeTurn = changeTurn;
 	}
+	
 }

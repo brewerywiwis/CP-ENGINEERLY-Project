@@ -47,25 +47,12 @@ public class GameScene extends Scene {
 	private void resetGame() throws CheckException {
 		// TODO Auto-generated method stub
 		try {
-
-			/////////////////////////////////////////
-			// init Game screen in 3 section 1assetShow 2board 3assetShow//
 			pane = (BorderPane) getRoot();
 			board = new BoardPane();
 			pane.setCenter(board);
-			/////////////////////////////////////
-
 		} catch (Exception e) {
 			throw new CheckException("Please create BorderPane for root in GameScene");
 		}
-	}
-
-	public BoardPane getBoard() {
-		return board;
-	}
-
-	public BorderPane getPane() {
-		return pane;
 	}
 
 	public void setUpAssetShow() {
@@ -100,4 +87,21 @@ public class GameScene extends Scene {
 		bRight.setCenter(logDisplay);
 	}
 
+	public void update() {
+		for (int i = 0; i < assetShows.size(); i++) {
+			assetShows.get(i).update();
+		}
+	}
+
+	public BoardPane getBoard() {
+		return board;
+	}
+
+	public BorderPane getPane() {
+		return pane;
+	}
+
+	public LogDisplay getLogDisplay() {
+		return logDisplay;
+	}
 }

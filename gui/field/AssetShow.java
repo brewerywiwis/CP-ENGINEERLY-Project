@@ -19,11 +19,15 @@ import javafx.scene.text.Font;
 import logic.Player;
 
 public class AssetShow extends HBox {
+	private Player player;
 	private BorderPane imgPane;
 	private ImageView profileImg;
 	private GridPane description;
-
+	private Label name;
+	private Label money;
 	public AssetShow(Player player) {
+		this.player = player;
+		
 		profileImg = new ImageView(player.getImage());
 		profileImg.setScaleX(1.2);
 		profileImg.setScaleY(1.2);
@@ -31,8 +35,8 @@ public class AssetShow extends HBox {
 		imgPane.setCenter(profileImg);
 		getChildren().add(imgPane);
 
-		Label name = new Label("Player Name: " + player.getName());
-		Label money = new Label("Money: " + String.valueOf(player.getMoney()));
+		name = new Label("Player Name: " + player.getName());
+		money = new Label("Money: " + String.valueOf(player.getMoney()));
 		name.setFont(new Font(22));
 		money.setFont(new Font(22));
 
@@ -50,6 +54,10 @@ public class AssetShow extends HBox {
 		setBorder(new Border(
 				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setMargin(description, new Insets(30));
+	}
 
+	public void update() {
+		// TODO Auto-generated method stub
+		money.setText("Money: " + String.valueOf(player.getMoney()));
 	}
 }

@@ -17,6 +17,7 @@ public class SpecialAsset implements Actionable {
 		// case 1: when player pass start point, add money to player
 		case 1: {
 			nowPlayer.addMoney(500);
+			System.out.println(nowPlayer.getName() + " get 500 cash. and have " + nowPlayer.getMoney());
 			break;
 		}
 		// case 2:living in registration room for 2 turn

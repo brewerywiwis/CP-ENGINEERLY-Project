@@ -19,7 +19,6 @@ import logic.Actionable;
 import logic.Asset;
 import logic.ChanceCard;
 import logic.CommunityChest;
-import logic.Deck;
 import sharedObject.IRenderableHolder;
 
 public class HLandField extends Field {
@@ -57,11 +56,13 @@ public class HLandField extends Field {
 			}
 		} else if (actionable instanceof ChanceCard) {
 			ImageView im = new ImageView(IRenderableHolder.chanceCardH);
+			im.setRotate(180 * (dir == Direction.RIGHT ? 1 : 0));
 			im.setFitHeight(height);
 			im.setFitWidth(width);
 			setCenter(im);
 		} else if (actionable instanceof CommunityChest) {
 			ImageView im = new ImageView(IRenderableHolder.communityChestH);
+			im.setRotate(180 * (dir == Direction.RIGHT ? 1 : 0));
 			im.setFitHeight(height);
 			im.setFitWidth(width);
 			setCenter(im);

@@ -1,5 +1,6 @@
 package field;
 
+import application.Main;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -40,7 +41,11 @@ public class DiceField extends Field {
 				int point = Dice.roll();
 				System.out.println(point);
 				if (LogicGame.getChangeTurn()) {
-					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(1);
+					int n = Main.getGameScene().getLogDisplay().getSize();
+					int m = LogicGame.getPlayers().indexOf(LogicGame.getNowPlayer());
+					Main.getGameScene().getLogDisplay()
+							.add(String.format("%d: Player %d has roll a dice and get %d point.", n + 1, m + 1, point));
+					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(point);
 					LogicGame.setChangeTurn(false);
 				}
 			}
