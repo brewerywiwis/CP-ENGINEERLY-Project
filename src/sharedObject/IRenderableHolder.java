@@ -5,13 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import application.Main;
-import application.StateScene;
 import javafx.scene.image.Image;
 
 public class IRenderableHolder {
 
-	private static StateScene state;
 	private static IRenderableHolder instance;
 	private static Comparator<IRenderable> comparator;
 	private ArrayList<IRenderable> entities;
@@ -27,6 +24,7 @@ public class IRenderableHolder {
 	public static Image blackPawn;
 	public static Image whitePawn;
 	public static Image woodenBg;
+	public static Image trophy;
 
 	static {
 		comparator = new Comparator<IRenderable>() {
@@ -66,6 +64,7 @@ public class IRenderableHolder {
 			communityChestV = new Image(new FileInputStream("./res/communityChestV.jpg"));
 			chanceCardH = new Image(new FileInputStream("./res/chanceCardH.jpg"));
 			communityChestH = new Image(new FileInputStream("./res/communityChestH.jpg"));
+			trophy = new Image(new FileInputStream("./res/trophy.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +76,6 @@ public class IRenderableHolder {
 	}
 
 	public static void update() {
-		state = Main.getState();
 		for (int i = 0; i < instance.entities.size(); i++) {
 			if (!instance.entities.get(i).isVisible()) {
 				instance.entities.remove(instance.entities.get(i));

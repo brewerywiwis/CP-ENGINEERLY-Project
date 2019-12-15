@@ -75,36 +75,36 @@ public class BoardPane extends GridPane {
 //		visible = true;
 		chanceCard = new ChanceCard();
 		communityChest = new CommunityChest();
-		
+
 		fields = new ArrayList<Field>();
-		one = new HLandField(new Land("HOME", 100), Color.PINK, Direction.RIGHT);
-		two = new HLandField(new Land("HOME", 200), Color.PINK, Direction.RIGHT);
-		three = new HLandField(new Land("HOME", 300), Color.PINK, Direction.RIGHT);
-		four = new HLandField(new Land("HOME", 400), Color.PINK, Direction.RIGHT);
-		five = new HLandField(communityChest, Color.PINK, Direction.RIGHT);
+		one = new HLandField(new Land("HOME", 100), Direction.RIGHT);
+		two = new HLandField(new Land("HOME", 200), Direction.RIGHT);
+		three = new HLandField(new Land("HOME", 300), Direction.RIGHT);
+		four = new HLandField(new Land("HOME", 400), Direction.RIGHT);
+		five = new HLandField(communityChest, Direction.RIGHT);
 
-		one2 = new VLandField(new Land("HOME2", 100), Color.AQUAMARINE, Direction.DOWN);
-		two2 = new VLandField(new Land("HOME2", 200), Color.AQUAMARINE, Direction.DOWN);
-		three2 = new VLandField(new Land("HOME2", 300), Color.AQUAMARINE, Direction.DOWN);
-		four2 = new VLandField(chanceCard, Color.AQUAMARINE, Direction.DOWN);
-		five2 = new VLandField(new Land("HOME2", 500), Color.AQUAMARINE, Direction.DOWN);
+		one2 = new VLandField(new Land("HOME2", 100), Direction.DOWN);
+		two2 = new VLandField(new Land("HOME2", 200), Direction.DOWN);
+		three2 = new VLandField(new Land("HOME2", 300), Direction.DOWN);
+		four2 = new VLandField(chanceCard, Direction.DOWN);
+		five2 = new VLandField(new Land("HOME2", 500), Direction.DOWN);
 
-		one3 = new HLandField(new Land("HOME", 100), Color.BROWN, Direction.LEFT);
-		two3 = new HLandField(communityChest, Color.BROWN, Direction.LEFT);
-		three3 = new HLandField(new Land("HOME", 300), Color.BROWN, Direction.LEFT);
-		four3 = new HLandField(new Land("HOME", 400), Color.BROWN, Direction.LEFT);
-		five3 = new HLandField(new Land("HOME", 500), Color.BROWN, Direction.LEFT);
+		one3 = new HLandField(new Land("HOME", 100), Direction.LEFT);
+		two3 = new HLandField(communityChest, Direction.LEFT);
+		three3 = new HLandField(new Land("HOME", 300), Direction.LEFT);
+		four3 = new HLandField(new Land("HOME", 400), Direction.LEFT);
+		five3 = new HLandField(new Land("HOME", 500), Direction.LEFT);
 
-		one4 = new VLandField(new Land("HOME2", 100), Color.GREEN, Direction.UP);
-		two4 = new VLandField(chanceCard, Color.GREEN, Direction.UP);
-		three4 = new VLandField(new Land("HOME2", 300), Color.GREEN, Direction.UP);
-		four4 = new VLandField(new Land("HOME2", 400), Color.GREEN, Direction.UP);
-		five4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
+		one4 = new VLandField(new Land("HOME2", 100), Direction.UP);
+		two4 = new VLandField(chanceCard, Direction.UP);
+		three4 = new VLandField(new Land("HOME2", 300), Direction.UP);
+		four4 = new VLandField(new Land("HOME2", 400), Direction.UP);
+		five4 = new VLandField(new Land("HOME2", 500), Direction.UP);
 
 		start = new CornerField(new SpecialAsset("START!", 1), IRenderableHolder.start);
 		registration = new CornerField(new SpecialAsset("Registration!", 2), IRenderableHolder.registration);
 		freeParking = new CornerField(new SpecialAsset("Free Parking!", 3), IRenderableHolder.freeParking);
-		manPoint = new CornerField(new SpecialAsset("manPoint", 4), IRenderableHolder.manPoint);
+		manPoint = new CornerField(new SpecialAsset("ManPoint->", 4), IRenderableHolder.manPoint);
 
 		diceField = new DiceField();
 

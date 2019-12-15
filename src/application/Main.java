@@ -1,5 +1,6 @@
 package application;
 
+import endScene.EndScene;
 import gameScene.CheckException;
 import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
@@ -25,7 +26,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("CP Engineerly");
 		primaryStage.setResizable(true);
-		primaryStage.setAlwaysOnTop(true);
+		primaryStage.setMaximized(true);
+//		primaryStage.setAlwaysOnTop(true);
 		primaryStage.show();
 
 		AnimationTimer GameLoop = new AnimationTimer() {
@@ -40,10 +42,9 @@ public class Main extends Application {
 					gameRoot = new BorderPane();
 					try {
 						gameScene = new GameScene(gameRoot);
+						LogicGame.resetLogicGame();
 						primaryStage.setScene(gameScene);
 						setState(StateScene.GAMESCENE);
-						primaryStage.setMaximized(true);
-						;
 					} catch (CheckException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -52,6 +53,10 @@ public class Main extends Application {
 				}
 				case GAMESCENE: {
 					LogicGame.update();
+					break;
+				}
+				case ENDSCENE: {
+					primaryStage.setScene(EndScene.scene);
 					break;
 				}
 				}

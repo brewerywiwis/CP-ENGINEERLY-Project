@@ -12,8 +12,8 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import logic.Actionable;
 import logic.Asset;
@@ -23,15 +23,15 @@ import sharedObject.IRenderableHolder;
 
 public class HLandField extends Field {
 
-	private Actionable actionable;
+	private VBox vStore;
 	private final double width = 140;
 	private final double height = 100;
 
-	public HLandField(Actionable actionable, Color color, Direction dir) {
+	public HLandField(Actionable actionable, Direction dir) {
 		super();
 		this.actionable = actionable;
-		setBorder(new Border(
-				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		setBorder(new Border(
+//				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
@@ -46,13 +46,24 @@ public class HLandField extends Field {
 			inside.setTop(lName);
 			inside.setBottom(lPrice);
 			inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
-
+			inside.setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			setMinWidth(width);
 			setCenter(inside);
+
+			vStore = new VBox();
+			///////////////////////////
+			vStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			vStore.setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			//////////////////////////
+			vStore.setMinWidth(40);
+			vStore.setMinHeight(height);
+
 			if (dir == Direction.RIGHT) {
-				setRight(new Rectangle(30, height, color));
+				setRight(vStore);
 			} else if (dir == Direction.LEFT) {
-				setLeft(new Rectangle(30, height, color));
+				setLeft(vStore);
 			}
 		} else if (actionable instanceof ChanceCard) {
 			ImageView im = new ImageView(IRenderableHolder.chanceCardH);
@@ -60,17 +71,17 @@ public class HLandField extends Field {
 			im.setFitHeight(height);
 			im.setFitWidth(width);
 			setCenter(im);
+			setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		} else if (actionable instanceof CommunityChest) {
 			ImageView im = new ImageView(IRenderableHolder.communityChestH);
 			im.setRotate(180 * (dir == Direction.RIGHT ? 1 : 0));
 			im.setFitHeight(height);
 			im.setFitWidth(width);
 			setCenter(im);
+			setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		}
-	}
-
-	public Actionable getActionable() {
-		return actionable;
 	}
 
 	@Override
@@ -97,5 +108,13 @@ public class HLandField extends Field {
 	public void eventAction() {
 		// TODO Auto-generated method stub
 		actionable.doAction();
+	}
+
+	public void setOwnerColor() {
+		if (actionable instanceof Asset) {
+			Asset asset = (Asset) actionable;
+			vStore.setBackground(
+					new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+		}
 	}
 }

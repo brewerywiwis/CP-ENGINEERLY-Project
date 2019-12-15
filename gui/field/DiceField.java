@@ -24,6 +24,7 @@ public class DiceField extends Field {
 		setBackground(new Background(new BackgroundImage(IRenderableHolder.boardBackground, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
+		
 		Button roll = new Button("ROLL!");
 		roll.setOnMousePressed(new EventHandler<MouseEvent>() {
 
@@ -42,9 +43,9 @@ public class DiceField extends Field {
 				System.out.println(point);
 				if (LogicGame.getChangeTurn()) {
 					int n = Main.getGameScene().getLogDisplay().getSize();
-					int m = LogicGame.getPlayers().indexOf(LogicGame.getNowPlayer());
 					Main.getGameScene().getLogDisplay()
-							.add(String.format("%d: Player %d has roll a dice and get %d point.", n + 1, m + 1, point));
+							.add(String.format("%d: Player %s has roll a dice and get %d point.", n + 1,
+									LogicGame.getNowPlayer().getName(), point));
 					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(point);
 					LogicGame.setChangeTurn(false);
 				}

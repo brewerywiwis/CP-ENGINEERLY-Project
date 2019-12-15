@@ -6,24 +6,17 @@ import application.StateScene;
 import field.Field;
 import gameScene.BoardPane;
 import javafx.geometry.Bounds;
+import javafx.scene.paint.Color;
 import sharedObject.IRenderableHolder;
 
 public class LogicGame {
 
+	private static String winnerName;
 	private static int turnPlayer = 0;
 	private static ArrayList<Player> players;
 	private static int tick = 0;
 	private static boolean changeTurn;
 	private final static int startX = 15;
-	static {
-		players = new ArrayList<Player>();
-		changeTurn = true;
-		tick = 0;
-		setUpPlayer();
-		Main.getGameScene().setUpAssetShow();
-		Main.getGameScene().setUpUserControl();
-		Main.getGameScene().setUpLogDisplay();
-	}
 
 	public LogicGame() {
 	}
@@ -34,6 +27,7 @@ public class LogicGame {
 			updatePlayerPosition();
 			Player nowPlayer = players.get(turnPlayer);
 			if (!nowPlayer.isMove()) {
+				System.out.println("cannot move");
 				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
 				nowPlayer.setNextField(nowPlayer.getCurrentField());
 				turnPlayer = (turnPlayer + 1) % players.size();
@@ -68,12 +62,23 @@ public class LogicGame {
 					changeTurn = true;
 				}
 			}
+			if (players.size() == 1) {
+				winnerName = players.get(0).getName();
+				Main.setState(StateScene.ENDSCENE);
+			}
 		}
 	}
 
 	public static void setUpPlayer() {
-		Player one = new Player("ONE", 5000, IRenderableHolder.blackPawn);
-		Player two = new Player("TWO", 5000, IRenderableHolder.whitePawn);
+		ArrayList<Color> colors = new ArrayList<Color>();
+		colors.add(Color.BLACK);
+		colors.add(Color.YELLOW);
+		// below is light blue color
+		colors.add(Color.rgb(255, 155, 204));
+		// below is light pink color
+		colors.add(Color.rgb(12, 155, 204));
+		Player one = new Player("ONE", 1000, colors.get(0), IRenderableHolder.blackPawn);
+		Player two = new Player("TWO", 1000, colors.get(2), IRenderableHolder.whitePawn);
 //		Player three = new Player("THREE", 500, IRenderableHolder.blackPawn);
 //		Player four = new Player("FOUR", 500, IRenderableHolder.whitePawn);
 		one.setNotMoveCount(3);
@@ -136,5 +141,27 @@ public class LogicGame {
 	public static void setChangeTurn(boolean changeTurn) {
 		LogicGame.changeTurn = changeTurn;
 	}
-	
+
+	// when bankrupt or lose the game use this method
+	public static void goodByeMyFriend(Player player) {
+		player.setVisible(false);
+		players.remove(player);
+		for (int i = 0; i < player.getAssets().size(); i++) {
+			player.getAssets().get(i).setOwner(null);
+		}
+	}
+
+	public static void resetLogicGame() {
+		players = new ArrayList<Player>();
+		changeTurn = true;
+		tick = 0;
+		setUpPlayer();
+		Main.getGameScene().setUpAssetShow();
+		Main.getGameScene().setUpUserControl();
+		Main.getGameScene().setUpLogDisplay();
+	}
+
+	public static String getWinnerName() {
+		return winnerName;
+	}
 }

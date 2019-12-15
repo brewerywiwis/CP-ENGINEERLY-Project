@@ -3,12 +3,16 @@ package field;
 import java.util.ArrayList;
 
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import logic.Actionable;
 import logic.Player;
 import sharedObject.IRenderable;
 
 public abstract class Field extends BorderPane implements IRenderable, Actionable {
+
 	private ArrayList<Player> players;
+	protected Actionable actionable;
+	protected Color color;
 
 	public Field() {
 		players = new ArrayList<Player>();
@@ -38,5 +42,18 @@ public abstract class Field extends BorderPane implements IRenderable, Actionabl
 
 	public void doAction() {
 		eventAction();
+	}
+
+	public Actionable getActionable() {
+		return actionable;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	};
+
 }

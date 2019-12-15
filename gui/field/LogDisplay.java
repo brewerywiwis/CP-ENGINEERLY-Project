@@ -5,7 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,17 +23,21 @@ public class LogDisplay extends VBox {
 
 	public LogDisplay() {
 		mSize = 0;
+
 		Text title = new Text("What Happen!");
 		title.setFont(new Font(30));
 		title.setFill(Color.BLACK);
-		titlePane = new BorderPane();
-		titlePane.setCenter(title);
 		setMargin(title, new Insets(15));
 
+		titlePane = new BorderPane();
+		titlePane.setCenter(title);
+
 		logPane = new ListView<String>();
-//		logPane.getItems().addAll("WTF", "THIS", "IS", "LOG", "DISPLAY");
+
 		getChildren().addAll(title, logPane);
 
+		setBorder(new Border(
+				new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setBackground(new Background(new BackgroundFill(Color.LINEN, CornerRadii.EMPTY, null)));
 		setAlignment(Pos.TOP_CENTER);
 	}
