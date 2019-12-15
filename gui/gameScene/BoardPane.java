@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import logic.Land;
+import logic.SpecialAsset;
 import sharedObject.IRenderableHolder;
 
 public class BoardPane extends GridPane {
@@ -92,10 +93,10 @@ public class BoardPane extends GridPane {
 		four4 = new VLandField(new Land("HOME2", 400), Color.GREEN, Direction.UP);
 		five4 = new VLandField(new Land("HOME2", 500), Color.GREEN, Direction.UP);
 
-		start = new CornerField(IRenderableHolder.start);
-		registration = new CornerField(IRenderableHolder.registration);
-		freeParking = new CornerField(IRenderableHolder.freeParking);
-		manPoint = new CornerField(IRenderableHolder.manPoint);
+		start = new CornerField(new SpecialAsset("START!", 1), IRenderableHolder.start);
+		registration = new CornerField(new SpecialAsset("Registration!", 2), IRenderableHolder.registration);
+		freeParking = new CornerField(new SpecialAsset("Free Parking!", 3), IRenderableHolder.freeParking);
+		manPoint = new CornerField(new SpecialAsset("manPoint", 4), IRenderableHolder.manPoint);
 
 		controlField = new ControlField();
 

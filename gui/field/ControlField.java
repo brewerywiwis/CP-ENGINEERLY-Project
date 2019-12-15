@@ -1,13 +1,8 @@
 package field;
 
-import java.util.Random;
-
-import application.Main;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -45,7 +40,7 @@ public class ControlField extends Field {
 				int point = Dice.roll();
 				System.out.println(point);
 				if (LogicGame.getChangeTurn()) {
-					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(point);
+					LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(1);
 					LogicGame.setChangeTurn(false);
 				}
 			}

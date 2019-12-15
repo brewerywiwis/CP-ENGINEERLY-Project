@@ -14,7 +14,7 @@ import startScene.StartScene;
 public class Main extends Application {
 	public static final int displayX = 1080, displayY = 720;
 	public static final int borderX = 220, borderY = 40;
-	public static GameScene gameScene;
+	private static GameScene gameScene;
 	private static StateScene state;
 	private BorderPane gameRoot;
 
@@ -44,7 +44,8 @@ public class Main extends Application {
 						gameScene = new GameScene(gameRoot);
 						primaryStage.setScene(gameScene);
 						setState(StateScene.GAMESCENE);
-						primaryStage.setMaximized(true);;
+						primaryStage.setMaximized(true);
+						;
 					} catch (CheckException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -72,4 +73,9 @@ public class Main extends Application {
 	public static void setState(StateScene state) {
 		Main.state = state;
 	}
+
+	public static GameScene getGameScene() {
+		return gameScene;
+	}
+
 }

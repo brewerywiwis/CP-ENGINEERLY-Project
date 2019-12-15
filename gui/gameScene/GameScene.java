@@ -1,6 +1,5 @@
 package gameScene;
 
-import application.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -14,9 +13,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import logic.LogicGame;
 import playerDisplay.AssetShow;
 import sharedObject.IRenderableHolder;
@@ -58,7 +55,7 @@ public class GameScene extends Scene {
 		return pane;
 	}
 
-	public void setUpPlayer() {
+	public void setUpAssetShow() {
 		BorderPane h1 = new BorderPane();
 		h1.setTop(new AssetShow(LogicGame.getPlayers().get(0)));
 		h1.setBottom(new AssetShow(LogicGame.getPlayers().get(0)));
@@ -72,7 +69,6 @@ public class GameScene extends Scene {
 				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		pane.setLeft(h1);
 		pane.setRight(h2);
-
 	}
 
 }

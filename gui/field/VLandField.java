@@ -14,22 +14,22 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import logic.Land;
+import logic.Asset;
 
 public class VLandField extends Field {
 
-	private Land land;
+	private Asset asset;
 	private final double width = 80;
 	private final double height = 120;
 
-	public VLandField(Land land, Color color, Direction dir) {
+	public VLandField(Asset asset, Color color, Direction dir) {
 		super();
-		this.land = land;
+		this.asset = asset;
 		setBorder(new Border(
 				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-		Label lPrice = new Label(String.format("$%d", land.getPrice()));
-		Label lName = new Label(land.getName());
+		Label lPrice = new Label(String.format("$%d", asset.getPrice()));
+		Label lName = new Label(asset.getName());
 		lPrice.setFont(new Font(18));
 		lName.setFont(new Font(20));
 
@@ -49,8 +49,8 @@ public class VLandField extends Field {
 		}
 	}
 
-	public Land getLand() {
-		return land;
+	public Asset getAsset() {
+		return asset;
 	}
 
 	@Override
@@ -76,6 +76,6 @@ public class VLandField extends Field {
 	@Override
 	public void eventAction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
