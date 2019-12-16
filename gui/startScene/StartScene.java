@@ -18,7 +18,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import sharedObject.IRenderableHolder;;
+import sharedObject.SharedObjectHolder;;
 
 public class StartScene extends Scene {
 
@@ -29,16 +29,16 @@ public class StartScene extends Scene {
 	public StartScene(Parent p, double w, double h) {
 		super(p, w, h);
 
-		ImageView startButton = new ImageView(IRenderableHolder.startButton);
-		ImageView clickedStartButton = new ImageView(IRenderableHolder.clickedStartButton);
-		ImageView onePlayerButton = new ImageView(IRenderableHolder.onePlayerButton);
-		ImageView twoPlayerButton = new ImageView(IRenderableHolder.twoPlayerButton);
-		ImageView threePlayerButton = new ImageView(IRenderableHolder.threePlayerButton);
-		ImageView fourPlayerButton = new ImageView(IRenderableHolder.fourPlayerButton);
-		ImageView clickedOnePlayer = new ImageView(IRenderableHolder.clickedOnePlayer);
-		ImageView clickedTwoPlayer = new ImageView(IRenderableHolder.clickedTwoPlayer);
-		ImageView clickedThreePlayer = new ImageView(IRenderableHolder.clickedThreePlayer);
-		ImageView clickedFourPlayer = new ImageView(IRenderableHolder.clickedFourPlayer);
+		ImageView startButton = new ImageView(SharedObjectHolder.startButton);
+		ImageView clickedStartButton = new ImageView(SharedObjectHolder.clickedStartButton);
+		ImageView onePlayerButton = new ImageView(SharedObjectHolder.onePlayerButton);
+		ImageView twoPlayerButton = new ImageView(SharedObjectHolder.twoPlayerButton);
+		ImageView threePlayerButton = new ImageView(SharedObjectHolder.threePlayerButton);
+		ImageView fourPlayerButton = new ImageView(SharedObjectHolder.fourPlayerButton);
+		ImageView clickedOnePlayer = new ImageView(SharedObjectHolder.clickedOnePlayer);
+		ImageView clickedTwoPlayer = new ImageView(SharedObjectHolder.clickedTwoPlayer);
+		ImageView clickedThreePlayer = new ImageView(SharedObjectHolder.clickedThreePlayer);
+		ImageView clickedFourPlayer = new ImageView(SharedObjectHolder.clickedFourPlayer);
 		Button start_button = new Button("");
 		start_button.setGraphic(startButton);
 		start_button.setStyle("-fx-background-color: transparent");
@@ -168,7 +168,7 @@ public class StartScene extends Scene {
 			}
 		});
 
-		pane.setBackground(new Background(new BackgroundImage(IRenderableHolder.startSceneBackground,
+		pane.setBackground(new Background(new BackgroundImage(SharedObjectHolder.startSceneBackground,
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
 

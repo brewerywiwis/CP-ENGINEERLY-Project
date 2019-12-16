@@ -1,7 +1,6 @@
 package field;
 
 import javafx.geometry.Pos;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -19,7 +18,7 @@ import logic.Actionable;
 import logic.Asset;
 import logic.ChanceCard;
 import logic.CommunityChest;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 
 public class VLandField extends Field {
 
@@ -66,7 +65,7 @@ public class VLandField extends Field {
 			}
 		} else if (actionable instanceof ChanceCard) {
 			setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
-			ImageView im = new ImageView(IRenderableHolder.chanceCardV);
+			ImageView im = new ImageView(SharedObjectHolder.chanceCardV);
 			im.setFitHeight(height);
 			im.setFitWidth(width);
 			setCenter(im);
@@ -74,25 +73,13 @@ public class VLandField extends Field {
 					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		} else if (actionable instanceof CommunityChest) {
 			setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
-			ImageView im = new ImageView(IRenderableHolder.communityChestV);
+			ImageView im = new ImageView(SharedObjectHolder.communityChestV);
 			im.setFitHeight(height);
 			im.setFitWidth(width);
 			setCenter(im);
 			setBorder(new Border(
 					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		}
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 999;
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public double getHeightField() {

@@ -9,10 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 
-public class IRenderableHolder {
-	private static IRenderableHolder instance;
-	private static Comparator<IRenderable> comparator;
-	private ArrayList<IRenderable> entities;
+public class SharedObjectHolder {
 	public static ArrayList<Color> characterColors;
 	public static Image boardBackground;
 	public static Image freeParking;
@@ -52,30 +49,14 @@ public class IRenderableHolder {
 	public static AudioClip treasureSound;
 	public static AudioClip BGGameMusic;
 	static {
-		comparator = new Comparator<IRenderable>() {
-			@Override
-			public int compare(IRenderable o1, IRenderable o2) {
-				if (o1.getZ() < o2.getZ()) {
-					return -1;
-				} else {
-					return 1;
-				}
-			}
-		};
 		loadResource();
 	}
 
-	public IRenderableHolder() {
-		entities = new ArrayList<IRenderable>();
-	}
-
-	public void add(IRenderable i) {
-		entities.add(i);
-		Collections.sort(entities, comparator);
+	public SharedObjectHolder() {
 	}
 
 	private static void loadResource() {
-		instance = new IRenderableHolder();
+
 		try {
 			characterColors = new ArrayList<Color>();
 			characterColors.add(Color.BLACK);
@@ -123,7 +104,6 @@ public class IRenderableHolder {
 			buttonLight.setVolume(0.7);
 			fairySound = new AudioClip(ClassLoader.getSystemResource("Sounds/fairySound.mp3").toExternalForm());
 			fairySound.setVolume(0.7);
-//			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babycry.mp3").toExternalForm());
 			treasureSound = new AudioClip(ClassLoader.getSystemResource("Sounds/treasureSound.mp3").toExternalForm());
 			treasureSound.setVolume(0.7);
 			BGGameMusic = new AudioClip(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm());
@@ -135,19 +115,4 @@ public class IRenderableHolder {
 		}
 	}
 
-	public static IRenderableHolder getInstance() {
-		return instance;
-	}
-
-	public static void update() {
-		for (int i = 0; i < instance.entities.size(); i++) {
-			if (!instance.entities.get(i).isVisible()) {
-				instance.entities.remove(instance.entities.get(i));
-			}
-		}
-	}
-
-	public ArrayList<IRenderable> getEntities() {
-		return entities;
-	}
 }

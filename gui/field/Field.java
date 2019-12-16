@@ -6,9 +6,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import logic.Actionable;
 import logic.Player;
-import sharedObject.IRenderable;
 
-public abstract class Field extends BorderPane implements IRenderable, Actionable {
+public abstract class Field extends BorderPane implements Actionable {
 
 	private ArrayList<Player> players;
 	protected Actionable actionable;

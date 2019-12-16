@@ -78,4 +78,5 @@ public abstract class Deck implements Actionable {
 	}
 
 	public abstract int drawAndEffect();
+
 }

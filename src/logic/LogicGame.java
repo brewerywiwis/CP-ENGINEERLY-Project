@@ -6,7 +6,7 @@ import application.StateScene;
 import field.Field;
 import gameScene.BoardPane;
 import javafx.geometry.Bounds;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 import startScene.StartScene;
 
 public class LogicGame {
@@ -23,7 +23,7 @@ public class LogicGame {
 
 	public static void update() {
 
-		if (Main.getState() == StateScene.GAMESCENE) {
+		if (Main.getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
 			updatePlayerPosition();
 			Player nowPlayer = players.get(turnPlayer);
 			if (!nowPlayer.isMove()) {
@@ -45,7 +45,7 @@ public class LogicGame {
 					double centerX = g.getWidth() / 2;
 					double centerY = g.getHeight() / 2;
 
-					IRenderableHolder.footstepSound.play();
+					SharedObjectHolder.footstepSound.play();
 					nowPlayer.setLayoutX(
 							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
@@ -74,30 +74,29 @@ public class LogicGame {
 		players = new ArrayList<Player>();
 		if (n == 1) {
 			players.add(
-					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
+					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
 		}
 		if (n == 2) {
 			players.add(
-					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
-			players.add(new Player("TWO", 15000, IRenderableHolder.characterColors.get(2), IRenderableHolder.pinkPawn));
+					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
+			players.add(new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 
 		} else if (n == 3) {
 			players.add(
-					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
-			players.add(new Player("TWO", 15000, IRenderableHolder.characterColors.get(2), IRenderableHolder.pinkPawn));
+					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
+			players.add(new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 			players.add(
-					new Player("THREE", 15000, IRenderableHolder.characterColors.get(3), IRenderableHolder.bluePawn));
+					new Player("THREE", 15000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
 		} else if (n == 4) {
 			players.add(
-					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
-			players.add(new Player("TWO", 15000, IRenderableHolder.characterColors.get(2), IRenderableHolder.pinkPawn));
+					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
+			players.add(new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 			players.add(
-					new Player("THREE", 15000, IRenderableHolder.characterColors.get(3), IRenderableHolder.bluePawn));
+					new Player("THREE", 15000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
 			players.add(
-					new Player("FOUR", 15000, IRenderableHolder.characterColors.get(0), IRenderableHolder.blackPawn));
+					new Player("FOUR", 15000, SharedObjectHolder.characterColors.get(0), SharedObjectHolder.blackPawn));
 		}
 		for (int i = 0; i < players.size(); i++) {
-			System.out.println(i + "WTF");
 			Bounds field = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
 					.localToScene(Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
 							.getBoundsInLocal());

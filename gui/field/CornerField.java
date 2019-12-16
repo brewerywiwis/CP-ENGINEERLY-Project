@@ -1,6 +1,5 @@
 package field;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -28,18 +27,6 @@ public class CornerField extends Field {
 		im.setPreserveRatio(true);
 		im.setFitWidth(120);
 		setCenter(im);
-
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 999;
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 
 	}
 

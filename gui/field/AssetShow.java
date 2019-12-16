@@ -6,11 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -42,7 +38,7 @@ public class AssetShow extends HBox {
 
 		description = new GridPane();
 		description.setVgap(15);
-		;
+		
 		description.setAlignment(Pos.CENTER);
 		description.add(name, 0, 0);
 		description.add(money, 0, 1);

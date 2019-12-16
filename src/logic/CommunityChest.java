@@ -7,7 +7,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
-import sharedObject.IRenderableHolder;
+import javafx.scene.image.ImageView;
+import sharedObject.SharedObjectHolder;
 
 public class CommunityChest extends Deck {
 
@@ -31,13 +32,19 @@ public class CommunityChest extends Deck {
 									nowPlayer.getName(), drawAndEffect()));
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-					alert.setContentText(
+//					alert.setContentText(
+//							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
+					alert.setHeaderText(
 							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
-					alert.setHeaderText(null);
-					IRenderableHolder.fairySound.play();
+					alert.setContentText(null);
+					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
+					img.setFitHeight(60);
+					img.setFitWidth(40);
+					alert.getDialogPane().setGraphic(img);
+					SharedObjectHolder.fairySound.play();
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
-						IRenderableHolder.buttonLight.play();
+						SharedObjectHolder.buttonLight.play();
 					}
 				}
 			});
@@ -48,6 +55,7 @@ public class CommunityChest extends Deck {
 	@Override
 	public int drawAndEffect() {
 		// TODO Auto-generated method stub
+		System.out.println("DO COMMUNITY CHEST DRAW");
 		int n = this.pickCard();
 		// prepare for implement effect each effect card
 		switch (n) {

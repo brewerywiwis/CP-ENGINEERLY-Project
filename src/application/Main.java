@@ -8,15 +8,17 @@ import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.LogicGame;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 import startScene.StartScene;
 
 public class Main extends Application {
 	public static final int displayX = 1080, displayY = 720;
 	public static final int borderX = 220, borderY = 40;
 	private static GameScene gameScene;
+	private static AnimationTimer gameLoop;
 	private static StateScene state;
 	private BorderPane gameRoot;
+	private static boolean gameStop;
 
 	@Override
 	public void init() {
@@ -30,8 +32,9 @@ public class Main extends Application {
 		primaryStage.setMaximized(true);
 //		primaryStage.setAlwaysOnTop(true);
 		primaryStage.show();
+		gameStop = false;
 
-		AnimationTimer GameLoop = new AnimationTimer() {
+		gameLoop = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
 				switch (getState()) {
@@ -62,7 +65,7 @@ public class Main extends Application {
 					break;
 				}
 				case SWAPENDSCENE: {
-					IRenderableHolder.epicWinSound.play();
+					SharedObjectHolder.epicWinSound.play();
 					setState(StateScene.ENDSCENE);
 					break;
 				}
@@ -73,13 +76,13 @@ public class Main extends Application {
 				}
 			}
 		};
-		GameLoop.start();
+		gameLoop.start();
 	}
 
 	@Override
 	public void stop() {
-		IRenderableHolder.BGGameMusic.stop();
-		IRenderableHolder.epicWinSound.stop();
+		SharedObjectHolder.BGGameMusic.stop();
+		SharedObjectHolder.epicWinSound.stop();
 		setState(StateScene.DIE);
 	}
 
@@ -99,16 +102,23 @@ public class Main extends Application {
 		return gameScene;
 	}
 
+	public static AnimationTimer getGameLoop() {
+		return gameLoop;
+	}
+
+	public static boolean isGameStop() {
+		return gameStop;
+	}
+
 	public static void startMusicBGGameScene() {
 		Thread musicThread = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				while (getState() == StateScene.GAMESCENE) {
-					if (!IRenderableHolder.BGGameMusic.isPlaying()) {
-//						IRenderableHolder.BGGameMusic;
-						IRenderableHolder.BGGameMusic.play();
+				while (getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
+					if (!SharedObjectHolder.BGGameMusic.isPlaying()) {
+						SharedObjectHolder.BGGameMusic.play();
 					}
 					try {
 						Thread.sleep(1000);
@@ -117,10 +127,26 @@ public class Main extends Application {
 						e.printStackTrace();
 					}
 				}
-				IRenderableHolder.BGGameMusic.stop();
+				SharedObjectHolder.BGGameMusic.stop();
 			}
 		});
 
 		musicThread.start();
+	}
+
+	public static void stopGame() {
+		if (!gameStop) {
+			gameLoop.stop();
+			SharedObjectHolder.BGGameMusic.stop();
+			gameStop = true;
+		}
+	}
+
+	public static void startGame() {
+		if (gameStop) {
+			gameLoop.start();
+			startMusicBGGameScene();
+			gameStop = false;
+		}
 	}
 }

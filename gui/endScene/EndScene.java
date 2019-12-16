@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.LogicGame;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 
 public class EndScene extends Scene {
 
@@ -33,7 +33,7 @@ public class EndScene extends Scene {
 		super(p, w, h);
 		// TODO Auto-generated constructor stub
 		VBox vBox = new VBox();
-		ImageView img = new ImageView(IRenderableHolder.trophy);
+		ImageView img = new ImageView(SharedObjectHolder.trophy);
 		Text txt = new Text("Player " + LogicGame.getWinnerName() + " is Winner!!!");
 		txt.setFont(new Font(40));
 		Button retryBt = new Button("RETRY");

@@ -9,20 +9,14 @@ import field.HLandField;
 import field.VLandField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import logic.ChanceCard;
 import logic.CommunityChest;
 import logic.Land;
 import logic.SpecialAsset;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 
 public class BoardPane extends GridPane {
 
@@ -101,10 +95,10 @@ public class BoardPane extends GridPane {
 		four4 = new VLandField(new Land("HOME2", 400), Direction.UP);
 		five4 = new VLandField(new Land("HOME2", 500), Direction.UP);
 
-		start = new CornerField(new SpecialAsset("START!", 1), IRenderableHolder.start);
-		registration = new CornerField(new SpecialAsset("Registration!", 2), IRenderableHolder.registration);
-		freeParking = new CornerField(new SpecialAsset("Free Parking!", 3), IRenderableHolder.freeParking);
-		manPoint = new CornerField(new SpecialAsset("ManPoint->", 4), IRenderableHolder.manPoint);
+		start = new CornerField(new SpecialAsset("START!", 1), SharedObjectHolder.start);
+		registration = new CornerField(new SpecialAsset("Registration!", 2), SharedObjectHolder.registration);
+		freeParking = new CornerField(new SpecialAsset("Free Parking!", 3), SharedObjectHolder.freeParking);
+		manPoint = new CornerField(new SpecialAsset("ManPoint->", 4), SharedObjectHolder.manPoint);
 
 		diceField = new DiceField();
 

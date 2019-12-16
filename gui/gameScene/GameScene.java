@@ -13,15 +13,9 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import logic.LogicGame;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 
 public class GameScene extends Scene {
 
@@ -36,7 +30,7 @@ public class GameScene extends Scene {
 	public GameScene(Parent root) throws CheckException {
 		super(root);
 		resetGame();
-		BackgroundImage img = new BackgroundImage(IRenderableHolder.woodenBg, BackgroundRepeat.REPEAT,
+		BackgroundImage img = new BackgroundImage(SharedObjectHolder.woodenBg, BackgroundRepeat.REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(img));
 		bLeft = new BorderPane();

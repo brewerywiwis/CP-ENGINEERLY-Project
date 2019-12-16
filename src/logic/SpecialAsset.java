@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 
 public class SpecialAsset implements Actionable {
 
@@ -38,10 +38,10 @@ public class SpecialAsset implements Actionable {
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText(null);
 					alert.setContentText("Player " + nowPlayer.getName() + " get 500 money from start point");
-					IRenderableHolder.treasureSound.play();
+					SharedObjectHolder.treasureSound.play();
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
-						IRenderableHolder.buttonLight.play();
+						SharedObjectHolder.buttonLight.play();
 					}
 				}
 			});
@@ -65,10 +65,10 @@ public class SpecialAsset implements Actionable {
 						alert.setTitle("Information Dialog");
 						alert.setHeaderText(null);
 						alert.setContentText("Player " + nowPlayer.getName() + " can not move for 2 turn");
-						IRenderableHolder.alertSound.play();
+						SharedObjectHolder.alertSound.play();
 						Optional<ButtonType> result = alert.showAndWait();
 						if (result.get() == ButtonType.OK) {
-							IRenderableHolder.buttonLight.play();
+							SharedObjectHolder.buttonLight.play();
 						}
 					}
 				});
@@ -84,7 +84,6 @@ public class SpecialAsset implements Actionable {
 		// case 4: forcing player to go to registration room
 		case 4: {
 			if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
-				nowPlayer.setNextField(6);
 
 				Platform.runLater(new Runnable() {
 					@Override
@@ -98,14 +97,15 @@ public class SpecialAsset implements Actionable {
 						alert.setHeaderText(null);
 						alert.setContentText("Now, Player " + nowPlayer.getName()
 								+ " go to registration room and can not move for 2 turn");
-						IRenderableHolder.manPointLOLSound.play();
+						SharedObjectHolder.manPointLOLSound.play();
 						Optional<ButtonType> result = alert.showAndWait();
 						if (result.get() == ButtonType.OK) {
-							IRenderableHolder.buttonLight.play();
+							SharedObjectHolder.buttonLight.play();
 						}
 					}
 				});
-
+				
+				nowPlayer.setNextField(6);
 			}
 			break;
 		}

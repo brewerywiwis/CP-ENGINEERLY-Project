@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Optional;
 import application.Main;
 import field.Field;
@@ -9,8 +8,6 @@ import field.HLandField;
 import field.VLandField;
 import gameScene.BoardPane;
 import javafx.application.Platform;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,9 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import sharedObject.IRenderableHolder;
+import sharedObject.SharedObjectHolder;
 
 public class Player extends ImageView implements Actionable {
 
@@ -86,10 +82,10 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Information Dialog");
 								alert.setContentText("Sorry, your money is not enough to buy this field. T-T");
 								alert.setHeaderText(null);
-								IRenderableHolder.alertSound.play();
+								SharedObjectHolder.alertSound.play();
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
-									IRenderableHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play();
 								}
 							}
 						});
@@ -102,14 +98,14 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Confirmation Dialog");
 								alert.setHeaderText("Do you want to buy this field?");
 								alert.setContentText(null);
-								IRenderableHolder.alertSound.play();
+								SharedObjectHolder.alertSound.play();
 								((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("BUY");
 								((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("LATER");
 
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
 									// ... user chose OK
-									IRenderableHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play();
 
 									int n = Main.getGameScene().getLogDisplay().getSize();
 									if (asset.buyFrom(player)) {
@@ -136,7 +132,7 @@ public class Player extends ImageView implements Actionable {
 									}
 								} else {
 									// not buy
-									IRenderableHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play();
 								}
 							}
 						});
@@ -156,11 +152,11 @@ public class Player extends ImageView implements Actionable {
 										getName(), asset.getOwner().getName(), prevMoney, getMoney()));
 								alert.setHeaderText(null);
 
-								IRenderableHolder.babyCrySound.play();
+								SharedObjectHolder.babyCrySound.play();
 
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
-									IRenderableHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play();
 								}
 							}
 						});
@@ -176,11 +172,11 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Information Dialog");
 								alert.setHeaderText(null);
 								alert.setContentText(String.format("Player %s is bankrupt!", player.getName()));
-								IRenderableHolder.alertSound.play();
+								SharedObjectHolder.alertSound.play();
 
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
-									IRenderableHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play();
 								}
 							}
 						});
