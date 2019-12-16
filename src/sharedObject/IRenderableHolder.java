@@ -8,6 +8,7 @@ import java.util.Comparator;
 import application.Main;
 import application.StateScene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 
 public class IRenderableHolder {
 
@@ -22,6 +23,17 @@ public class IRenderableHolder {
 	public static Image registration;
 	public static Image blackPawn;
 	public static Image whitePawn;
+	public static Image startSceneBackground;
+	public static Image startButton;
+	public static Image clickedStartButton;
+	public static Image onePlayerButton;
+	public static Image twoPlayerButton;
+	public static Image threePlayerButton;
+	public static Image fourPlayerButton;
+	public static Image clickedOnePlayer;
+	public static Image clickedTwoPlayer;
+	public static Image clickedThreePlayer;
+	public static Image clickedFourPlayer;
 	
 	static {
 		comparator = new Comparator<IRenderable>() {
@@ -56,6 +68,17 @@ public class IRenderableHolder {
 			start = new Image(new FileInputStream("./res/start.png"));
 			blackPawn = new Image(new FileInputStream("./res/blackPawn.png"));
 			whitePawn = new Image(new FileInputStream("./res/whitePawn.png"));
+			startSceneBackground = new Image(new FileInputStream("./res/startSceneBackground.png"));
+			startButton = new Image(new FileInputStream("./res/startButton.png"));
+			clickedStartButton = new Image(new FileInputStream("./res/clickedStartButton.png"));
+			onePlayerButton = new Image(new FileInputStream("./res/onePlayerButton.png"));
+			twoPlayerButton = new Image(new FileInputStream("./res/twoPlayerButton.png"));
+			threePlayerButton = new Image(new FileInputStream("./res/threePlayerButton.png"));
+			fourPlayerButton = new Image(new FileInputStream("./res/fourPlayerButton.png"));
+			clickedOnePlayer = new Image(new FileInputStream("./res/clickedOnePlayer.png"));
+			clickedTwoPlayer = new Image(new FileInputStream("./res/clickedTwoPlayer.png"));
+			clickedThreePlayer = new Image(new FileInputStream("./res/clickedThreePlayer.png"));
+			clickedFourPlayer = new Image(new FileInputStream("./res/clickedFourPlayer.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
