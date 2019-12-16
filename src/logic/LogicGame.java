@@ -1,72 +1,129 @@
 package logic;
 
 import java.util.ArrayList;
-
 import application.Main;
 import application.StateScene;
 import field.Field;
 import gameScene.BoardPane;
 import javafx.geometry.Bounds;
+import javafx.scene.paint.Color;
 import sharedObject.IRenderableHolder;
 
 public class LogicGame {
 
+	private static String winnerName;
 	private static int turnPlayer = 0;
 	private static ArrayList<Player> players;
 	private static int tick = 0;
-	static {
-		players = new ArrayList<Player>();
-		Player one = new Player("ONE", 500, 1, IRenderableHolder.blackPawn);
-		Player two = new Player("TWO", 500, 1, IRenderableHolder.whitePawn);
-		players.add(one);
-		players.add(two);
-		for (int i = 0; i < players.size(); i++) {
-			System.out.println(i);
-			Bounds field = Main.gameScene.getBoard().getFields().get(players.get(i).getCurrentField()).localToScene(
-					Main.gameScene.getBoard().getFields().get(players.get(i).getCurrentField()).getBoundsInLocal());
-			Field g = Main.gameScene.getBoard().getFields().get(players.get(i).getCurrentField());
-			Main.gameScene.getPane().getChildren().add(players.get(i));
-			double centerX = g.getWidth() / 2;
-			double centerY = g.getHeight() / 2;
-			players.get(i).setLayoutX(field.getMinX() + players.get(i).getCenterPx() + i * (20));
-			players.get(i).setLayoutY(field.getMinY() + centerY - players.get(i).getCenterPy());
-			System.out.println(players.get(i).getName());
-		}
-		tick = 0;
-	}
+	private static boolean changeTurn;
+	private final static int startX = 15;
 
-	// field.getMinX() + players.get(i).getCenterPx() + i * (20)
-	// field.getMinX() + centerX - nowPlayer.getCenterPx()
 	public LogicGame() {
 	}
 
 	public static void update() {
+
 		if (Main.getState() == StateScene.GAMESCENE) {
+			updatePlayerPosition();
 			Player nowPlayer = players.get(turnPlayer);
-			if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
+			if (!nowPlayer.isMove()) {
+				System.out.println("cannot move");
+				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
+				nowPlayer.setNextField(nowPlayer.getCurrentField());
+				turnPlayer = (turnPlayer + 1) % players.size();
+				changeTurn = true;
+			} else if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
 				if (tick == 18) {
-					Bounds field = Main.gameScene.getBoard().getFields()
+					Bounds field = Main.getGameScene().getBoard().getFields()
 							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
-							.localToScene(Main.gameScene.getBoard().getFields()
+							.localToScene(Main.getGameScene().getBoard().getFields()
 									.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
 									.getBoundsInLocal());
-					Field g = Main.gameScene.getBoard().getFields()
+					Field g = Main.getGameScene().getBoard().getFields()
 							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+
 					double centerX = g.getWidth() / 2;
 					double centerY = g.getHeight() / 2;
-					nowPlayer.setLayoutX(field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20));
+
+					nowPlayer.setLayoutX(
+							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+
+//					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
+					nowPlayer.doAction();
+					Main.getGameScene().update();
 					tick = 0;
 				} else {
 					tick++;
 				}
 				if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
-					Main.gameScene.getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
 					turnPlayer = (turnPlayer + 1) % players.size();
+					changeTurn = true;
 				}
 			}
+			if (players.size() == 1) {
+				winnerName = players.get(0).getName();
+				Main.setState(StateScene.ENDSCENE);
+			}
 		}
+	}
+
+	public static void setUpPlayer() {
+		ArrayList<Color> colors = new ArrayList<Color>();
+		colors.add(Color.BLACK);
+		colors.add(Color.YELLOW);
+		// below is light blue color
+		colors.add(Color.rgb(255, 155, 204));
+		// below is light pink color
+		colors.add(Color.rgb(12, 155, 204));
+		Player one = new Player("ONE", 1000, colors.get(0), IRenderableHolder.blackPawn);
+		Player two = new Player("TWO", 1000, colors.get(2), IRenderableHolder.whitePawn);
+//		Player three = new Player("THREE", 500, IRenderableHolder.blackPawn);
+//		Player four = new Player("FOUR", 500, IRenderableHolder.whitePawn);
+		one.setNotMoveCount(3);
+		players.add(one);
+		players.add(two);
+//		players.add(three);
+//		players.add(four);
+		for (int i = 0; i < players.size(); i++) {
+			Bounds field = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
+					.localToScene(Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
+							.getBoundsInLocal());
+			Field g = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField());
+			Main.getGameScene().getPane().getChildren().add(players.get(i));
+
+			double centerX = g.getWidth() / 2;
+			double centerY = g.getHeight() / 2;
+
+			players.get(i).setLayoutX(field.getMinX() + players.get(i).getCenterPx() + i * (20) - startX);
+			players.get(i).setLayoutY(field.getMinY() + centerY - players.get(i).getCenterPy());
+		}
+	}
+
+	public static void updatePlayerPosition() {
+		for (int i = 0; i < players.size(); i++) {
+			Player nowPlayer = players.get(i);
+			Bounds field = Main.getGameScene().getBoard().getFields()
+					.get((nowPlayer.getCurrentField()) % BoardPane.getNumoffield())
+					.localToScene(Main.getGameScene().getBoard().getFields()
+							.get((nowPlayer.getCurrentField()) % BoardPane.getNumoffield()).getBoundsInLocal());
+			Field g = Main.getGameScene().getBoard().getFields()
+					.get((nowPlayer.getCurrentField()) % BoardPane.getNumoffield());
+
+			double centerY = g.getHeight() / 2;
+
+			if (nowPlayer.getLayoutX() != field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20)
+					- startX || nowPlayer.getLayoutY() != field.getMinY() + centerY - nowPlayer.getCenterPy()) {
+				nowPlayer.setLayoutX(
+						field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
+				nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
+			}
+		}
+	}
+
+	public static Player getNowPlayer() {
+		return players.get(turnPlayer);
 	}
 
 	public static ArrayList<Player> getPlayers() {
@@ -77,4 +134,34 @@ public class LogicGame {
 		return turnPlayer;
 	}
 
+	public static boolean getChangeTurn() {
+		return changeTurn;
+	}
+
+	public static void setChangeTurn(boolean changeTurn) {
+		LogicGame.changeTurn = changeTurn;
+	}
+
+	// when bankrupt or lose the game use this method
+	public static void goodByeMyFriend(Player player) {
+		player.setVisible(false);
+		players.remove(player);
+		for (int i = 0; i < player.getAssets().size(); i++) {
+			player.getAssets().get(i).setOwner(null);
+		}
+	}
+
+	public static void resetLogicGame() {
+		players = new ArrayList<Player>();
+		changeTurn = true;
+		tick = 0;
+		setUpPlayer();
+		Main.getGameScene().setUpAssetShow();
+		Main.getGameScene().setUpUserControl();
+		Main.getGameScene().setUpLogDisplay();
+	}
+
+	public static String getWinnerName() {
+		return winnerName;
+	}
 }

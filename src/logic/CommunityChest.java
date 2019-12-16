@@ -5,9 +5,9 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class ChanceCard extends Deck {
+public class CommunityChest extends Deck {
 
-	public ChanceCard() {
+	public CommunityChest() {
 		super();
 	}
 
@@ -53,4 +53,5 @@ public class ChanceCard extends Deck {
 		}
 		return n;
 	}
+
 }

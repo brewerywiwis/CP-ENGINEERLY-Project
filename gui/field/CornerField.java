@@ -11,20 +11,19 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import logic.SpecialAsset;
 
 public class CornerField extends Field {
 
-	private final double width = 120;
-	private final double height = 120;
+	private final double width = 140;
+	private final double height = 140;
 
-	public CornerField(Image img) {
+	public CornerField(SpecialAsset asset, Image img) {
 		super();
+		this.actionable = asset;
 		setBorder(new Border(
 				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
-//		setBackground(new Background(new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-//				BackgroundPosition.CENTER,
-//				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
 		ImageView im = new ImageView(img);
 		im.setPreserveRatio(true);
 		im.setFitWidth(120);
@@ -55,6 +54,6 @@ public class CornerField extends Field {
 	@Override
 	public void eventAction() {
 		// TODO Auto-generated method stub
-		
+		actionable.doAction();
 	}
 }

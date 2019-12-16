@@ -22,9 +22,15 @@ public class Island extends Asset {
 	}
 
 	@Override
-	public void eventAction() {
+	public boolean payFrom(Player p) {
 		// TODO Auto-generated method stub
-		
+		return false;
+	}
+
+	@Override
+	public void doAction() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
