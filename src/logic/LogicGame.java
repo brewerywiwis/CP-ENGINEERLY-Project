@@ -6,8 +6,8 @@ import application.StateScene;
 import field.Field;
 import gameScene.BoardPane;
 import javafx.geometry.Bounds;
-import javafx.scene.paint.Color;
 import sharedObject.IRenderableHolder;
+import startScene.StartScene;
 
 public class LogicGame {
 
@@ -70,23 +70,30 @@ public class LogicGame {
 	}
 
 	public static void setUpPlayer() {
-		ArrayList<Color> colors = new ArrayList<Color>();
-		colors.add(Color.BLACK);
-		colors.add(Color.YELLOW);
-		// below is light blue color
-		colors.add(Color.rgb(255, 155, 204));
-		// below is light pink color
-		colors.add(Color.rgb(12, 155, 204));
-		Player one = new Player("ONE", 1000, colors.get(0), IRenderableHolder.blackPawn);
-		Player two = new Player("TWO", 1000, colors.get(2), IRenderableHolder.whitePawn);
-//		Player three = new Player("THREE", 500, IRenderableHolder.blackPawn);
-//		Player four = new Player("FOUR", 500, IRenderableHolder.whitePawn);
-		one.setNotMoveCount(3);
-		players.add(one);
-		players.add(two);
-//		players.add(three);
-//		players.add(four);
+		int n = StartScene.getPlayer();
+		players = new ArrayList<Player>();
+		if (n == 2) {
+			players.add(
+					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
+			players.add(new Player("TWO", 15000, IRenderableHolder.characterColors.get(2), IRenderableHolder.pinkPawn));
+
+		} else if (n == 3) {
+			players.add(
+					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
+			players.add(new Player("TWO", 15000, IRenderableHolder.characterColors.get(2), IRenderableHolder.pinkPawn));
+			players.add(
+					new Player("THREE", 15000, IRenderableHolder.characterColors.get(3), IRenderableHolder.bluePawn));
+		} else if (n == 4) {
+			players.add(
+					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
+			players.add(new Player("TWO", 15000, IRenderableHolder.characterColors.get(2), IRenderableHolder.pinkPawn));
+			players.add(
+					new Player("THREE", 15000, IRenderableHolder.characterColors.get(3), IRenderableHolder.bluePawn));
+			players.add(
+					new Player("FOUR", 15000, IRenderableHolder.characterColors.get(0), IRenderableHolder.blackPawn));
+		}
 		for (int i = 0; i < players.size(); i++) {
+			System.out.println(i + "WTF");
 			Bounds field = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
 					.localToScene(Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField())
 							.getBoundsInLocal());

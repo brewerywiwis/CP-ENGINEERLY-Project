@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,7 +20,6 @@ import javafx.scene.paint.Color;
 
 public class Player extends ImageView implements Actionable {
 
-	private static HashMap<Player, Integer> whereOfPlayer;
 	private ArrayList<Asset> assets;
 	private String name;
 	private double money;
@@ -29,10 +29,6 @@ public class Player extends ImageView implements Actionable {
 	private double centerPx;
 	private double centerPy;
 	private int notMoveCount;
-//	private boolean
-	static {
-		whereOfPlayer = new HashMap<Player, Integer>();
-	}
 
 	public Player(String name, double money, Color color, Image img) {
 		this.name = name;
@@ -45,7 +41,6 @@ public class Player extends ImageView implements Actionable {
 		centerPy = playerBound.getHeight() / 2;
 		currentField = 0;
 		nextField = 0;
-		whereOfPlayer.put(this, currentField);
 		assets = new ArrayList<Asset>();
 	}
 
@@ -55,11 +50,6 @@ public class Player extends ImageView implements Actionable {
 
 	public void moveTo(int numOfSquare) {
 		setNextField((currentField + numOfSquare) % BoardPane.getNumoffield());
-		changeField(numOfSquare);
-	}
-
-	public void changeField(int numOfSquare) {
-		whereOfPlayer.put(this, (currentField + numOfSquare) % BoardPane.getNumoffield());
 	}
 
 	@Override
@@ -76,39 +66,61 @@ public class Player extends ImageView implements Actionable {
 			if (field.getActionable() instanceof Asset) {
 				Asset asset = (Asset) field.getActionable();
 				if (asset.canBuy()) {
-
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							Alert alert = new Alert(AlertType.CONFIRMATION);
-							alert.setTitle("Confirmation Dialog");
-							alert.setContentText("Do you want to buy this field?");
-							Optional<ButtonType> result = alert.showAndWait();
-							if (result.get() == ButtonType.OK) {
-								// ... user chose OK
+					if (getMoney() < asset.price) {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
 								int n = Main.getGameScene().getLogDisplay().getSize();
-								if (asset.buyFrom(player)) {
-									if (field instanceof HLandField) {
-										HLandField hLandField = (HLandField) field;
-										hLandField.setOwnerColor();
-									} else if (field instanceof VLandField) {
-										VLandField vLandField = (VLandField) field;
-										vLandField.setOwnerColor();
-									}
-									Main.getGameScene().getLogDisplay().add(String.format(
-											"%d: Player %s buy %s successfully.", n + 1, getName(), asset.getName()));
-									Main.getGameScene().update();
-								} else {
-									Main.getGameScene().getLogDisplay()
-											.add(String.format("%d: Player %s is buying %s unsuccessfully.", n + 1,
-													getName(), asset.getName()));
-								}
-							} else {
-								// not buy
+								Main.getGameScene().getLogDisplay()
+										.add(String.format(
+												"%d: Player %s can not buy %s because not have enough money .", n + 1,
+												player.getName(), asset.getName()));
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Information Dialog");
+								alert.setContentText("Sorry, your money is not enough to buy this field. T-T");
+								alert.setHeaderText(null);
+								alert.showAndWait();
 							}
-						}
-					});
+						});
+					} else {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								Alert alert = new Alert(AlertType.CONFIRMATION);
+								alert.setTitle("Confirmation Dialog");
+								alert.setHeaderText("Do you want to buy this field?");
+								alert.setContentText(null);
+								((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("BUY");
+								((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("LATER");
+								Optional<ButtonType> result = alert.showAndWait();
+								if (result.get() == ButtonType.OK) {
+									// ... user chose OK
+									int n = Main.getGameScene().getLogDisplay().getSize();
+									if (asset.buyFrom(player)) {
+										if (field instanceof HLandField) {
+											HLandField hLandField = (HLandField) field;
+											hLandField.setOwnerColor();
+										} else if (field instanceof VLandField) {
+											VLandField vLandField = (VLandField) field;
+											vLandField.setOwnerColor();
+										}
+										Main.getGameScene().getLogDisplay()
+												.add(String.format("%d: Player %s buy %s successfully.", n + 1,
+														getName(), asset.getName()));
+										Main.getGameScene().update();
+									} else {
+										Main.getGameScene().getLogDisplay()
+												.add(String.format("%d: Player %s is buying %s unsuccessfully.", n + 1,
+														getName(), asset.getName()));
+									}
+								} else {
+									// not buy
+								}
+							}
+						});
+					}
 
 				} else if (asset.getOwner() != this) {
 					int n = Main.getGameScene().getLogDisplay().getSize();
@@ -120,8 +132,9 @@ public class Player extends ImageView implements Actionable {
 								// TODO Auto-generated method stub
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Information Dialog");
-								alert.setContentText(String.format("Player %s pays tax to Player %s (%f -> %f).",
+								alert.setContentText(String.format("Player %s pays tax to Player %s\n(%f -> %f).",
 										getName(), asset.getOwner().getName(), prevMoney, getMoney()));
+								alert.setHeaderText(null);
 								alert.showAndWait();
 							}
 						});
@@ -135,6 +148,7 @@ public class Player extends ImageView implements Actionable {
 								// TODO Auto-generated method stub
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Information Dialog");
+								alert.setHeaderText(null);
 								alert.setContentText(String.format("Player %s is bankrupt!", player.getName()));
 								alert.showAndWait();
 							}

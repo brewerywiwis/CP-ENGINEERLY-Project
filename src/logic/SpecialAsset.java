@@ -32,6 +32,7 @@ public class SpecialAsset implements Actionable {
 							String.format("%d: Player %s get 500 money from start point.", n + 1, nowPlayer.getName()));
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
+					alert.setHeaderText(null);
 					alert.setContentText("Player " + nowPlayer.getName() + " get 500 money from start point");
 					alert.showAndWait();
 				}
@@ -54,6 +55,7 @@ public class SpecialAsset implements Actionable {
 										n + 1, nowPlayer.getName()));
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Information Dialog");
+						alert.setHeaderText(null);
 						alert.setContentText("Player " + nowPlayer.getName() + " can not move for 2 turn");
 						alert.showAndWait();
 					}
@@ -81,6 +83,7 @@ public class SpecialAsset implements Actionable {
 								.format("%d: Player %s is going to registration room.", n + 1, nowPlayer.getName()));
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Information Dialog");
+						alert.setHeaderText(null);
 						alert.setContentText("Now, Player " + nowPlayer.getName()
 								+ " go to registration room and can not move for 2 turn");
 						alert.showAndWait();

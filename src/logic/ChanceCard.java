@@ -29,6 +29,7 @@ public class ChanceCard extends Deck {
 					alert.setTitle("Information Dialog");
 					alert.setContentText(
 							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
+					alert.setHeaderText(null);
 					alert.showAndWait();
 				}
 			});

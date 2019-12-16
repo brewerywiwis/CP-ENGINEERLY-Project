@@ -3,9 +3,7 @@ package startScene;
 import application.Main;
 import application.StateScene;
 import javafx.event.EventHandler;
-
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,10 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -30,11 +24,6 @@ public class StartScene extends Scene {
 
 	public static StartScene scene;
 	private static BorderPane pane;
-	static {
-		pane = new BorderPane();
-		scene = new StartScene(pane, Main.displayX, Main.displayY);
-
-	}
 	private static int player;
 
 	public StartScene(Parent p, double w, double h) {
@@ -69,7 +58,7 @@ public class StartScene extends Scene {
 				context.getItems().addAll(onePlayer, twoPlayer, threePlayer, fourPlayer);
 				context.setStyle("-fx-background-color: transparent");
 				context.show(clickedStartButton, Side.BOTTOM, 0, 0);
-	
+
 				onePlayerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
@@ -171,7 +160,7 @@ public class StartScene extends Scene {
 
 			}
 		});
-		
+
 		pane.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -183,6 +172,11 @@ public class StartScene extends Scene {
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
 
+	}
+
+	public static void resetStartScene() {
+		pane = new BorderPane();
+		scene = new StartScene(pane, Main.displayX, Main.displayY);
 	}
 
 	public static int getPlayer() {

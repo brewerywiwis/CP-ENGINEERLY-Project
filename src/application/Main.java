@@ -19,7 +19,7 @@ public class Main extends Application {
 
 	@Override
 	public void init() {
-		state = StateScene.STARTSCENE;
+		state = StateScene.SWAPSTARTSCENE;
 	}
 
 	@Override
@@ -34,8 +34,12 @@ public class Main extends Application {
 			@Override
 			public void handle(long now) {
 				switch (getState()) {
-				case STARTSCENE: {
+				case SWAPSTARTSCENE: {
+					StartScene.resetStartScene();
 					primaryStage.setScene(StartScene.scene);
+					setState(StateScene.STARTSCENE);
+				}
+				case STARTSCENE: {
 					break;
 				}
 				case SWAPGAMESCENE: {
