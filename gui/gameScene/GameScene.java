@@ -68,10 +68,10 @@ public class GameScene extends Scene {
 				bRight.setBottom(assetShows.get(i));
 			}
 		}
-		bLeft.setBorder(new Border(
-				new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		bRight.setBorder(new Border(
-				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		bLeft.setBorder(new Border(
+//				new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		bRight.setBorder(new Border(
+//				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		pane.setLeft(bLeft);
 		pane.setRight(bRight);
 	}

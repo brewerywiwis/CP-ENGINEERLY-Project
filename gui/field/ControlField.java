@@ -25,8 +25,8 @@ public class ControlField extends VBox {
 		img = new BorderPane();
 		chooseSection = new GridPane();
 		getChildren().addAll(condition, description, img, chooseSection);
-		setBorder(new Border(
-				new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		setBorder(new Border(
+//				new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 	}
 }

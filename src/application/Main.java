@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.LogicGame;
+import sharedObject.IRenderableHolder;
 import startScene.StartScene;
 
 public class Main extends Application {
@@ -49,6 +50,7 @@ public class Main extends Application {
 						LogicGame.resetLogicGame();
 						primaryStage.setScene(gameScene);
 						setState(StateScene.GAMESCENE);
+						startMusicBGGameScene();
 					} catch (CheckException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -59,6 +61,11 @@ public class Main extends Application {
 					LogicGame.update();
 					break;
 				}
+				case SWAPENDSCENE: {
+					IRenderableHolder.epicWinSound.play();
+					setState(StateScene.ENDSCENE);
+					break;
+				}
 				case ENDSCENE: {
 					primaryStage.setScene(EndScene.scene);
 					break;
@@ -67,6 +74,13 @@ public class Main extends Application {
 			}
 		};
 		GameLoop.start();
+	}
+
+	@Override
+	public void stop() {
+		IRenderableHolder.BGGameMusic.stop();
+		IRenderableHolder.epicWinSound.stop();
+		setState(StateScene.DIE);
 	}
 
 	public static void main(String[] args) {
@@ -85,4 +99,28 @@ public class Main extends Application {
 		return gameScene;
 	}
 
+	public static void startMusicBGGameScene() {
+		Thread musicThread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while (getState() == StateScene.GAMESCENE) {
+					if (!IRenderableHolder.BGGameMusic.isPlaying()) {
+//						IRenderableHolder.BGGameMusic;
+						IRenderableHolder.BGGameMusic.play();
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				IRenderableHolder.BGGameMusic.stop();
+			}
+		});
+
+		musicThread.start();
+	}
 }

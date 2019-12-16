@@ -50,9 +50,9 @@ public class AssetShow extends HBox {
 		getChildren().add(description);
 		setPadding(new Insets(20));
 		setSpacing(20);
-		setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, null)));
-		setBorder(new Border(
-				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setBackground(new Background(new BackgroundFill(Color.rgb(4, 136, 89), CornerRadii.EMPTY, null)));
+//		setBorder(new Border(
+//				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setMargin(description, new Insets(30));
 	}
 

@@ -9,6 +9,8 @@ import field.HLandField;
 import field.VLandField;
 import gameScene.BoardPane;
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -16,7 +18,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import sharedObject.IRenderableHolder;
 
 public class Player extends ImageView implements Actionable {
 
@@ -72,15 +76,21 @@ public class Player extends ImageView implements Actionable {
 							public void run() {
 								// TODO Auto-generated method stub
 								int n = Main.getGameScene().getLogDisplay().getSize();
+
 								Main.getGameScene().getLogDisplay()
 										.add(String.format(
 												"%d: Player %s can not buy %s because not have enough money .", n + 1,
 												player.getName(), asset.getName()));
+
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Information Dialog");
 								alert.setContentText("Sorry, your money is not enough to buy this field. T-T");
 								alert.setHeaderText(null);
-								alert.showAndWait();
+								IRenderableHolder.alertSound.play();
+								Optional<ButtonType> result = alert.showAndWait();
+								if (result.get() == ButtonType.OK) {
+									IRenderableHolder.buttonLight.play();
+								}
 							}
 						});
 					} else {
@@ -92,13 +102,18 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Confirmation Dialog");
 								alert.setHeaderText("Do you want to buy this field?");
 								alert.setContentText(null);
+								IRenderableHolder.alertSound.play();
 								((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("BUY");
 								((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("LATER");
+
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
 									// ... user chose OK
+									IRenderableHolder.buttonLight.play();
+
 									int n = Main.getGameScene().getLogDisplay().getSize();
 									if (asset.buyFrom(player)) {
+
 										if (field instanceof HLandField) {
 											HLandField hLandField = (HLandField) field;
 											hLandField.setOwnerColor();
@@ -106,17 +121,22 @@ public class Player extends ImageView implements Actionable {
 											VLandField vLandField = (VLandField) field;
 											vLandField.setOwnerColor();
 										}
+
 										Main.getGameScene().getLogDisplay()
 												.add(String.format("%d: Player %s buy %s successfully.", n + 1,
 														getName(), asset.getName()));
 										Main.getGameScene().update();
+
 									} else {
+
 										Main.getGameScene().getLogDisplay()
 												.add(String.format("%d: Player %s is buying %s unsuccessfully.", n + 1,
 														getName(), asset.getName()));
+
 									}
 								} else {
 									// not buy
+									IRenderableHolder.buttonLight.play();
 								}
 							}
 						});
@@ -135,7 +155,13 @@ public class Player extends ImageView implements Actionable {
 								alert.setContentText(String.format("Player %s pays tax to Player %s\n(%f -> %f).",
 										getName(), asset.getOwner().getName(), prevMoney, getMoney()));
 								alert.setHeaderText(null);
-								alert.showAndWait();
+
+								IRenderableHolder.babyCrySound.play();
+
+								Optional<ButtonType> result = alert.showAndWait();
+								if (result.get() == ButtonType.OK) {
+									IRenderableHolder.buttonLight.play();
+								}
 							}
 						});
 						Main.getGameScene().getLogDisplay()
@@ -150,7 +176,12 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Information Dialog");
 								alert.setHeaderText(null);
 								alert.setContentText(String.format("Player %s is bankrupt!", player.getName()));
-								alert.showAndWait();
+								IRenderableHolder.alertSound.play();
+
+								Optional<ButtonType> result = alert.showAndWait();
+								if (result.get() == ButtonType.OK) {
+									IRenderableHolder.buttonLight.play();
+								}
 							}
 						});
 						Main.getGameScene().getLogDisplay()

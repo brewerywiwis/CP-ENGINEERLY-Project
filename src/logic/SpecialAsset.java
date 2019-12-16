@@ -1,9 +1,13 @@
 package logic;
 
+import java.util.Optional;
+
 import application.Main;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import sharedObject.IRenderableHolder;
 
 public class SpecialAsset implements Actionable {
 
@@ -34,7 +38,11 @@ public class SpecialAsset implements Actionable {
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText(null);
 					alert.setContentText("Player " + nowPlayer.getName() + " get 500 money from start point");
-					alert.showAndWait();
+					IRenderableHolder.treasureSound.play();
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						IRenderableHolder.buttonLight.play();
+					}
 				}
 			});
 
@@ -57,7 +65,11 @@ public class SpecialAsset implements Actionable {
 						alert.setTitle("Information Dialog");
 						alert.setHeaderText(null);
 						alert.setContentText("Player " + nowPlayer.getName() + " can not move for 2 turn");
-						alert.showAndWait();
+						IRenderableHolder.alertSound.play();
+						Optional<ButtonType> result = alert.showAndWait();
+						if (result.get() == ButtonType.OK) {
+							IRenderableHolder.buttonLight.play();
+						}
 					}
 				});
 
@@ -86,7 +98,11 @@ public class SpecialAsset implements Actionable {
 						alert.setHeaderText(null);
 						alert.setContentText("Now, Player " + nowPlayer.getName()
 								+ " go to registration room and can not move for 2 turn");
-						alert.showAndWait();
+						IRenderableHolder.manPointLOLSound.play();
+						Optional<ButtonType> result = alert.showAndWait();
+						if (result.get() == ButtonType.OK) {
+							IRenderableHolder.buttonLight.play();
+						}
 					}
 				});
 

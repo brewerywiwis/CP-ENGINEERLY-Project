@@ -1,9 +1,13 @@
 package logic;
 
+import java.util.Optional;
+
 import application.Main;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import sharedObject.IRenderableHolder;
 
 public class CommunityChest extends Deck {
 
@@ -30,7 +34,11 @@ public class CommunityChest extends Deck {
 					alert.setContentText(
 							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setHeaderText(null);
-					alert.showAndWait();
+					IRenderableHolder.fairySound.play();
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						IRenderableHolder.buttonLight.play();
+					}
 				}
 			});
 

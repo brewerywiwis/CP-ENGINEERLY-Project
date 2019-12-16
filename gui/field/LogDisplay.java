@@ -36,8 +36,8 @@ public class LogDisplay extends VBox {
 
 		getChildren().addAll(title, logPane);
 
-		setBorder(new Border(
-				new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		setBorder(new Border(
+//				new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setBackground(new Background(new BackgroundFill(Color.LINEN, CornerRadii.EMPTY, null)));
 		setAlignment(Pos.TOP_CENTER);
 	}

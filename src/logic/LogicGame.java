@@ -33,7 +33,7 @@ public class LogicGame {
 				turnPlayer = (turnPlayer + 1) % players.size();
 				changeTurn = true;
 			} else if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
-				if (tick == 18) {
+				if (tick == 30) {
 					Bounds field = Main.getGameScene().getBoard().getFields()
 							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
 							.localToScene(Main.getGameScene().getBoard().getFields()
@@ -45,11 +45,11 @@ public class LogicGame {
 					double centerX = g.getWidth() / 2;
 					double centerY = g.getHeight() / 2;
 
+					IRenderableHolder.footstepSound.play();
 					nowPlayer.setLayoutX(
 							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
-
 //					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
 					nowPlayer.doAction();
 					Main.getGameScene().update();
@@ -64,7 +64,7 @@ public class LogicGame {
 			}
 			if (players.size() == 1) {
 				winnerName = players.get(0).getName();
-				Main.setState(StateScene.ENDSCENE);
+				Main.setState(StateScene.SWAPENDSCENE);
 			}
 		}
 	}
@@ -72,6 +72,10 @@ public class LogicGame {
 	public static void setUpPlayer() {
 		int n = StartScene.getPlayer();
 		players = new ArrayList<Player>();
+		if (n == 1) {
+			players.add(
+					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));
+		}
 		if (n == 2) {
 			players.add(
 					new Player("ONE", 15000, IRenderableHolder.characterColors.get(1), IRenderableHolder.yellowPawn));

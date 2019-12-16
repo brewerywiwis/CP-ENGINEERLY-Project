@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-import logic.Player;
-
 
 public class IRenderableHolder {
 	private static IRenderableHolder instance;
@@ -43,7 +41,16 @@ public class IRenderableHolder {
 	public static Image clickedFourPlayer;
 	public static Image woodenBg;
 	public static Image trophy;
-
+	public static AudioClip footstepSound;
+	public static AudioClip buttonSound;
+	public static AudioClip alertSound;
+	public static AudioClip manPointLOLSound;
+	public static AudioClip epicWinSound;
+	public static AudioClip buttonLight;
+	public static AudioClip babyCrySound;
+	public static AudioClip fairySound;
+	public static AudioClip treasureSound;
+	public static AudioClip BGGameMusic;
 	static {
 		comparator = new Comparator<IRenderable>() {
 			@Override
@@ -77,34 +84,51 @@ public class IRenderableHolder {
 			characterColors.add(Color.rgb(255, 155, 204));
 			// below is light blue color
 			characterColors.add(Color.rgb(12, 155, 204));
-			boardBackground = new Image(new FileInputStream("./res/gearBackground3.png"));
-			registration = new Image(new FileInputStream("./res/registrationRoom.png"));
-			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
-			manPoint = new Image(new FileInputStream("./res/manPoint.png"));
-			start = new Image(new FileInputStream("./res/start.png"));
-			blackPawn = new Image(new FileInputStream("./res/blackPawn.png"));
-			yellowPawn = new Image(new FileInputStream("./res/yellowPawn.png"));
-			pinkPawn = new Image(new FileInputStream("./res/pinkPawn.png"));
-			bluePawn = new Image(new FileInputStream("./res/bluePawn.png"));
-			whitePawn = new Image(new FileInputStream("./res/whitePawn.png"));
-			startSceneBackground = new Image(new FileInputStream("./res/startSceneBackground.png"));
-			startButton = new Image(new FileInputStream("./res/startButton.png"));
-			clickedStartButton = new Image(new FileInputStream("./res/clickedStartButton.png"));
-			onePlayerButton = new Image(new FileInputStream("./res/onePlayerButton.png"));
-			twoPlayerButton = new Image(new FileInputStream("./res/twoPlayerButton.png"));
-			threePlayerButton = new Image(new FileInputStream("./res/threePlayerButton.png"));
-			fourPlayerButton = new Image(new FileInputStream("./res/fourPlayerButton.png"));
-			clickedOnePlayer = new Image(new FileInputStream("./res/clickedOnePlayer.png"));
-			clickedTwoPlayer = new Image(new FileInputStream("./res/clickedTwoPlayer.png"));
-			clickedThreePlayer = new Image(new FileInputStream("./res/clickedThreePlayer.png"));
-			clickedFourPlayer = new Image(new FileInputStream("./res/clickedFourPlayer.png"));
-			woodenBg = new Image(new FileInputStream("./res/woodenBg.jpg"));
-			chanceCardV = new Image(new FileInputStream("./res/chanceCardV.jpg"));
-			communityChestV = new Image(new FileInputStream("./res/communityChestV.jpg"));
-			chanceCardH = new Image(new FileInputStream("./res/chanceCardH.jpg"));
-			communityChestH = new Image(new FileInputStream("./res/communityChestH.jpg"));
-			trophy = new Image(new FileInputStream("./res/trophy.png"));
-
+			boardBackground = new Image(new FileInputStream("./res/Graphics/gearBackground3.png"));
+			registration = new Image(new FileInputStream("./res/Graphics/registrationRoom.png"));
+			freeParking = new Image(new FileInputStream("./res/Graphics/freeParking.png"));
+			manPoint = new Image(new FileInputStream("./res/Graphics/manPoint.png"));
+			start = new Image(new FileInputStream("./res/Graphics/start.png"));
+			blackPawn = new Image(new FileInputStream("./res/Graphics/blackPawn.png"));
+			yellowPawn = new Image(new FileInputStream("./res/Graphics/yellowPawn.png"));
+			pinkPawn = new Image(new FileInputStream("./res/Graphics/pinkPawn.png"));
+			bluePawn = new Image(new FileInputStream("./res/Graphics/bluePawn.png"));
+			whitePawn = new Image(new FileInputStream("./res/Graphics/whitePawn.png"));
+			startSceneBackground = new Image(new FileInputStream("./res/Graphics/startSceneBackground.png"));
+			startButton = new Image(new FileInputStream("./res/Graphics/startButton.png"));
+			clickedStartButton = new Image(new FileInputStream("./res/Graphics/clickedStartButton.png"));
+			onePlayerButton = new Image(new FileInputStream("./res/Graphics/onePlayerButton.png"));
+			twoPlayerButton = new Image(new FileInputStream("./res/Graphics/twoPlayerButton.png"));
+			threePlayerButton = new Image(new FileInputStream("./res/Graphics/threePlayerButton.png"));
+			fourPlayerButton = new Image(new FileInputStream("./res/Graphics/fourPlayerButton.png"));
+			clickedOnePlayer = new Image(new FileInputStream("./res/Graphics/clickedOnePlayer.png"));
+			clickedTwoPlayer = new Image(new FileInputStream("./res/Graphics/clickedTwoPlayer.png"));
+			clickedThreePlayer = new Image(new FileInputStream("./res/Graphics/clickedThreePlayer.png"));
+			clickedFourPlayer = new Image(new FileInputStream("./res/Graphics/clickedFourPlayer.png"));
+			woodenBg = new Image(new FileInputStream("./res/Graphics/woodenBg.jpg"));
+			chanceCardV = new Image(new FileInputStream("./res/Graphics/chanceCardV.jpg"));
+			communityChestV = new Image(new FileInputStream("./res/Graphics/communityChestV.jpg"));
+			chanceCardH = new Image(new FileInputStream("./res/Graphics/chanceCardH.jpg"));
+			communityChestH = new Image(new FileInputStream("./res/Graphics/communityChestH.jpg"));
+			trophy = new Image(new FileInputStream("./res/Graphics/trophy.png"));
+			footstepSound = new AudioClip(ClassLoader.getSystemResource("Sounds/footstep.mp3").toExternalForm());
+			footstepSound.setVolume(0.5);
+			buttonSound = new AudioClip(ClassLoader.getSystemResource("Sounds/button-11.wav").toExternalForm());
+			buttonSound.setVolume(0.5);
+			alertSound = new AudioClip(ClassLoader.getSystemResource("Sounds/alert.mp3").toExternalForm());
+			alertSound.setVolume(0.7);
+			manPointLOLSound = new AudioClip(ClassLoader.getSystemResource("Sounds/manPointLOL.mp3").toExternalForm());
+			epicWinSound = new AudioClip(ClassLoader.getSystemResource("Sounds/epicWin.mp3").toExternalForm());
+			buttonLight = new AudioClip(ClassLoader.getSystemResource("Sounds/buttonLight.mp3").toExternalForm());
+			buttonLight.setVolume(0.7);
+			fairySound = new AudioClip(ClassLoader.getSystemResource("Sounds/fairySound.mp3").toExternalForm());
+			fairySound.setVolume(0.7);
+//			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babycry.mp3").toExternalForm());
+			treasureSound = new AudioClip(ClassLoader.getSystemResource("Sounds/treasureSound.mp3").toExternalForm());
+			treasureSound.setVolume(0.7);
+			BGGameMusic = new AudioClip(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm());
+			BGGameMusic.setVolume(0.7);
+			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babyCry.mp3").toExternalForm());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
