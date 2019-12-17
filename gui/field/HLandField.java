@@ -1,8 +1,8 @@
 package field;
 
 import javafx.geometry.Pos;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -11,56 +11,102 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import logic.Land;
+import logic.Actionable;
+import logic.Asset;
+import logic.ChanceCard;
+import logic.CommunityChest;
+import sharedObject.SharedObjectHolder;
 
 public class HLandField extends Field {
 
-	private Land land;
+	private VBox vStore;
+	private final double width = 130;
+	private final double height = 90;
 
-	public HLandField(Land land, Color color, Direction dir) {
+	public HLandField(Actionable actionable, Direction dir) {
 		super();
-		this.land = land;
-		setBorder(new Border(
-				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		this.actionable = actionable;
 
-		Label lPrice = new Label(String.format("$%d", land.getPrice()));
-		Label lName = new Label(land.getName());
-		lPrice.setFont(new Font(18));
-		lName.setFont(new Font(20));
+		if (actionable instanceof Asset) {
+			Asset asset = (Asset) actionable;
+			Label lPrice = new Label(String.format("฿%d", asset.getPrice()));
+			Label lName = new Label(asset.getName());
+			lPrice.setFont(new Font(18));
+			lName.setFont(new Font(20));
 
-		BorderPane inside = new BorderPane();
-		BorderPane.setAlignment(lName, Pos.CENTER);
-		BorderPane.setAlignment(lPrice, Pos.CENTER);
-		inside.setTop(lName);
-		inside.setBottom(lPrice);
-		inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			BorderPane inside = new BorderPane();
+			BorderPane.setAlignment(lName, Pos.CENTER);
+			BorderPane.setAlignment(lPrice, Pos.CENTER);
+			inside.setTop(lName);
+			inside.setBottom(lPrice);
+			inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			inside.setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			setMinWidth(width);
+			setMinHeight(height);
+			setCenter(inside);
 
-		setMinWidth(120);
-		setCenter(inside);
-		if (dir == Direction.RIGHT) {
-			setRight(new Rectangle(30, 80, color));
-		} else if (dir == Direction.LEFT) {
-			setLeft(new Rectangle(30, 80, color));
+			vStore = new VBox();
+
+			///////////////////////////
+			vStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			vStore.setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			//////////////////////////
+
+			vStore.setMinWidth(40);
+			vStore.setMinHeight(height);
+
+			if (dir == Direction.RIGHT) {
+				setRight(vStore);
+			} else if (dir == Direction.LEFT) {
+				setLeft(vStore);
+			}
+		} else if (actionable instanceof ChanceCard) {
+			ImageView im = new ImageView(SharedObjectHolder.chanceCardH);
+			im.setRotate(180 * (dir == Direction.RIGHT ? 1 : 0));
+			im.setFitHeight(height);
+			im.setFitWidth(width);
+			setCenter(im);
+			setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		} else if (actionable instanceof CommunityChest) {
+			ImageView im = new ImageView(SharedObjectHolder.communityChestH);
+			im.setRotate(180 * (dir == Direction.RIGHT ? 1 : 0));
+			im.setFitHeight(height);
+			im.setFitWidth(width);
+			setCenter(im);
+			setBorder(new Border(
+					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		}
 	}
 
-	public Land getLand() {
-		return land;
+	public double getHeightField() {
+		return height;
+	}
+
+	public double getWidthField() {
+		return width;
 	}
 
 	@Override
-	public int getZ() {
+	public void eventAction() {
 		// TODO Auto-generated method stub
-		return 999;
+		actionable.doAction();
 	}
 
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-//		if (land.ge)
+	public void setOwnerColor() {
+		if (actionable instanceof Asset) {
+			Asset asset = (Asset) actionable;
+			if (asset.getOwner() != null) {
+				vStore.setBackground(
+						new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			} else {
+				vStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			}
+		}
 	}
-
 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-public abstract class Deck {
+public abstract class Deck implements Actionable {
 
 	private Queue<Integer> deck;
 	private final int numCard = 10;
@@ -31,7 +31,6 @@ public abstract class Deck {
 
 	public void shuffle() {
 
-//		Queue<Integer> newDeck = new LinkedList<Integer>();
 		if (!deck.isEmpty()) {
 			Integer[] sequence = new Integer[deck.size()];
 			int n = deck.size();
@@ -77,5 +76,6 @@ public abstract class Deck {
 		}
 	}
 
-	public abstract void doEffect(int n);
+	public abstract int drawAndEffect();
+
 }

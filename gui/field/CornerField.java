@@ -1,6 +1,5 @@
 package field;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -11,32 +10,36 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import logic.SpecialAsset;
 
 public class CornerField extends Field {
-	public CornerField(Image img) {
+
+	private final double width = 130;
+	private final double height = 130;
+
+	public CornerField(SpecialAsset asset, Image img) {
 		super();
-		setBorder(new Border(
-				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
-//		setBackground(new Background(new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-//				BackgroundPosition.CENTER,
-//				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
+		this.actionable = asset;
 		ImageView im = new ImageView(img);
 		im.setPreserveRatio(true);
 		im.setFitWidth(120);
 		setCenter(im);
+		setBorder(new Border(
+				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+	}
 
+	public double getHeightField() {
+		return height;
+	}
+
+	public double getWidthField() {
+		return width;
 	}
 
 	@Override
-	public int getZ() {
+	public void eventAction() {
 		// TODO Auto-generated method stub
-		return 999;
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
+		actionable.doAction();
 	}
 }

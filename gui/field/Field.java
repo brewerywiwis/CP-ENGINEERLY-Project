@@ -1,35 +1,30 @@
 package field;
 
-import java.util.ArrayList;
-
 import javafx.scene.layout.BorderPane;
-import logic.Player;
-import sharedObject.IRenderable;
+import javafx.scene.paint.Color;
+import logic.Actionable;
 
-public abstract class Field extends BorderPane implements IRenderable {
-	private ArrayList<Player> players;
+public abstract class Field extends BorderPane implements Actionable {
 
-	public Field() {
-		players = new ArrayList<Player>();
+	protected Actionable actionable;
+	protected Color color;
+
+	public abstract void eventAction();
+
+	public void doAction() {
+		eventAction();
 	}
 
-	public void addPlayer(Player player) {
-		players.add(player);
+	public Actionable getActionable() {
+		return actionable;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	};
 
-	public void removePlayer(Player player) {
-		players.remove(player);
-	}
-
-	public boolean hasPlayer() {
-		return players.size() > 0 ? true : false;
-	}
-
-	public void update() {
-		if (hasPlayer()) {
-			for (int i = 0; i < players.size(); i++) {
-				
-			}
-		}
-	}
 }
