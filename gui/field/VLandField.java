@@ -33,7 +33,7 @@ public class VLandField extends Field {
 //				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
-			Label lPrice = new Label(String.format("฿%d", asset.getPrice()));
+			Label lPrice = new Label(String.format("THB%d", asset.getPrice()));
 			Label lName = new Label(asset.getName());
 			lPrice.setFont(new Font(18));
 			lName.setFont(new Font(20));
