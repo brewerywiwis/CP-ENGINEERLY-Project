@@ -72,28 +72,28 @@ public class BoardPane extends GridPane {
 
 		fields = new ArrayList<Field>();
 		one = new HLandField(new Land("Amazon", 4000), Direction.RIGHT);
-		two = new HLandField(new Land("  ศาลา" + "\nพระเกี้ยว", 3500), Direction.RIGHT);
-		three = new HLandField(new Land("  True" + "\nCoffee", 4500), Direction.RIGHT);
+		two = new HLandField(new Land("CU Shop", 3500), Direction.RIGHT);
+		three = new HLandField(new Land("TrueCoff", 4500), Direction.RIGHT);
 		four = new HLandField(new Land("7-11", 5000), Direction.RIGHT);
 		five = new HLandField(communityChest, Direction.RIGHT);
 
-		one2 = new VLandField(new Land("สวนรวมใจ", 1600), Direction.DOWN);
-		two2 = new VLandField(new Land("ตึก1", 1800), Direction.DOWN);
-		three2 = new VLandField(new Land("ตึก2", 2200), Direction.DOWN);
+		one2 = new VLandField(new Land("Park", 1600), Direction.DOWN);
+		two2 = new VLandField(new Land("Building1", 1800), Direction.DOWN);
+		three2 = new VLandField(new Land("Building2", 2200), Direction.DOWN);
 		four2 = new VLandField(chanceCard, Direction.DOWN);
-		five2 = new VLandField(new Land("ตึก3", 2200), Direction.DOWN);
+		five2 = new VLandField(new Land("Building3", 2200), Direction.DOWN);
 
-		one3 = new HLandField(new Land("กิจการนิสิต", 2200), Direction.LEFT);
+		one3 = new HLandField(new Land("100yrs B.", 2200), Direction.LEFT);
 		two3 = new HLandField(communityChest, Direction.LEFT);
-		three3 = new HLandField(new Land(" ตึกสลับ" + "\nลดาวัลย์", 2000), Direction.LEFT);
-		four3 = new HLandField(new Land("ตึกฮันส์" + "\n บันตลิ", 2000), Direction.LEFT);
+		three3 = new HLandField(new Land("Salub B.", 2000), Direction.LEFT);
+		four3 = new HLandField(new Land("Huns B.", 2000), Direction.LEFT);
 		five3 = new HLandField(new Land("ICanteen", 4800), Direction.LEFT);
 
-		one4 = new VLandField(new Land("กิจการนิสิต", 2200), Direction.UP);
+		one4 = new VLandField(new Land("Market", 2200), Direction.UP);
 		two4 = new VLandField(chanceCard, Direction.UP);
-		three4 = new VLandField(new Land("พาราโบลา", 3500), Direction.UP);
-		four4 = new VLandField(new Land("ป้ายรถปอพ", 2500), Direction.UP);
-		five4 = new VLandField(new Land("ลานเกียร์", 3500), Direction.UP);
+		three4 = new VLandField(new Land("Parabola", 3500), Direction.UP);
+		four4 = new VLandField(new Land("Bus Stop", 2500), Direction.UP);
+		five4 = new VLandField(new Land("Larn Gear", 3500), Direction.UP);
 
 		start = new CornerField(new SpecialAsset("START!", 1), SharedObjectHolder.start);
 		registration = new CornerField(new SpecialAsset("Registration!", 2), SharedObjectHolder.registration);

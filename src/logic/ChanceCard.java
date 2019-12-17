@@ -62,11 +62,45 @@ public class ChanceCard extends Deck {
 		// prepare for implement effect each effect card
 		switch (n) {
 		case 0: {
-			///
+			logic.LogicGame.getNowPlayer().payMoney(1400);
+			logic.LogicGame.getNowPlayer().setNextField(6);
 			break;
 		}
 		case 1: {
-			///
+			logic.LogicGame.getNowPlayer().addMoney(200);
+			break;
+		}
+		case 2: {
+			logic.LogicGame.getNowPlayer().addMoney(1000);
+			break;
+		}
+		case 3: {
+			logic.LogicGame.getNowPlayer().payMoney(1300);
+			break;
+		}
+		case 4: {
+			logic.LogicGame.getNowPlayer().payMoney(4000);
+			break;
+		}
+		case 5: {
+			logic.LogicGame.getNowPlayer().payMoney(1200);
+			break;
+		}
+		case 6: {
+			logic.LogicGame.getNowPlayer().payMoney(3500);
+			break;
+		}
+		case 7: {
+			logic.LogicGame.getNowPlayer().payMoney(1250);
+			break;
+		}
+		
+		case 8: {
+			logic.LogicGame.getNowPlayer().payMoney(1250);
+			break;
+		}
+		case 9: {
+			logic.LogicGame.getNowPlayer().payMoney(300);
 			break;
 		}
 		}
