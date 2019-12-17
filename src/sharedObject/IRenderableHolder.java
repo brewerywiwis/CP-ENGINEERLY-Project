@@ -8,6 +8,7 @@ import java.util.Comparator;
 import application.Main;
 import application.StateScene;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 public class IRenderableHolder {
 
@@ -20,7 +21,7 @@ public class IRenderableHolder {
 	public static Image manPoint;
 	public static Image start;
 	public static Image registration;
-	
+	public static AudioClip footstep;
 	static {
 		comparator = new Comparator<IRenderable>() {
 			@Override
@@ -52,7 +53,7 @@ public class IRenderableHolder {
 			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
 			manPoint = new Image(new FileInputStream("./res/manPoint.png"));
 			start = new Image(new FileInputStream("./res/start.png"));
-		
+			footstep = new AudioClip("file:/res/Pop.mp3");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
