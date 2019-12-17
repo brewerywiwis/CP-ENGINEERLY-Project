@@ -7,11 +7,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
-public class SharedObjectHolder {
+public class IRenderableHolder {
+	private static IRenderableHolder instance;
+	private static Comparator<IRenderable> comparator;
+	private ArrayList<IRenderable> entities;
 	public static ArrayList<Color> characterColors;
 	public static Image boardBackground;
 	public static Image freeParking;
@@ -40,19 +41,12 @@ public class SharedObjectHolder {
 	public static Image clickedFourPlayer;
 	public static Image woodenBg;
 	public static Image trophy;
-<<<<<<< HEAD
-	public static Image settingButton;
-	public static Image soundSettingButton;
-	public static Image transparentSettingButton;
-	public static Image transparentSoundSettingButton;
-=======
+	public static Image playAgain;
+	public static Image clickedPlayAgain;
 	public static Image playerOneWins;
 	public static Image playerTwoWins;
 	public static Image playerThreeWins;
 	public static Image playerFourWins;
-	public static Image playAgain;
-	public static Image clickedPlayAgain;
->>>>>>> cc2be1edce15523ee29371509c625c02dfa58935
 	public static AudioClip footstepSound;
 	public static AudioClip buttonSound;
 	public static AudioClip alertSound;
@@ -62,17 +56,64 @@ public class SharedObjectHolder {
 	public static AudioClip babyCrySound;
 	public static AudioClip fairySound;
 	public static AudioClip treasureSound;
-	public static MediaPlayer BGGameMusic;
+	public static AudioClip BGGameMusic;
 	static {
+		comparator = new Comparator<IRenderable>() {
+			@Override
+			public int compare(IRenderable o1, IRenderable o2) {
+				if (o1.getZ() < o2.getZ()) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		};
 		loadResource();
 	}
 
-	public SharedObjectHolder() {
+	public IRenderableHolder() {
+		entities = new ArrayList<IRenderable>();
+	}
+
+	public void add(IRenderable i) {
+		entities.add(i);
+		Collections.sort(entities, comparator);
 	}
 
 	private static void loadResource() {
-
+		instance = new IRenderableHolder();
 		try {
+			boardBackground = new Image(new FileInputStream("./res/gearBackground3.png"));
+			registration = new Image(new FileInputStream("./res/registrationRoom.png"));
+			freeParking = new Image(new FileInputStream("./res/freeParking.png"));
+			manPoint = new Image(new FileInputStream("./res/manPoint.png"));
+			start = new Image(new FileInputStream("./res/start.png"));
+			blackPawn = new Image(new FileInputStream("./res/blackPawn.png"));
+			whitePawn = new Image(new FileInputStream("./res/whitePawn.png"));
+			startSceneBackground = new Image(new FileInputStream("./res/startSceneBackground.png"));
+			startButton = new Image(new FileInputStream("./res/startButton.png"));
+			clickedStartButton = new Image(new FileInputStream("./res/clickedStartButton.png"));
+			onePlayerButton = new Image(new FileInputStream("./res/onePlayerButton.png"));
+			twoPlayerButton = new Image(new FileInputStream("./res/twoPlayerButton.png"));
+			threePlayerButton = new Image(new FileInputStream("./res/threePlayerButton.png"));
+			fourPlayerButton = new Image(new FileInputStream("./res/fourPlayerButton.png"));
+			clickedOnePlayer = new Image(new FileInputStream("./res/clickedOnePlayer.png"));
+			clickedTwoPlayer = new Image(new FileInputStream("./res/clickedTwoPlayer.png"));
+			clickedThreePlayer = new Image(new FileInputStream("./res/clickedThreePlayer.png"));
+			clickedFourPlayer = new Image(new FileInputStream("./res/clickedFourPlayer.png"));
+			woodenBg = new Image(new FileInputStream("./res/woodenBg.jpg"));
+			chanceCardV = new Image(new FileInputStream("./res/chanceCardV.jpg"));
+			communityChestV = new Image(new FileInputStream("./res/communityChestV.jpg"));
+			chanceCardH = new Image(new FileInputStream("./res/chanceCardH.jpg"));
+			communityChestH = new Image(new FileInputStream("./res/communityChestH.jpg"));
+			trophy = new Image(new FileInputStream("./res/trophy.png"));
+			playAgain = new Image(new FileInputStream("./res/playAgain.png"));
+			clickedPlayAgain = new Image(new FileInputStream("./res/clickedPlayAgain.png"));
+			playerOneWins = new Image(new FileInputStream("./res/playerOneWins.png"));
+			playerTwoWins = new Image(new FileInputStream("./res/playerTwoWins.png"));
+			playerThreeWins = new Image(new FileInputStream("./res/playerThreeWins.png"));
+			playerFourWins = new Image(new FileInputStream("./res/playerFourWins.png"));
+
 			characterColors = new ArrayList<Color>();
 			characterColors.add(Color.BLACK);
 			characterColors.add(Color.YELLOW);
@@ -107,33 +148,23 @@ public class SharedObjectHolder {
 			chanceCardH = new Image(new FileInputStream("./res/Graphics/chanceCardH.jpg"));
 			communityChestH = new Image(new FileInputStream("./res/Graphics/communityChestH.jpg"));
 			trophy = new Image(new FileInputStream("./res/Graphics/trophy.png"));
-			settingButton = new Image(new FileInputStream("./res/Graphics/setting.png"));
-			soundSettingButton = new Image(new FileInputStream("./res/Graphics/soundSetting.png"));
-			transparentSettingButton = new Image(new FileInputStream("./res/Graphics/transparentSetting.png"));
-			transparentSoundSettingButton = new Image(
-					new FileInputStream("./res/Graphics/transparentSoundSetting.png"));
-			playerOneWins = new Image(new FileInputStream("./res/Graphics/playerOneWins.png"));
-			playerTwoWins = new Image(new FileInputStream("./res/Graphics/playerTwoWins.png"));
-			playerThreeWins = new Image(new FileInputStream("./res/Graphics/playerThreeWins.png"));
-			playerFourWins = new Image(new FileInputStream("./res/Graphics/playerFourWins.png"));
-			playAgain = new Image(new FileInputStream("./res/Graphics/playAgain.png"));
-			clickedPlayAgain = new Image(new FileInputStream("./res/Graphics/ClickedPlayAgain.png"));
 			footstepSound = new AudioClip(ClassLoader.getSystemResource("Sounds/footstep.mp3").toExternalForm());
-//			footstepSound.setVolume(0.5);
+			footstepSound.setVolume(0.5);
 			buttonSound = new AudioClip(ClassLoader.getSystemResource("Sounds/button-11.wav").toExternalForm());
-//			buttonSound.setVolume(0.5);
+			buttonSound.setVolume(0.5);
 			alertSound = new AudioClip(ClassLoader.getSystemResource("Sounds/alert.mp3").toExternalForm());
-//			alertSound.setVolume(0.7);
+			alertSound.setVolume(0.7);
 			manPointLOLSound = new AudioClip(ClassLoader.getSystemResource("Sounds/manPointLOL.mp3").toExternalForm());
 			epicWinSound = new AudioClip(ClassLoader.getSystemResource("Sounds/epicWin.mp3").toExternalForm());
 			buttonLight = new AudioClip(ClassLoader.getSystemResource("Sounds/buttonLight.mp3").toExternalForm());
-//			buttonLight.setVolume(0.7);
+			buttonLight.setVolume(0.7);
 			fairySound = new AudioClip(ClassLoader.getSystemResource("Sounds/fairySound.mp3").toExternalForm());
-//			fairySound.setVolume(0.7);
+			fairySound.setVolume(0.7);
+//			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babycry.mp3").toExternalForm());
 			treasureSound = new AudioClip(ClassLoader.getSystemResource("Sounds/treasureSound.mp3").toExternalForm());
-//			treasureSound.setVolume(0.7);
-			BGGameMusic = new MediaPlayer(
-					new Media(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm()));
+			treasureSound.setVolume(0.7);
+			BGGameMusic = new AudioClip(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm());
+			BGGameMusic.setVolume(0.7);
 			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babyCry.mp3").toExternalForm());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -141,4 +172,19 @@ public class SharedObjectHolder {
 		}
 	}
 
+	public static IRenderableHolder getInstance() {
+		return instance;
+	}
+
+	public static void update() {
+		for (int i = 0; i < instance.entities.size(); i++) {
+			if (!instance.entities.get(i).isVisible()) {
+				instance.entities.remove(instance.entities.get(i));
+			}
+		}
+	}
+
+	public ArrayList<IRenderable> getEntities() {
+		return entities;
+	}
 }
