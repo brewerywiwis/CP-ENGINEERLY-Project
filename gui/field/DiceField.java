@@ -53,22 +53,9 @@ public class DiceField extends Field {
 			}
 
 		});
-		Button stop = new Button("STOP!");
-		stop.setOnMouseClicked(new EventHandler<Event>() {
 
-			@Override
-			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
-				if (Main.isGameStop()) {
-					Main.startGame();
-				} else {
-					Main.stopGame();
-				}
-			}
-		});
 		GridPane center = new GridPane();
 		center.add(roll, 5, 5);
-		center.add(stop, 5, 6);
 		setCenter(center);
 	}
 

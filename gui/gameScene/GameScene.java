@@ -3,7 +3,7 @@ package gameScene;
 import java.util.ArrayList;
 
 import field.AssetShow;
-import field.ControlField;
+import field.InGameMenu;
 import field.LogDisplay;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -14,6 +14,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import logic.LogicGame;
 import sharedObject.SharedObjectHolder;
 
@@ -24,7 +25,7 @@ public class GameScene extends Scene {
 	private BorderPane bLeft;
 	private BorderPane bRight;
 	private ArrayList<AssetShow> assetShows;
-	private ControlField controlField;
+	private InGameMenu inGameMenu;
 	private LogDisplay logDisplay;
 
 	public GameScene(Parent root) throws CheckException {
@@ -36,17 +37,21 @@ public class GameScene extends Scene {
 		bLeft = new BorderPane();
 		bRight = new BorderPane();
 		assetShows = new ArrayList<AssetShow>();
+
+		try {
+			StackPane sRoot = (StackPane) getRoot();
+			sRoot.getChildren().add(pane);
+		} catch (Exception e) {
+			throw new CheckException("Please create StackPane for root in GameScene");
+		}
+
 	}
 
 	private void resetGame() throws CheckException {
 		// TODO Auto-generated method stub
-		try {
-			pane = (BorderPane) getRoot();
-			board = new BoardPane();
-			pane.setCenter(board);
-		} catch (Exception e) {
-			throw new CheckException("Please create BorderPane for root in GameScene");
-		}
+		pane = new BorderPane();
+		board = new BoardPane();
+		pane.setCenter(board);
 	}
 
 	public void setUpAssetShow() {
@@ -71,9 +76,9 @@ public class GameScene extends Scene {
 	}
 
 	public void setUpUserControl() {
-		controlField = new ControlField();
-		controlField.setAlignment(Pos.CENTER);
-		bLeft.setCenter(controlField);
+		inGameMenu = new InGameMenu();
+		inGameMenu.setAlignment(Pos.CENTER);
+		bLeft.setCenter(inGameMenu);
 	}
 
 	public void setUpLogDisplay() {

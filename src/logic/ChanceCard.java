@@ -42,10 +42,10 @@ public class ChanceCard extends Deck {
 					alert.getDialogPane().setGraphic(img);
 					//
 
-					SharedObjectHolder.fairySound.play();
+					SharedObjectHolder.fairySound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play();
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 					}
 					drawAndEffect();
 				}

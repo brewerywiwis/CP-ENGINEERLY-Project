@@ -177,6 +177,7 @@ public class StartScene extends Scene {
 	public static void resetStartScene() {
 		pane = new BorderPane();
 		scene = new StartScene(pane, Main.displayX, Main.displayY);
+		SharedObjectHolder.epicWinSound.stop();
 	}
 
 	public static int getPlayer() {

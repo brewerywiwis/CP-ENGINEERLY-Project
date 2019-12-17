@@ -42,7 +42,7 @@ public class AssetShow extends HBox {
 		description.setAlignment(Pos.CENTER);
 		description.add(name, 0, 0);
 		description.add(money, 0, 1);
-
+		setMinWidth(300);
 		getChildren().add(description);
 		setPadding(new Insets(20));
 		setSpacing(20);

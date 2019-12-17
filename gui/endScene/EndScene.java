@@ -42,7 +42,7 @@ public class EndScene extends Scene {
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				Main.setState(StateScene.STARTSCENE);
+				Main.setState(StateScene.SWAPSTARTSCENE);
 			}
 		});
 		vBox.setAlignment(Pos.CENTER);

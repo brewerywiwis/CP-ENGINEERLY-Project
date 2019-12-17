@@ -82,10 +82,10 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Information Dialog");
 								alert.setContentText("Sorry, your money is not enough to buy this field. T-T");
 								alert.setHeaderText(null);
-								SharedObjectHolder.alertSound.play();
+								SharedObjectHolder.alertSound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
-									SharedObjectHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 								}
 							}
 						});
@@ -98,14 +98,14 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Confirmation Dialog");
 								alert.setHeaderText("Do you want to buy this field?");
 								alert.setContentText(null);
-								SharedObjectHolder.alertSound.play();
+								SharedObjectHolder.alertSound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 								((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("BUY");
 								((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("LATER");
 
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
 									// ... user chose OK
-									SharedObjectHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 
 									int n = Main.getGameScene().getLogDisplay().getSize();
 									if (asset.buyFrom(player)) {
@@ -132,7 +132,7 @@ public class Player extends ImageView implements Actionable {
 									}
 								} else {
 									// not buy
-									SharedObjectHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 								}
 							}
 						});
@@ -152,11 +152,11 @@ public class Player extends ImageView implements Actionable {
 										getName(), asset.getOwner().getName(), prevMoney, getMoney()));
 								alert.setHeaderText(null);
 
-								SharedObjectHolder.babyCrySound.play();
+								SharedObjectHolder.babyCrySound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
-									SharedObjectHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 								}
 							}
 						});
@@ -172,11 +172,11 @@ public class Player extends ImageView implements Actionable {
 								alert.setTitle("Information Dialog");
 								alert.setHeaderText(null);
 								alert.setContentText(String.format("Player %s is bankrupt!", player.getName()));
-								SharedObjectHolder.alertSound.play();
+								SharedObjectHolder.alertSound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 
 								Optional<ButtonType> result = alert.showAndWait();
 								if (result.get() == ButtonType.OK) {
-									SharedObjectHolder.buttonLight.play();
+									SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 								}
 							}
 						});
