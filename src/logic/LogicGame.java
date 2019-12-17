@@ -69,8 +69,18 @@ public class LogicGame {
 					tick++;
 				}
 				if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
-					turnPlayer = (turnPlayer + 1) % players.size();
-					changeTurn = true;
+					if (!nowPlayer.isBankrupt()) {
+						turnPlayer = (turnPlayer + 1) % players.size();
+						changeTurn = true;
+					} else {
+						if (turnPlayer == players.size() + 1) {
+							turnPlayer = (turnPlayer + 1) % (players.size() + 1);
+							changeTurn = true;
+						} else {
+							turnPlayer = (turnPlayer + 1) % players.size();
+							changeTurn = true;
+						}
+					}
 				}
 			}
 			if (players.size() == 1) {
@@ -168,6 +178,7 @@ public class LogicGame {
 	// when bankrupt or lose the game use this method
 	public static void goodByeMyFriend(Player player) {
 		player.setVisible(false);
+		player.setBankrupt(true);
 		players.remove(player);
 		for (int i = 0; i < player.getAssets().size(); i++) {
 			player.getAssets().get(i).setOwner(null);

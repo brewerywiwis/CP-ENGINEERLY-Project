@@ -29,12 +29,15 @@ public class Player extends ImageView implements Actionable {
 	private double centerPx;
 	private double centerPy;
 	private int notMoveCount;
+	private boolean isBankrupt;
 
 	public Player(String name, int money, Color color, Image img) {
 		this.name = name;
 		this.money = money;
 		this.color = color;
 		this.notMoveCount = 0;
+		isBankrupt = false;
+
 		setImage(img);
 		Bounds playerBound = this.localToScene(this.getBoundsInLocal());
 		centerPx = playerBound.getWidth() / 2;
@@ -268,6 +271,14 @@ public class Player extends ImageView implements Actionable {
 
 	public Color getColor() {
 		return color;
+	}
+
+	public boolean isBankrupt() {
+		return isBankrupt;
+	}
+
+	public void setBankrupt(boolean isBankrupt) {
+		this.isBankrupt = isBankrupt;
 	}
 
 }

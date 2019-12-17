@@ -35,14 +35,14 @@ public class CommunityChest extends Deck {
 					alert.setHeaderText(
 							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setContentText(null);
-					
+
 					//
 					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
 					img.setFitHeight(300);
 					img.setFitWidth(200);
 					alert.getDialogPane().setGraphic(img);
 					//
-					
+
 					SharedObjectHolder.fairySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
@@ -50,7 +50,8 @@ public class CommunityChest extends Deck {
 					}
 				}
 			});
-
+			
+			drawAndEffect();
 		}
 	}
 
