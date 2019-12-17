@@ -183,12 +183,6 @@ public class BoardPane extends GridPane {
 		setPadding(new Insets(10));
 	};
 
-	public void update() {
-		for (int i = 0; i < fields.size(); i++) {
-//			fields.get(i).
-		}
-	}
-
 	public ArrayList<Field> getFields() {
 		return fields;
 	}

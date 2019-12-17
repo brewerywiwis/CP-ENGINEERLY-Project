@@ -24,7 +24,8 @@ public class SettingMenuStage extends Stage {
 	public SettingMenuStage() {
 		initModality(Modality.APPLICATION_MODAL);
 		initStyle(StageStyle.UTILITY);
-
+		setTitle("PAUSE");
+		
 		VBox root = new VBox();
 
 		Button resume = new Button("Resume");

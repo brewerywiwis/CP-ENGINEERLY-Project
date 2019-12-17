@@ -29,8 +29,6 @@ public class HLandField extends Field {
 	public HLandField(Actionable actionable, Direction dir) {
 		super();
 		this.actionable = actionable;
-//		setBorder(new Border(
-//				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
@@ -51,11 +49,13 @@ public class HLandField extends Field {
 			setCenter(inside);
 
 			vStore = new VBox();
+
 			///////////////////////////
 			vStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 			vStore.setBorder(new Border(
 					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			//////////////////////////
+
 			vStore.setMinWidth(40);
 			vStore.setMinHeight(height);
 
@@ -100,8 +100,12 @@ public class HLandField extends Field {
 	public void setOwnerColor() {
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
-			vStore.setBackground(
-					new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			if (asset.getOwner() != null) {
+				vStore.setBackground(
+						new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			} else {
+				vStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			}
 		}
 	}
 }

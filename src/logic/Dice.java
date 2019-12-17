@@ -15,6 +15,5 @@ public class Dice {
 		n += 1 + rand.nextInt(6);
 
 		return n % 5 + 1;
-
 	}
 }

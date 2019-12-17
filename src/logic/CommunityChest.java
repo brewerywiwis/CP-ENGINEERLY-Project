@@ -19,7 +19,7 @@ public class CommunityChest extends Deck {
 	@Override
 	public void doAction() {
 		// TODO Auto-generated method stub
-		Player nowPlayer = LogicGame.getPlayers().get(LogicGame.getTurnPlayer());
+		Player nowPlayer = LogicGame.getNowPlayer();
 		if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
 
 			Platform.runLater(new Runnable() {
@@ -32,15 +32,17 @@ public class CommunityChest extends Deck {
 									nowPlayer.getName(), drawAndEffect()));
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-//					alert.setContentText(
-//							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setHeaderText(
 							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setContentText(null);
+					
+					//
 					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
 					img.setFitHeight(300);
 					img.setFitWidth(200);
 					alert.getDialogPane().setGraphic(img);
+					//
+					
 					SharedObjectHolder.fairySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {

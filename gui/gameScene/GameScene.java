@@ -1,7 +1,6 @@
 package gameScene;
 
 import java.util.ArrayList;
-
 import field.AssetShow;
 import field.InGameMenu;
 import field.LogDisplay;
@@ -36,7 +35,6 @@ public class GameScene extends Scene {
 		pane.setBackground(new Background(img));
 		bLeft = new BorderPane();
 		bRight = new BorderPane();
-		assetShows = new ArrayList<AssetShow>();
 
 		try {
 			StackPane sRoot = (StackPane) getRoot();
@@ -55,6 +53,7 @@ public class GameScene extends Scene {
 	}
 
 	public void setUpAssetShow() {
+		assetShows = new ArrayList<AssetShow>();
 		for (int i = 0; i < LogicGame.getPlayers().size(); i++) {
 			assetShows.add(new AssetShow(LogicGame.getPlayers().get(i)));
 			if (i == 0) {
@@ -67,10 +66,6 @@ public class GameScene extends Scene {
 				bRight.setBottom(assetShows.get(i));
 			}
 		}
-//		bLeft.setBorder(new Border(
-//				new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-//		bRight.setBorder(new Border(
-//				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		pane.setLeft(bLeft);
 		pane.setRight(bRight);
 	}
@@ -102,5 +97,9 @@ public class GameScene extends Scene {
 
 	public LogDisplay getLogDisplay() {
 		return logDisplay;
+	}
+
+	public ArrayList<AssetShow> getAssetShows() {
+		return assetShows;
 	}
 }

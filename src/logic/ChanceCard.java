@@ -19,7 +19,7 @@ public class ChanceCard extends Deck {
 	@Override
 	public void doAction() {
 		// TODO Auto-generated method stub
-		Player nowPlayer = LogicGame.getPlayers().get(LogicGame.getTurnPlayer());
+		Player nowPlayer = LogicGame.getNowPlayer();
 		if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
 
 			Platform.runLater(new Runnable() {
@@ -31,10 +31,9 @@ public class ChanceCard extends Deck {
 							.add(String.format("%d: Player %s is getting Chance Card.", n + 1, nowPlayer.getName()));
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-//					alert.setContentText(
-//							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setHeaderText("Player " + nowPlayer.getName() + " get Chance Card.");
 					alert.setContentText(null);
+					
 					//
 					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
 					img.setFitHeight(300);
@@ -42,10 +41,10 @@ public class ChanceCard extends Deck {
 					alert.getDialogPane().setGraphic(img);
 					//
 
-					SharedObjectHolder.fairySound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
+					SharedObjectHolder.fairySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					}
 					drawAndEffect();
 				}
@@ -61,48 +60,48 @@ public class ChanceCard extends Deck {
 		int n = this.pickCard();
 		// prepare for implement effect each effect card
 		switch (n) {
-		case 0: {
-			logic.LogicGame.getNowPlayer().payMoney(1400);
-			logic.LogicGame.getNowPlayer().setNextField(6);
-			break;
-		}
-		case 1: {
-			logic.LogicGame.getNowPlayer().addMoney(200);
-			break;
-		}
-		case 2: {
-			logic.LogicGame.getNowPlayer().addMoney(1000);
-			break;
-		}
-		case 3: {
-			logic.LogicGame.getNowPlayer().payMoney(1300);
-			break;
-		}
-		case 4: {
-			logic.LogicGame.getNowPlayer().payMoney(4000);
-			break;
-		}
-		case 5: {
-			logic.LogicGame.getNowPlayer().payMoney(1200);
-			break;
-		}
-		case 6: {
-			logic.LogicGame.getNowPlayer().payMoney(3500);
-			break;
-		}
-		case 7: {
-			logic.LogicGame.getNowPlayer().payMoney(1250);
-			break;
-		}
-		
-		case 8: {
-			logic.LogicGame.getNowPlayer().payMoney(1250);
-			break;
-		}
-		case 9: {
-			logic.LogicGame.getNowPlayer().payMoney(300);
-			break;
-		}
+//		case 0: {
+//			LogicGame.getNowPlayer().payMoney(1400);
+//			LogicGame.getNowPlayer().setNextField(6);
+//			break;
+//		}
+//		case 1: {
+//			LogicGame.getNowPlayer().addMoney(200);
+//			break;
+//		}
+//		case 2: {
+//			LogicGame.getNowPlayer().addMoney(1000);
+//			break;
+//		}
+//		case 3: {
+//			LogicGame.getNowPlayer().payMoney(1300);
+//			break;
+//		}
+//		case 4: {
+//			LogicGame.getNowPlayer().payMoney(4000);
+//			break;
+//		}
+//		case 5: {
+//			LogicGame.getNowPlayer().payMoney(1200);
+//			break;
+//		}
+//		case 6: {
+//			LogicGame.getNowPlayer().payMoney(3500);
+//			break;
+//		}
+//		case 7: {
+//			LogicGame.getNowPlayer().payMoney(1250);
+//			break;
+//		}
+//		
+//		case 8: {
+//			LogicGame.getNowPlayer().payMoney(1250);
+//			break;
+//		}
+//		case 9: {
+//			LogicGame.getNowPlayer().payMoney(300);
+//			break;
+//		}
 		}
 		return n;
 	}

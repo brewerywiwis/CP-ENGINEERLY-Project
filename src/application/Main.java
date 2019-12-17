@@ -58,6 +58,9 @@ public class Main extends Application {
 					try {
 						gameScene = new GameScene(gameRoot);
 						LogicGame.resetLogicGame();
+						gameScene.setUpAssetShow();
+						gameScene.setUpUserControl();
+						gameScene.setUpLogDisplay();
 						primaryStage.setScene(gameScene);
 						setState(StateScene.GAMESCENE);
 						startMusicBGGameScene();
@@ -158,7 +161,8 @@ public class Main extends Application {
 	public static void startGame() {
 		if (gameStop) {
 			gameLoop.start();
-			SharedObjectHolder.BGGameMusic.play();;
+			SharedObjectHolder.BGGameMusic.play();
+			;
 			gameStop = false;
 			gameRoot.getChildren().remove(gameRoot.getChildren().size() - 1);
 		}

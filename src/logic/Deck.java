@@ -31,7 +31,6 @@ public abstract class Deck implements Actionable {
 
 	public void shuffle() {
 
-//		Queue<Integer> newDeck = new LinkedList<Integer>();
 		if (!deck.isEmpty()) {
 			Integer[] sequence = new Integer[deck.size()];
 			int n = deck.size();

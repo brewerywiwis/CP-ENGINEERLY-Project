@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import application.Main;
 import application.StateScene;
 import field.Field;
+import field.HLandField;
+import field.VLandField;
 import gameScene.BoardPane;
 import javafx.geometry.Bounds;
 import sharedObject.SharedObjectHolder;
@@ -25,9 +27,9 @@ public class LogicGame {
 	}
 
 	public static void update() {
+		updatePlayerPosition();
 
 		if (Main.getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
-			updatePlayerPosition();
 			Player nowPlayer = players.get(turnPlayer);
 			if (!nowPlayer.isMove()) {
 				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
@@ -51,8 +53,14 @@ public class LogicGame {
 							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+					
 //					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
+					
+					System.out.println(nowPlayer.getCurrentField());
+					System.out.println(nowPlayer.getMoney());
 					nowPlayer.doAction();
+					System.out.println(nowPlayer.getMoney());
+					System.out.println("---------");
 					Main.getGameScene().update();
 					tick = 0;
 				} else {
@@ -89,7 +97,7 @@ public class LogicGame {
 			players.add(
 					new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 			players.add(
-					new Player("THREE", 15000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
+					new Player("THREE", 2000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
 		} else if (n == 4) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
@@ -162,16 +170,38 @@ public class LogicGame {
 		for (int i = 0; i < player.getAssets().size(); i++) {
 			player.getAssets().get(i).setOwner(null);
 		}
+		for (int i = 0; i < Main.getGameScene().getBoard().getFields().size(); i++) {
+			Field nowField = Main.getGameScene().getBoard().getFields().get(i);
+			if (nowField.getActionable() instanceof Asset) {
+				Asset asset = (Asset) nowField.getActionable();
+				if (asset.getOwner() == null) {
+					if (nowField instanceof HLandField) {
+						HLandField hLandField = (HLandField) nowField;
+						hLandField.setOwnerColor();
+					} else if (nowField instanceof VLandField) {
+						VLandField vLandField = (VLandField) nowField;
+						vLandField.setOwnerColor();
+					}
+				}
+			}
+		}
+		player.setMoney(0);
+		for (int i = 0; i < Main.getGameScene().getAssetShows().size(); i++) {
+			if (Main.getGameScene().getAssetShows().get(i).getPlayer() == player) {
+				Main.getGameScene().getAssetShows().get(i).setUpBankruptPlayer();
+			}
+		}
+		SharedObjectHolder.bankruptSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 	}
 
 	public static void resetLogicGame() {
-		players = new ArrayList<Player>();
+		mainSound = 1.0;
+		BGSound = 1.0;
+		effectSound = 1.0;
 		changeTurn = true;
 		tick = 0;
+		turnPlayer = 0;
 		setUpPlayer();
-		Main.getGameScene().setUpAssetShow();
-		Main.getGameScene().setUpUserControl();
-		Main.getGameScene().setUpLogDisplay();
 	}
 
 	public static String getWinnerName() {

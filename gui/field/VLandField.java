@@ -29,8 +29,7 @@ public class VLandField extends Field {
 	public VLandField(Actionable actionable, Direction dir) {
 		super();
 		this.actionable = actionable;
-//		setBorder(new Border(
-//				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
 			Label lPrice = new Label(String.format("฿%d", asset.getPrice()));
@@ -99,8 +98,12 @@ public class VLandField extends Field {
 	public void setOwnerColor() {
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
-			hStore.setBackground(
-					new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			if (asset.getOwner() != null) {
+				hStore.setBackground(
+						new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			} else {
+				hStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			}
 		}
 	}
 }

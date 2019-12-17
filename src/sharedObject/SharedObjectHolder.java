@@ -70,7 +70,9 @@ public class SharedObjectHolder {
 	public static AudioClip babyCrySound;
 	public static AudioClip fairySound;
 	public static AudioClip treasureSound;
+	public static AudioClip bankruptSound;
 	public static MediaPlayer BGGameMusic;
+
 	static {
 		loadResource();
 	}
@@ -140,22 +142,17 @@ public class SharedObjectHolder {
 			chance8 = new Image(new FileInputStream("./res/Graphics/chance8.png"));
 			chance9 = new Image(new FileInputStream("./res/Graphics/chance9.png"));
 			footstepSound = new AudioClip(ClassLoader.getSystemResource("Sounds/footstep.mp3").toExternalForm());
-//			footstepSound.setVolume(0.5);
 			buttonSound = new AudioClip(ClassLoader.getSystemResource("Sounds/button-11.wav").toExternalForm());
-//			buttonSound.setVolume(0.5);
 			alertSound = new AudioClip(ClassLoader.getSystemResource("Sounds/alert.mp3").toExternalForm());
-//			alertSound.setVolume(0.7);
 			manPointLOLSound = new AudioClip(ClassLoader.getSystemResource("Sounds/manPointLOL.mp3").toExternalForm());
 			epicWinSound = new AudioClip(ClassLoader.getSystemResource("Sounds/epicWin.mp3").toExternalForm());
 			buttonLight = new AudioClip(ClassLoader.getSystemResource("Sounds/buttonLight.mp3").toExternalForm());
-//			buttonLight.setVolume(0.7);
 			fairySound = new AudioClip(ClassLoader.getSystemResource("Sounds/fairySound.mp3").toExternalForm());
-//			fairySound.setVolume(0.7);
 			treasureSound = new AudioClip(ClassLoader.getSystemResource("Sounds/treasureSound.mp3").toExternalForm());
-//			treasureSound.setVolume(0.7);
 			BGGameMusic = new MediaPlayer(
 					new Media(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm()));
 			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babyCry.mp3").toExternalForm());
+			bankruptSound = new AudioClip(ClassLoader.getSystemResource("Sounds/bankruptSound.mp3").toExternalForm());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
