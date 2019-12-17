@@ -60,48 +60,48 @@ public class ChanceCard extends Deck {
 		int n = this.pickCard();
 		// prepare for implement effect each effect card
 		switch (n) {
-		case 0: {
-			LogicGame.getNowPlayer().payMoney(1400);
-			LogicGame.getNowPlayer().setNextField(6);
-			break;
-		}
-		case 1: {
-			LogicGame.getNowPlayer().addMoney(200);
-			break;
-		}
-		case 2: {
-			LogicGame.getNowPlayer().addMoney(1000);
-			break;
-		}
-		case 3: {
-			LogicGame.getNowPlayer().payMoney(1300);
-			break;
-		}
-		case 4: {
-			LogicGame.getNowPlayer().payMoney(4000);
-			break;
-		}
-		case 5: {
-			LogicGame.getNowPlayer().payMoney(1200);
-			break;
-		}
-		case 6: {
-			LogicGame.getNowPlayer().payMoney(3500);
-			break;
-		}
-		case 7: {
-			LogicGame.getNowPlayer().payMoney(1250);
-			break;
-		}
-
-		case 8: {
-			LogicGame.getNowPlayer().payMoney(1250);
-			break;
-		}
-		case 9: {
-			LogicGame.getNowPlayer().payMoney(300);
-			break;
-		}
+//		case 0: {
+//			LogicGame.getNowPlayer().payMoney(1400);
+//			LogicGame.getNowPlayer().setNextField(6);
+//			break;
+//		}
+//		case 1: {
+//			LogicGame.getNowPlayer().addMoney(200);
+//			break;
+//		}
+//		case 2: {
+//			LogicGame.getNowPlayer().addMoney(1000);
+//			break;
+//		}
+//		case 3: {
+//			LogicGame.getNowPlayer().payMoney(1300);
+//			break;
+//		}
+//		case 4: {
+//			LogicGame.getNowPlayer().payMoney(4000);
+//			break;
+//		}
+//		case 5: {
+//			LogicGame.getNowPlayer().payMoney(1200);
+//			break;
+//		}
+//		case 6: {
+//			LogicGame.getNowPlayer().payMoney(3500);
+//			break;
+//		}
+//		case 7: {
+//			LogicGame.getNowPlayer().payMoney(1250);
+//			break;
+//		}
+//
+//		case 8: {
+//			LogicGame.getNowPlayer().payMoney(1250);
+//			break;
+//		}
+//		case 9: {
+//			LogicGame.getNowPlayer().payMoney(300);
+//			break;
+//		}
 		}
 		return n;
 	}

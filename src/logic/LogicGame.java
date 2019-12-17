@@ -32,60 +32,57 @@ public class LogicGame {
 
 		if (Main.getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
 
-			Player nowPlayer = players.get(turnPlayer);
-			if (!nowPlayer.isMove()) {
-				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
-				nowPlayer.setNextField(nowPlayer.getCurrentField());
-				turnPlayer = (turnPlayer + 1) % players.size();
-				changeTurn = true;
-			} else if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
-				if (tick == 30) {
-					Bounds field = Main.getGameScene().getBoard().getFields()
-							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
-							.localToScene(Main.getGameScene().getBoard().getFields()
-									.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
-									.getBoundsInLocal());
-					Field g = Main.getGameScene().getBoard().getFields()
-							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
-
-					double centerY = g.getHeight() / 2;
-
-					SharedObjectHolder.footstepSound.play(effectSound * mainSound);
-					nowPlayer.setLayoutX(
-							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
-					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
-					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
-
-//					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
-
-					System.out.println(nowPlayer.getCurrentField());
-					System.out.println(nowPlayer.getMoney());
-					nowPlayer.doAction();
-					System.out.println(nowPlayer.getMoney());
-					System.out.println("---------");
-					Main.getGameScene().update();
-					tick = 0;
-				} else {
-					tick++;
-				}
-				if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
-					if (!nowPlayer.isBankrupt()) {
-						turnPlayer = (turnPlayer + 1) % players.size();
-						changeTurn = true;
-					} else {
-						if (turnPlayer == players.size() + 1) {
-							turnPlayer = (turnPlayer + 1) % (players.size() + 1);
-							changeTurn = true;
-						} else {
-							turnPlayer = (turnPlayer + 1) % players.size();
-							changeTurn = true;
-						}
-					}
-				}
-			}
 			if (players.size() == 1) {
 				winnerName = players.get(0).getName();
 				Main.setState(StateScene.SWAPENDSCENE);
+			} else {
+
+				Player nowPlayer = players.get(turnPlayer);
+
+				if (!nowPlayer.isMove()) {
+					nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
+					nowPlayer.setNextField(nowPlayer.getCurrentField());
+					turnPlayer = (turnPlayer + 1) % players.size();
+					changeTurn = true;
+				} else if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
+					if (tick == 30) {
+						Bounds field = Main.getGameScene().getBoard().getFields()
+								.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
+								.localToScene(Main.getGameScene().getBoard().getFields()
+										.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
+										.getBoundsInLocal());
+						Field g = Main.getGameScene().getBoard().getFields()
+								.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+
+						double centerY = g.getHeight() / 2;
+
+						SharedObjectHolder.footstepSound.play(effectSound * mainSound);
+						nowPlayer.setLayoutX(
+								field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
+						nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
+						nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+
+						nowPlayer.doAction();
+
+						Main.getGameScene().update();
+						tick = 0;
+					} else {
+						tick++;
+					}
+					if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
+						if (!nowPlayer.isBankrupt()) {
+							turnPlayer = (turnPlayer + 1) % players.size();
+							changeTurn = true;
+						} else {
+							if (turnPlayer == players.size()) {
+								turnPlayer = 0;
+								changeTurn = true;
+							} else {
+								changeTurn = true;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -93,7 +90,7 @@ public class LogicGame {
 	public static void setUpPlayer() {
 		int n = StartScene.getPlayer();
 		players = new ArrayList<Player>();
-		
+
 		if (n == 1) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
@@ -110,7 +107,7 @@ public class LogicGame {
 			players.add(
 					new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 			players.add(
-					new Player("THREE", 2000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
+					new Player("THREE", 15000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
 		} else if (n == 4) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));

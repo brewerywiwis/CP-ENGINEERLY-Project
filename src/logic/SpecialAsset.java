@@ -22,6 +22,7 @@ public class SpecialAsset implements Actionable {
 	@Override
 	public void doAction() {
 		Player nowPlayer = LogicGame.getNowPlayer();
+		System.out.println("WOW");
 		switch (type) {
 		// case 1: when player pass start point, add money to player
 		case 1: {
