@@ -14,20 +14,37 @@ public class InGameMenu extends VBox {
 	private Button sound;
 	private SoundMenuStage soundMenuStage;
 	private SettingMenuStage settingMenuStage;
+	private ImageView settingButton;
+	private ImageView transparentSettingButton;
+	private ImageView soundSettingButton;
+	private ImageView transparentSoundSettingButton;
 
 	public InGameMenu() {
 		soundMenuStage = new SoundMenuStage();
 		settingMenuStage = new SettingMenuStage();
 
+		settingButton = new ImageView(SharedObjectHolder.settingButton);
+		settingButton.setScaleX(1.5);
+		settingButton.setScaleY(1.5);
+		transparentSettingButton = new ImageView(SharedObjectHolder.transparentSettingButton);
+		transparentSettingButton.setScaleX(1.5);
+		transparentSettingButton.setScaleY(1.5);
+		soundSettingButton = new ImageView(SharedObjectHolder.soundSettingButton);
+		soundSettingButton.setScaleX(1.5);
+		soundSettingButton.setScaleY(1.5);
+		transparentSoundSettingButton = new ImageView(SharedObjectHolder.transparentSoundSettingButton);
+		transparentSoundSettingButton.setScaleX(1.5);
+		transparentSoundSettingButton.setScaleY(1.5);
+
 		menu = new Button();
-		menu.setGraphic(new ImageView(SharedObjectHolder.settingButton));
+		menu.setGraphic(settingButton);
 		menu.setStyle("-fx-background-color: transparent");
 		menu.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				menu.setGraphic(new ImageView(SharedObjectHolder.transparentSettingButton));
+				menu.setGraphic(transparentSettingButton);
 			}
 		});
 		menu.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -35,7 +52,7 @@ public class InGameMenu extends VBox {
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				menu.setGraphic(new ImageView(SharedObjectHolder.settingButton));
+				menu.setGraphic(settingButton);
 				settingMenuStage.setX(Main.getCenterXPosition() - getWidth() / 2d);
 				settingMenuStage.setY(Main.getCenterYPosition() - 2 * Main.getCenterYPosition() / 3);
 
@@ -47,14 +64,14 @@ public class InGameMenu extends VBox {
 
 		sound = new Button();
 		sound.setStyle("-fx-background-color: transparent");
-		sound.setGraphic(new ImageView(SharedObjectHolder.soundSettingButton));
+		sound.setGraphic(soundSettingButton);
 
 		sound.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				sound.setGraphic(new ImageView(SharedObjectHolder.transparentSoundSettingButton));
+				sound.setGraphic(transparentSoundSettingButton);
 			}
 		});
 		sound.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -62,7 +79,7 @@ public class InGameMenu extends VBox {
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				sound.setGraphic(new ImageView(SharedObjectHolder.soundSettingButton));
+				sound.setGraphic(soundSettingButton);
 				soundMenuStage.setX(Main.getCenterXPosition() - getWidth() / 2d);
 				soundMenuStage.setY(Main.getCenterYPosition() - 2 * Main.getCenterYPosition() / 3);
 				soundMenuStage.showAndWait();

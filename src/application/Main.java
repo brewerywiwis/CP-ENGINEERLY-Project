@@ -162,7 +162,6 @@ public class Main extends Application {
 		if (gameStop) {
 			gameLoop.start();
 			SharedObjectHolder.BGGameMusic.play();
-			;
 			gameStop = false;
 			gameRoot.getChildren().remove(gameRoot.getChildren().size() - 1);
 		}
