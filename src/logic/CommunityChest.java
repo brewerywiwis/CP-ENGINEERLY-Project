@@ -38,13 +38,13 @@ public class CommunityChest extends Deck {
 							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setContentText(null);
 					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
-					img.setFitHeight(60);
-					img.setFitWidth(40);
+					img.setFitHeight(300);
+					img.setFitWidth(200);
 					alert.getDialogPane().setGraphic(img);
-					SharedObjectHolder.fairySound.play();
+					SharedObjectHolder.fairySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play();
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					}
 				}
 			});

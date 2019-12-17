@@ -38,10 +38,10 @@ public class SpecialAsset implements Actionable {
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText(null);
 					alert.setContentText("Player " + nowPlayer.getName() + " get 500 money from start point");
-					SharedObjectHolder.treasureSound.play();
+					SharedObjectHolder.treasureSound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play();
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 					}
 				}
 			});
@@ -65,10 +65,10 @@ public class SpecialAsset implements Actionable {
 						alert.setTitle("Information Dialog");
 						alert.setHeaderText(null);
 						alert.setContentText("Player " + nowPlayer.getName() + " can not move for 2 turn");
-						SharedObjectHolder.alertSound.play();
+						SharedObjectHolder.alertSound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 						Optional<ButtonType> result = alert.showAndWait();
 						if (result.get() == ButtonType.OK) {
-							SharedObjectHolder.buttonLight.play();
+							SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 						}
 					}
 				});
@@ -97,10 +97,10 @@ public class SpecialAsset implements Actionable {
 						alert.setHeaderText(null);
 						alert.setContentText("Now, Player " + nowPlayer.getName()
 								+ " go to registration room and can not move for 2 turn");
-						SharedObjectHolder.manPointLOLSound.play();
+						SharedObjectHolder.manPointLOLSound.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 						Optional<ButtonType> result = alert.showAndWait();
 						if (result.get() == ButtonType.OK) {
-							SharedObjectHolder.buttonLight.play();
+							SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound()*LogicGame.getMainSound());
 						}
 					}
 				});

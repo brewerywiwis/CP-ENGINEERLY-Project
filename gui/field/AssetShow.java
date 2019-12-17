@@ -1,7 +1,6 @@
 package field;
 
 import java.io.FileInputStream;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -64,7 +63,7 @@ public class AssetShow extends HBox {
 		description.setAlignment(Pos.CENTER);
 		description.add(nameShow, 0, 0);
 		description.add(moneyShow, 0, 1);
-
+		setMinWidth(300);
 		getChildren().add(description);
 		setPadding(new Insets(30));
 		setSpacing(20);

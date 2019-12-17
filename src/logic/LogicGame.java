@@ -11,6 +11,9 @@ import startScene.StartScene;
 
 public class LogicGame {
 
+	private static double mainSound = 1.0;
+	private static double BGSound = 1.0;
+	private static double effectSound = 1.0;
 	private static String winnerName;
 	private static int turnPlayer = 0;
 	private static ArrayList<Player> players;
@@ -27,7 +30,6 @@ public class LogicGame {
 			updatePlayerPosition();
 			Player nowPlayer = players.get(turnPlayer);
 			if (!nowPlayer.isMove()) {
-				System.out.println("cannot move");
 				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
 				nowPlayer.setNextField(nowPlayer.getCurrentField());
 				turnPlayer = (turnPlayer + 1) % players.size();
@@ -42,10 +44,9 @@ public class LogicGame {
 					Field g = Main.getGameScene().getBoard().getFields()
 							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
 
-					double centerX = g.getWidth() / 2;
 					double centerY = g.getHeight() / 2;
 
-					SharedObjectHolder.footstepSound.play();
+					SharedObjectHolder.footstepSound.play(effectSound * mainSound);
 					nowPlayer.setLayoutX(
 							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
@@ -79,18 +80,21 @@ public class LogicGame {
 		if (n == 2) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
-			players.add(new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
+			players.add(
+					new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 
 		} else if (n == 3) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
-			players.add(new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
+			players.add(
+					new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 			players.add(
 					new Player("THREE", 15000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
 		} else if (n == 4) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
-			players.add(new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
+			players.add(
+					new Player("TWO", 15000, SharedObjectHolder.characterColors.get(2), SharedObjectHolder.pinkPawn));
 			players.add(
 					new Player("THREE", 15000, SharedObjectHolder.characterColors.get(3), SharedObjectHolder.bluePawn));
 			players.add(
@@ -103,7 +107,6 @@ public class LogicGame {
 			Field g = Main.getGameScene().getBoard().getFields().get(players.get(i).getCurrentField());
 			Main.getGameScene().getPane().getChildren().add(players.get(i));
 
-			double centerX = g.getWidth() / 2;
 			double centerY = g.getHeight() / 2;
 
 			players.get(i).setLayoutX(field.getMinX() + players.get(i).getCenterPx() + i * (20) - startX);
@@ -173,5 +176,29 @@ public class LogicGame {
 
 	public static String getWinnerName() {
 		return winnerName;
+	}
+
+	public static double getMainSound() {
+		return mainSound;
+	}
+
+	public static void setMainSound(double mainSound) {
+		LogicGame.mainSound = mainSound;
+	}
+
+	public static double getBGSound() {
+		return BGSound;
+	}
+
+	public static void setBGSound(double bGSound) {
+		BGSound = bGSound;
+	}
+
+	public static double getEffectSound() {
+		return effectSound;
+	}
+
+	public static void setEffectSound(double effectSound) {
+		LogicGame.effectSound = effectSound;
 	}
 }

@@ -5,7 +5,10 @@ import gameScene.CheckException;
 import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import logic.LogicGame;
 import sharedObject.SharedObjectHolder;
@@ -14,11 +17,14 @@ import startScene.StartScene;
 public class Main extends Application {
 	public static final int displayX = 1080, displayY = 720;
 	public static final int borderX = 220, borderY = 40;
+	public static double centerXPosition;
+	public static double centerYPosition;
 	private static GameScene gameScene;
 	private static AnimationTimer gameLoop;
 	private static StateScene state;
-	private BorderPane gameRoot;
+	private static StackPane gameRoot;
 	private static boolean gameStop;
+	private static Stage pStage;
 
 	@Override
 	public void init() {
@@ -27,6 +33,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		pStage = primaryStage;
 		primaryStage.setTitle("CP Engineerly");
 		primaryStage.setResizable(true);
 		primaryStage.setMaximized(true);
@@ -47,7 +54,7 @@ public class Main extends Application {
 					break;
 				}
 				case SWAPGAMESCENE: {
-					gameRoot = new BorderPane();
+					gameRoot = new StackPane();
 					try {
 						gameScene = new GameScene(gameRoot);
 						LogicGame.resetLogicGame();
@@ -61,11 +68,12 @@ public class Main extends Application {
 					break;
 				}
 				case GAMESCENE: {
+					SharedObjectHolder.BGGameMusic.setVolume(LogicGame.getBGSound() * LogicGame.getMainSound());
 					LogicGame.update();
 					break;
 				}
 				case SWAPENDSCENE: {
-					SharedObjectHolder.epicWinSound.play();
+					SharedObjectHolder.epicWinSound.play(LogicGame.getBGSound() * LogicGame.getMainSound());
 					setState(StateScene.ENDSCENE);
 					break;
 				}
@@ -84,6 +92,7 @@ public class Main extends Application {
 		SharedObjectHolder.BGGameMusic.stop();
 		SharedObjectHolder.epicWinSound.stop();
 		setState(StateScene.DIE);
+
 	}
 
 	public static void main(String[] args) {
@@ -117,7 +126,8 @@ public class Main extends Application {
 			public void run() {
 				// TODO Auto-generated method stub
 				while (getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
-					if (!SharedObjectHolder.BGGameMusic.isPlaying()) {
+					if (SharedObjectHolder.BGGameMusic.getStatus() != Status.PLAYING) {
+						SharedObjectHolder.BGGameMusic.setVolume(LogicGame.getBGSound() * LogicGame.getMainSound());
 						SharedObjectHolder.BGGameMusic.play();
 					}
 					try {
@@ -137,16 +147,29 @@ public class Main extends Application {
 	public static void stopGame() {
 		if (!gameStop) {
 			gameLoop.stop();
-			SharedObjectHolder.BGGameMusic.stop();
+			SharedObjectHolder.BGGameMusic.pause();
 			gameStop = true;
+			Rectangle film = new Rectangle(gameScene.getWidth(), gameScene.getHeight(), Color.LIGHTGRAY);
+			film.setOpacity(0.5);
+			gameRoot.getChildren().add(film);
 		}
 	}
 
 	public static void startGame() {
 		if (gameStop) {
 			gameLoop.start();
-			startMusicBGGameScene();
+			SharedObjectHolder.BGGameMusic.play();;
 			gameStop = false;
+			gameRoot.getChildren().remove(gameRoot.getChildren().size() - 1);
 		}
 	}
+
+	public static double getCenterXPosition() {
+		return pStage.getX() + pStage.getWidth() / 2d;
+	}
+
+	public static double getCenterYPosition() {
+		return pStage.getY() + pStage.getHeight() / 2d;
+	}
+
 }

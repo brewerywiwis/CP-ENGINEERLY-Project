@@ -3,10 +3,10 @@ package sharedObject;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 public class SharedObjectHolder {
@@ -38,6 +38,10 @@ public class SharedObjectHolder {
 	public static Image clickedFourPlayer;
 	public static Image woodenBg;
 	public static Image trophy;
+	public static Image settingButton;
+	public static Image soundSettingButton;
+	public static Image transparentSettingButton;
+	public static Image transparentSoundSettingButton;
 	public static Image playerOneWins;
 	public static Image playerTwoWins;
 	public static Image playerThreeWins;
@@ -66,7 +70,7 @@ public class SharedObjectHolder {
 	public static AudioClip babyCrySound;
 	public static AudioClip fairySound;
 	public static AudioClip treasureSound;
-	public static AudioClip BGGameMusic;
+	public static MediaPlayer BGGameMusic;
 	static {
 		loadResource();
 	}
@@ -111,6 +115,11 @@ public class SharedObjectHolder {
 			chanceCardH = new Image(new FileInputStream("./res/Graphics/chanceCardH.jpg"));
 			communityChestH = new Image(new FileInputStream("./res/Graphics/communityChestH.jpg"));
 			trophy = new Image(new FileInputStream("./res/Graphics/trophy.png"));
+			settingButton = new Image(new FileInputStream("./res/Graphics/setting.png"));
+			soundSettingButton = new Image(new FileInputStream("./res/Graphics/soundSetting.png"));
+			transparentSettingButton = new Image(new FileInputStream("./res/Graphics/transparentSetting.png"));
+			transparentSoundSettingButton = new Image(
+					new FileInputStream("./res/Graphics/transparentSoundSetting.png"));
 			playerOneWins = new Image(new FileInputStream("./res/Graphics/playerOneWins.png"));
 			playerTwoWins = new Image(new FileInputStream("./res/Graphics/playerTwoWins.png"));
 			playerThreeWins = new Image(new FileInputStream("./res/Graphics/playerThreeWins.png"));
@@ -131,21 +140,21 @@ public class SharedObjectHolder {
 			chance8 = new Image(new FileInputStream("./res/Graphics/chance8.png"));
 			chance9 = new Image(new FileInputStream("./res/Graphics/chance9.png"));
 			footstepSound = new AudioClip(ClassLoader.getSystemResource("Sounds/footstep.mp3").toExternalForm());
-			footstepSound.setVolume(0.5);
+//			footstepSound.setVolume(0.5);
 			buttonSound = new AudioClip(ClassLoader.getSystemResource("Sounds/button-11.wav").toExternalForm());
-			buttonSound.setVolume(0.5);
+//			buttonSound.setVolume(0.5);
 			alertSound = new AudioClip(ClassLoader.getSystemResource("Sounds/alert.mp3").toExternalForm());
-			alertSound.setVolume(0.7);
+//			alertSound.setVolume(0.7);
 			manPointLOLSound = new AudioClip(ClassLoader.getSystemResource("Sounds/manPointLOL.mp3").toExternalForm());
 			epicWinSound = new AudioClip(ClassLoader.getSystemResource("Sounds/epicWin.mp3").toExternalForm());
 			buttonLight = new AudioClip(ClassLoader.getSystemResource("Sounds/buttonLight.mp3").toExternalForm());
-			buttonLight.setVolume(0.7);
+//			buttonLight.setVolume(0.7);
 			fairySound = new AudioClip(ClassLoader.getSystemResource("Sounds/fairySound.mp3").toExternalForm());
-			fairySound.setVolume(0.7);
+//			fairySound.setVolume(0.7);
 			treasureSound = new AudioClip(ClassLoader.getSystemResource("Sounds/treasureSound.mp3").toExternalForm());
-			treasureSound.setVolume(0.7);
-			BGGameMusic = new AudioClip(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm());
-			BGGameMusic.setVolume(0.7);
+//			treasureSound.setVolume(0.7);
+			BGGameMusic = new MediaPlayer(
+					new Media(ClassLoader.getSystemResource("Sounds/BGGameSceneMusic.mp3").toExternalForm()));
 			babyCrySound = new AudioClip(ClassLoader.getSystemResource("Sounds/babyCry.mp3").toExternalForm());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
