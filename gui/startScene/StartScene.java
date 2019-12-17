@@ -4,12 +4,10 @@ import application.Main;
 import application.StateScene;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Side;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -18,7 +16,8 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import sharedObject.SharedObjectHolder;;
+import javafx.scene.layout.VBox;
+import sharedObject.SharedObjectHolder;
 
 public class StartScene extends Scene {
 
@@ -39,120 +38,120 @@ public class StartScene extends Scene {
 		ImageView clickedTwoPlayer = new ImageView(SharedObjectHolder.clickedTwoPlayer);
 		ImageView clickedThreePlayer = new ImageView(SharedObjectHolder.clickedThreePlayer);
 		ImageView clickedFourPlayer = new ImageView(SharedObjectHolder.clickedFourPlayer);
+		VBox vBox = new VBox();
+		
 		Button start_button = new Button("");
 		start_button.setGraphic(startButton);
 		start_button.setStyle("-fx-background-color: transparent");
+		Button onePlayer = new Button("",onePlayerButton);
+		Button twoPlayer = new Button("", twoPlayerButton);
+		Button threePlayer = new Button("", threePlayerButton);
+		Button fourPlayer = new Button("", fourPlayerButton);
+		onePlayer.setStyle("-fx-background-color: transparent");
+		twoPlayer.setStyle("-fx-background-color: transparent");
+		threePlayer.setStyle("-fx-background-color: transparent");
+		fourPlayer.setStyle("-fx-background-color: transparent");
+		
+		vBox.getChildren().addAll(start_button,onePlayer,twoPlayer, threePlayer, fourPlayer);
+		vBox.setAlignment(Pos.CENTER);
+		pane.setRight(vBox);
+		BorderPane.setMargin(vBox, new Insets(100, 100, 100, 100));
+		onePlayer.setVisible(false);
+		twoPlayer.setVisible(false);
+		threePlayer.setVisible(false);
+		fourPlayer.setVisible(false);
+		
 
-		pane.setRight(start_button);
-		BorderPane.setMargin(start_button, new Insets(100, 100, 100, 100));
 		start_button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				start_button.setGraphic(clickedStartButton);
-				ContextMenu context = new ContextMenu();
-				MenuItem onePlayer = new MenuItem("", onePlayerButton);
-				MenuItem twoPlayer = new MenuItem("", twoPlayerButton);
-				MenuItem threePlayer = new MenuItem("", threePlayerButton);
-				MenuItem fourPlayer = new MenuItem("", fourPlayerButton);
-				context.getItems().addAll(onePlayer, twoPlayer, threePlayer, fourPlayer);
-				context.setStyle("-fx-background-color: transparent");
-				context.show(clickedStartButton, Side.BOTTOM, 0, 0);
-
-				onePlayerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+				onePlayer.setVisible(true);
+				twoPlayer.setVisible(true);
+				threePlayer.setVisible(true);
+				fourPlayer.setVisible(true);		
+				
+				onePlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						twoPlayer.setGraphic(twoPlayerButton);
 						onePlayer.setGraphic(clickedOnePlayer);
 					}
 				});
-				clickedOnePlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+				onePlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
 						onePlayer.setGraphic(onePlayerButton);
 
 					}
 				});
-				twoPlayerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+				twoPlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						onePlayer.setGraphic(onePlayerButton);
-						threePlayer.setGraphic(threePlayerButton);
 						twoPlayer.setGraphic(clickedTwoPlayer);
 					}
 				});
-				clickedTwoPlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+				twoPlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
 						twoPlayer.setGraphic(twoPlayerButton);
 
 					}
 				});
-				threePlayerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+				threePlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						twoPlayer.setGraphic(twoPlayerButton);
-						fourPlayer.setGraphic(fourPlayerButton);
 						threePlayer.setGraphic(clickedThreePlayer);
 					}
 				});
-				clickedThreePlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+				threePlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
 						threePlayer.setGraphic(threePlayerButton);
 
 					}
 				});
-				fourPlayerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+				fourPlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						threePlayer.setGraphic(threePlayerButton);
 						fourPlayer.setGraphic(clickedFourPlayer);
 					}
 				});
-				clickedFourPlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+				fourPlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
 						fourPlayer.setGraphic(fourPlayerButton);
 
 					}
 				});
-
-				clickedOnePlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+				
+				onePlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						pane.setRight(startButton);
-						BorderPane.setMargin(startButton, new Insets(100, 100, 100, 100));
 						player = 1;
 						Main.setState(StateScene.SWAPGAMESCENE);
 					}
 				});
 
-				clickedTwoPlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+				twoPlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						pane.setRight(startButton);
-						BorderPane.setMargin(startButton, new Insets(100, 100, 100, 100));
 						player = 2;
 						Main.setState(StateScene.SWAPGAMESCENE);
 					}
 				});
 
-				clickedThreePlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+				threePlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						pane.setRight(startButton);
-						BorderPane.setMargin(startButton, new Insets(100, 100, 100, 100));
 						player = 3;
 						Main.setState(StateScene.SWAPGAMESCENE);
 					}
 				});
 
-				clickedFourPlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+				fourPlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						pane.setRight(startButton);
-						BorderPane.setMargin(startButton, new Insets(100, 100, 100, 100));
 						player = 4;
 						Main.setState(StateScene.SWAPGAMESCENE);
 					}
@@ -160,11 +159,15 @@ public class StartScene extends Scene {
 
 			}
 		});
-
-		pane.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+	
+		vBox.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
 				start_button.setGraphic(startButton);
+				onePlayer.setVisible(false);
+				twoPlayer.setVisible(false);
+				threePlayer.setVisible(false);
+				fourPlayer.setVisible(false);
 			}
 		});
 
@@ -177,6 +180,7 @@ public class StartScene extends Scene {
 	public static void resetStartScene() {
 		pane = new BorderPane();
 		scene = new StartScene(pane, Main.displayX, Main.displayY);
+		SharedObjectHolder.epicWinSound.stop();
 	}
 
 	public static int getPlayer() {
