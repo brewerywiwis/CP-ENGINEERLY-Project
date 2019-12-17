@@ -40,19 +40,16 @@ public class SharedObjectHolder {
 	public static Image clickedFourPlayer;
 	public static Image woodenBg;
 	public static Image trophy;
-<<<<<<< HEAD
 	public static Image settingButton;
 	public static Image soundSettingButton;
 	public static Image transparentSettingButton;
 	public static Image transparentSoundSettingButton;
-=======
 	public static Image playerOneWins;
 	public static Image playerTwoWins;
 	public static Image playerThreeWins;
 	public static Image playerFourWins;
 	public static Image playAgain;
 	public static Image clickedPlayAgain;
->>>>>>> cc2be1edce15523ee29371509c625c02dfa58935
 	public static AudioClip footstepSound;
 	public static AudioClip buttonSound;
 	public static AudioClip alertSound;
