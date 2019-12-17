@@ -6,10 +6,12 @@ import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.LogicGame;
 import sharedObject.SharedObjectHolder;
 import startScene.StartScene;
@@ -51,6 +53,7 @@ public class Main extends Application {
 					setState(StateScene.STARTSCENE);
 				}
 				case STARTSCENE: {
+					SharedObjectHolder.BGGameMusic.stop();
 					break;
 				}
 				case SWAPGAMESCENE: {
@@ -92,7 +95,6 @@ public class Main extends Application {
 
 	@Override
 	public void stop() {
-		SharedObjectHolder.BGGameMusic.stop();
 		SharedObjectHolder.epicWinSound.stop();
 		setState(StateScene.DIE);
 
@@ -123,28 +125,8 @@ public class Main extends Application {
 	}
 
 	public static void startMusicBGGameScene() {
-		Thread musicThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				while (getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
-					if (SharedObjectHolder.BGGameMusic.getStatus() != Status.PLAYING) {
-						SharedObjectHolder.BGGameMusic.setVolume(LogicGame.getBGSound() * LogicGame.getMainSound());
-						SharedObjectHolder.BGGameMusic.play();
-					}
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				SharedObjectHolder.BGGameMusic.stop();
-			}
-		});
-
-		musicThread.start();
+		SharedObjectHolder.BGGameMusic.setCycleCount(Integer.MAX_VALUE);
+		SharedObjectHolder.BGGameMusic.play();
 	}
 
 	public static void stopGame() {

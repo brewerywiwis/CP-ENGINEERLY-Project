@@ -22,7 +22,7 @@ public class Player extends ImageView implements Actionable {
 
 	private ArrayList<Asset> assets;
 	private String name;
-	private double money;
+	private int money;
 	private Color color;
 	private int currentField;
 	private int nextField;
@@ -30,7 +30,7 @@ public class Player extends ImageView implements Actionable {
 	private double centerPy;
 	private int notMoveCount;
 
-	public Player(String name, double money, Color color, Image img) {
+	public Player(String name, int money, Color color, Image img) {
 		this.name = name;
 		this.money = money;
 		this.color = color;
@@ -145,7 +145,7 @@ public class Player extends ImageView implements Actionable {
 
 				} else if (asset.getOwner() != this) {
 					int n = Main.getGameScene().getLogDisplay().getSize();
-					double prevMoney = this.getMoney();
+					int prevMoney = this.getMoney();
 					Player nowPlayer = this;
 					if (asset.payFrom(nowPlayer)) {
 						Platform.runLater(new Runnable() {
@@ -154,7 +154,7 @@ public class Player extends ImageView implements Actionable {
 								// TODO Auto-generated method stub
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Information Dialog");
-								alert.setContentText(String.format("Player %s pays tax to Player %s\n(%f -> %f).",
+								alert.setContentText(String.format("Player %s pays tax to Player %s\n(%d -> %d).",
 										getName(), asset.getOwner().getName(), prevMoney, getMoney()));
 								alert.setHeaderText(null);
 
@@ -169,7 +169,7 @@ public class Player extends ImageView implements Actionable {
 							}
 						});
 						Main.getGameScene().getLogDisplay()
-								.add(String.format("%d: Player %s pays tax to Player %s (%f -> %f).", n + 1, getName(),
+								.add(String.format("%d: Player %s pays tax to Player %s (%d -> %d).", n + 1, getName(),
 										asset.getOwner().getName(), prevMoney, getMoney()));
 					} else {
 						Platform.runLater(new Runnable() {
@@ -196,21 +196,21 @@ public class Player extends ImageView implements Actionable {
 					// buy washer and gear
 				}
 			}
-		}else {
+		} else {
 			System.out.println("JUST PASS");
 		}
 
 	}
 
-	public void addMoney(double money) {
+	public void addMoney(int money) {
 		this.money = (this.money + money >= 0) ? this.money + money : 0;
 	}
 
-	public void payMoney(double money) {
+	public void payMoney(int money) {
 		this.money = (this.money - money >= 0) ? this.money - money : 0;
 	}
 
-	public void setMoney(double money) {
+	public void setMoney(int money) {
 		this.money = money;
 	}
 
@@ -222,7 +222,7 @@ public class Player extends ImageView implements Actionable {
 		return assets;
 	}
 
-	public double getMoney() {
+	public int getMoney() {
 		return money;
 	}
 

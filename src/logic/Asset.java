@@ -23,7 +23,7 @@ public abstract class Asset implements Actionable {
 		return price;
 	}
 
-	public double calPrice() {
+	public int calPrice() {
 		// implement calculate of price(invoke by doAction)
 		return price;
 	}

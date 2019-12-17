@@ -35,7 +35,7 @@ public class Land extends Asset {
 	@Override
 	public boolean payFrom(Player p) {
 		// TODO Auto-generated method stub
-		double price = calPrice();
+		int price = calPrice();
 		if (p.getMoney() >= price) {
 			p.payMoney(price);
 			owner.addMoney(price);

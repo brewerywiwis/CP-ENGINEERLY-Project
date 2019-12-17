@@ -27,9 +27,11 @@ public class LogicGame {
 	}
 
 	public static void update() {
+
 		updatePlayerPosition();
 
 		if (Main.getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
+
 			Player nowPlayer = players.get(turnPlayer);
 			if (!nowPlayer.isMove()) {
 				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
@@ -53,9 +55,9 @@ public class LogicGame {
 							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
 					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
-					
+
 //					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
-					
+
 					System.out.println(nowPlayer.getCurrentField());
 					System.out.println(nowPlayer.getMoney());
 					nowPlayer.doAction();
