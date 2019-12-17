@@ -58,6 +58,7 @@ public class EndScene extends Scene {
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				Main.setState(StateScene.SWAPSTARTSCENE);
+				SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 			}
 		});
 		pane.setCenter(playAgainBt);

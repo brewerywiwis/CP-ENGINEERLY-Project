@@ -6,12 +6,9 @@ import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import logic.LogicGame;
 import sharedObject.SharedObjectHolder;
 import startScene.StartScene;
@@ -80,11 +77,13 @@ public class Main extends Application {
 				}
 				case SWAPENDSCENE: {
 					SharedObjectHolder.epicWinSound.play(LogicGame.getBGSound() * LogicGame.getMainSound());
+					SharedObjectHolder.BGGameMusic.stop();
 					setState(StateScene.ENDSCENE);
 					break;
 				}
 				case ENDSCENE: {
 					primaryStage.setScene(EndScene.scene);
+					SharedObjectHolder.BGGameMusic.stop();
 					break;
 				}
 				}

@@ -20,14 +20,13 @@ public class CornerField extends Field {
 	public CornerField(SpecialAsset asset, Image img) {
 		super();
 		this.actionable = asset;
-		setBorder(new Border(
-				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 		ImageView im = new ImageView(img);
 		im.setPreserveRatio(true);
 		im.setFitWidth(120);
 		setCenter(im);
-
+		setBorder(new Border(
+				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 	}
 
 	public double getHeightField() {

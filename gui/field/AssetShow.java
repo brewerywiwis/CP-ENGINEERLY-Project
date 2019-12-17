@@ -58,16 +58,15 @@ public class AssetShow extends StackPane {
 		description.add(nameShow, 0, 0);
 		description.add(moneyShow, 0, 1);
 		setMinWidth(300);
+
 		hRoot.getChildren().add(description);
 		hRoot.setPadding(new Insets(30));
 		hRoot.setSpacing(20);
-
-		setMargin(description, new Insets(0));
 		hRoot.setBackground(new Background(new BackgroundImage(SharedObjectHolder.assetShowBG,
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
-		getChildren().add(hRoot);
 
+		getChildren().add(hRoot);
 	}
 
 	public void update() {

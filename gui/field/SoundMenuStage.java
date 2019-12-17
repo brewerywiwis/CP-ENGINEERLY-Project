@@ -42,6 +42,7 @@ public class SoundMenuStage extends Stage {
 		Text mainSound = new Text("Main Sound");
 		mainSound.setFont(new Font(15));
 		mainSlider.setShowTickLabels(true);
+
 		mainSlider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
 
 			@Override
@@ -55,6 +56,7 @@ public class SoundMenuStage extends Stage {
 		Text bgSound = new Text("BG Sound");
 		bgSound.setFont(new Font(15));
 		bgSlider.setShowTickLabels(true);
+
 		bgSlider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observableValue, Boolean wasChanging,
@@ -68,6 +70,7 @@ public class SoundMenuStage extends Stage {
 		Text sfxSound = new Text("Effect Sound");
 		sfxSound.setFont(new Font(15));
 		sfxSlider.setShowTickLabels(true);
+
 		sfxSlider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observableValue, Boolean wasChanging,

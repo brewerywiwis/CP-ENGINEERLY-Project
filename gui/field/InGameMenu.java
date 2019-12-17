@@ -39,6 +39,7 @@ public class InGameMenu extends VBox {
 		menu = new Button();
 		menu.setGraphic(settingButton);
 		menu.setStyle("-fx-background-color: transparent");
+
 		menu.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -47,6 +48,7 @@ public class InGameMenu extends VBox {
 				menu.setGraphic(transparentSettingButton);
 			}
 		});
+
 		menu.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -74,6 +76,7 @@ public class InGameMenu extends VBox {
 				sound.setGraphic(transparentSoundSettingButton);
 			}
 		});
+
 		sound.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override

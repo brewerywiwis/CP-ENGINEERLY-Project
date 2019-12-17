@@ -39,12 +39,14 @@ public class Player extends ImageView implements Actionable {
 		isBankrupt = false;
 
 		setImage(img);
+
 		Bounds playerBound = this.localToScene(this.getBoundsInLocal());
 		centerPx = playerBound.getWidth() / 2;
 		centerPy = playerBound.getHeight() / 2;
 		currentField = 0;
 		nextField = 0;
 		assets = new ArrayList<Asset>();
+
 	}
 
 	public boolean buy(Asset asset) {

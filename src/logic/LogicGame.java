@@ -93,6 +93,7 @@ public class LogicGame {
 	public static void setUpPlayer() {
 		int n = StartScene.getPlayer();
 		players = new ArrayList<Player>();
+		
 		if (n == 1) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));

@@ -2,22 +2,9 @@ package logic;
 
 public class Land extends Asset {
 
-	private int houses;
-	private int hotel;
-
 	public Land(String name, int price) {
 		super(name, price);
-		this.houses = 0;
-		this.hotel = 0;
 		this.owner = null;
-	}
-
-	public int getHouses() {
-		return houses;
-	}
-
-	public int getHotel() {
-		return hotel;
 	}
 
 	@Override

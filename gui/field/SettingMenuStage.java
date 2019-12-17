@@ -31,6 +31,7 @@ public class SettingMenuStage extends Stage {
 		Button resume = new Button("Resume");
 		resume.setFont(new Font(20));
 		resume.setMinSize(widthButton, heightButton);
+
 		resume.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -38,6 +39,7 @@ public class SettingMenuStage extends Stage {
 				// TODO Auto-generated method stub
 			}
 		});
+
 		resume.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -52,6 +54,7 @@ public class SettingMenuStage extends Stage {
 		Button restart = new Button("Restart");
 		restart.setFont(new Font(20));
 		restart.setMinSize(widthButton, heightButton);
+
 		restart.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -59,6 +62,7 @@ public class SettingMenuStage extends Stage {
 				// TODO Auto-generated method stub
 			}
 		});
+
 		restart.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -74,6 +78,7 @@ public class SettingMenuStage extends Stage {
 		Button exitToDesktop = new Button("Exit to desktop");
 		exitToDesktop.setFont(new Font(20));
 		exitToDesktop.setMinSize(widthButton, heightButton);
+
 		exitToDesktop.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -81,6 +86,7 @@ public class SettingMenuStage extends Stage {
 				// TODO Auto-generated method stub
 			}
 		});
+
 		exitToDesktop.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -94,6 +100,7 @@ public class SettingMenuStage extends Stage {
 		Button exitToMainMenu = new Button("Exit to Main Menu");
 		exitToMainMenu.setFont(new Font(20));
 		exitToMainMenu.setMinSize(widthButton, heightButton);
+
 		exitToMainMenu.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -101,6 +108,7 @@ public class SettingMenuStage extends Stage {
 				// TODO Auto-generated method stub
 			}
 		});
+
 		exitToMainMenu.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override

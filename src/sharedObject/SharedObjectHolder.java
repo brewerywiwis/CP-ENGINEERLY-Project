@@ -51,6 +51,8 @@ public class SharedObjectHolder {
 	public static Image assetShowBG;
 	public static Image moneyShowBG;
 	public static Image nameShowBG;
+	public static Image pullRoll;
+	public static Image pushRoll;
 	public static Image chance0;
 	public static Image chance1;
 	public static Image chance2;
@@ -61,6 +63,12 @@ public class SharedObjectHolder {
 	public static Image chance7;
 	public static Image chance8;
 	public static Image chance9;
+	public static Image diceOne;
+	public static Image diceTwo;
+	public static Image diceThree;
+	public static Image diceFour;
+	public static Image diceFive;
+	public static Image diceSix;
 	public static AudioClip footstepSound;
 	public static AudioClip buttonSound;
 	public static AudioClip alertSound;
@@ -131,6 +139,8 @@ public class SharedObjectHolder {
 			assetShowBG = new Image(new FileInputStream("./res/Graphics/assetShowBG.png"));
 			moneyShowBG = new Image(new FileInputStream("./res/Graphics/moneyShowBG.png"));
 			nameShowBG = new Image(new FileInputStream("./res/Graphics/nameShowBG.png"));
+			pullRoll = new Image(new FileInputStream("./res/Graphics/pullRoll.png"));
+			pushRoll = new Image(new FileInputStream("./res/Graphics/pushRoll.png"));
 			chance0 = new Image(new FileInputStream("./res/Graphics/chance0.png"));
 			chance1 = new Image(new FileInputStream("./res/Graphics/chance1.png"));
 			chance2 = new Image(new FileInputStream("./res/Graphics/chance2.png"));
@@ -141,6 +151,12 @@ public class SharedObjectHolder {
 			chance7 = new Image(new FileInputStream("./res/Graphics/chance7.png"));
 			chance8 = new Image(new FileInputStream("./res/Graphics/chance8.png"));
 			chance9 = new Image(new FileInputStream("./res/Graphics/chance9.png"));
+			diceOne = new Image(new FileInputStream("./res/Graphics/diceOne.png"));
+			diceTwo = new Image(new FileInputStream("./res/Graphics/diceTwo.png"));
+			diceThree = new Image(new FileInputStream("./res/Graphics/diceThree.png"));
+			diceFour = new Image(new FileInputStream("./res/Graphics/diceFour.png"));
+			diceFive = new Image(new FileInputStream("./res/Graphics/diceFive.png"));
+			diceSix = new Image(new FileInputStream("./res/Graphics/diceSix.png"));
 			footstepSound = new AudioClip(ClassLoader.getSystemResource("Sounds/footstep.mp3").toExternalForm());
 			buttonSound = new AudioClip(ClassLoader.getSystemResource("Sounds/button-11.wav").toExternalForm());
 			alertSound = new AudioClip(ClassLoader.getSystemResource("Sounds/alert.mp3").toExternalForm());
