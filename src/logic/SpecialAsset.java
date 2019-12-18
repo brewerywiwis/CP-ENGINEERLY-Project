@@ -27,7 +27,7 @@ public class SpecialAsset implements Actionable {
 		// case 1: when player pass start point, add money to player
 		case 1: {
 			nowPlayer.addMoney(2000);
-
+			System.out.println("PASS START");
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
@@ -115,7 +115,6 @@ public class SpecialAsset implements Actionable {
 				nowPlayer.setNextField(6);
 			}
 			break;
-
 		}
 		}
 	}
