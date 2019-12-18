@@ -250,7 +250,7 @@ public class ChanceCard extends Deck {
 					// TODO Auto-generated method stub
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-					alert.setContentText(String.format("Player %s pays %f\n(%f -> %f).",
+					alert.setContentText(String.format("Player %s pays %d\n(%f -> %f).",
 							nowPlayer.getName(), price, prevMoney, prevMoney - price));
 					alert.setHeaderText(null);
 
@@ -262,7 +262,7 @@ public class ChanceCard extends Deck {
 					}
 				}
 			});
-			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s pays %f (%f -> %f).",
+			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s pays %d (%f -> %f).",
 					n + 1, nowPlayer.getName(), price, prevMoney, prevMoney - price));
 		} else {
 			Platform.runLater(new Runnable() {
@@ -296,7 +296,7 @@ public class ChanceCard extends Deck {
 					// TODO Auto-generated method stub
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-					alert.setContentText(String.format("Player %s receives %f\n(%f -> %f).",
+					alert.setContentText(String.format("Player %s receives %d\n(%f -> %f).",
 							nowPlayer.getName(), price, prevMoney, prevMoney + price));
 					alert.setHeaderText(null);
 
@@ -308,7 +308,7 @@ public class ChanceCard extends Deck {
 					}
 				}
 			});
-			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s receives %f (%f -> %f).",
+			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s receives %d (%f -> %f).",
 					n + 1, nowPlayer.getName(), price, prevMoney, prevMoney + price));
 	}
 }
