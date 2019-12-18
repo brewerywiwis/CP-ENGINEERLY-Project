@@ -23,14 +23,13 @@ import sharedObject.SharedObjectHolder;
 public class VLandField extends Field {
 
 	private HBox hStore;
-	private final double width = 100;
-	private final double height = 140;
+	private final double width = 90;
+	private final double height = 130;
 
 	public VLandField(Actionable actionable, Direction dir) {
 		super();
 		this.actionable = actionable;
-//		setBorder(new Border(
-//				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
 			Label lPrice = new Label(String.format("THB%d", asset.getPrice()));
@@ -46,6 +45,7 @@ public class VLandField extends Field {
 			inside.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 			inside.setBorder(new Border(
 					new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			setMinHeight(height);
 			setMinHeight(height);
 			setCenter(inside);
 
@@ -99,8 +99,12 @@ public class VLandField extends Field {
 	public void setOwnerColor() {
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
-			hStore.setBackground(
-					new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			if (asset.getOwner() != null) {
+				hStore.setBackground(
+						new Background(new BackgroundFill(asset.getOwner().getColor(), CornerRadii.EMPTY, null)));
+			} else {
+				hStore.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
+			}
 		}
 	}
 }

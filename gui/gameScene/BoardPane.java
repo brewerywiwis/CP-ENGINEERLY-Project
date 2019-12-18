@@ -178,16 +178,8 @@ public class BoardPane extends GridPane {
 		add(diceField, 1, 1);
 
 		setAlignment(Pos.CENTER);
-//		setBorder(new Border(
-//				new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setPadding(new Insets(10));
 	};
-
-	public void update() {
-		for (int i = 0; i < fields.size(); i++) {
-//			fields.get(i).
-		}
-	}
 
 	public ArrayList<Field> getFields() {
 		return fields;

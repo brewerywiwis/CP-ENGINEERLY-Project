@@ -20,7 +20,7 @@ public class ChanceCard extends Deck {
 	@Override
 	public void doAction() {
 		// TODO Auto-generated method stub
-		Player nowPlayer = LogicGame.getPlayers().get(LogicGame.getTurnPlayer());
+		Player nowPlayer = LogicGame.getNowPlayer();
 		if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
 			int n = Main.getGameScene().getLogDisplay().getSize();
 			Main.getGameScene().getLogDisplay()
@@ -32,10 +32,13 @@ public class ChanceCard extends Deck {
 					// TODO Auto-generated method stub
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-//					alert.setContentText(
-//							"Player " + nowPlayer.getName() + " get card with " + drawAndEffect() + " number.");
 					alert.setHeaderText("Player " + nowPlayer.getName() + " get Chance Card.");
 					alert.setContentText(null);
+<<<<<<< HEAD
+=======
+
+					//
+>>>>>>> 4df53ae7534c22815d665e279b8c54ce82ec5c25
 					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
 					img.setFitHeight(460);
 					img.setFitWidth(325);
@@ -51,6 +54,7 @@ public class ChanceCard extends Deck {
 			});
 			System.out.println(drawAndEffect());
 
+			drawAndEffect();
 		}
 	}
 
@@ -62,6 +66,7 @@ public class ChanceCard extends Deck {
 		int n = this.pickCard();
 		// prepare for implement effect each effect card
 		switch (n) {
+<<<<<<< HEAD
 		case 0: {
 			nowPlayer.setNextField(22);
 			field.Field field = Main.getGameScene().getBoard().getFields().get(22);
@@ -189,6 +194,50 @@ public class ChanceCard extends Deck {
 			}
 			break;
 		}
+=======
+//		case 0: {
+//			LogicGame.getNowPlayer().payMoney(1400);
+//			LogicGame.getNowPlayer().setNextField(6);
+//			break;
+//		}
+//		case 1: {
+//			LogicGame.getNowPlayer().addMoney(200);
+//			break;
+//		}
+//		case 2: {
+//			LogicGame.getNowPlayer().addMoney(1000);
+//			break;
+//		}
+//		case 3: {
+//			LogicGame.getNowPlayer().payMoney(1300);
+//			break;
+//		}
+//		case 4: {
+//			LogicGame.getNowPlayer().payMoney(4000);
+//			break;
+//		}
+//		case 5: {
+//			LogicGame.getNowPlayer().payMoney(1200);
+//			break;
+//		}
+//		case 6: {
+//			LogicGame.getNowPlayer().payMoney(3500);
+//			break;
+//		}
+//		case 7: {
+//			LogicGame.getNowPlayer().payMoney(1250);
+//			break;
+//		}
+//
+//		case 8: {
+//			LogicGame.getNowPlayer().payMoney(1250);
+//			break;
+//		}
+//		case 9: {
+//			LogicGame.getNowPlayer().payMoney(300);
+//			break;
+//		}
+>>>>>>> 4df53ae7534c22815d665e279b8c54ce82ec5c25
 		}
 		return n;
 	}

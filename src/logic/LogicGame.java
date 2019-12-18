@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import application.Main;
 import application.StateScene;
 import field.Field;
+import field.HLandField;
+import field.VLandField;
 import gameScene.BoardPane;
 import javafx.geometry.Bounds;
 import sharedObject.SharedObjectHolder;
@@ -26,46 +28,61 @@ public class LogicGame {
 
 	public static void update() {
 
+		updatePlayerPosition();
+
 		if (Main.getState() == StateScene.GAMESCENE && !Main.isGameStop()) {
-			updatePlayerPosition();
-			Player nowPlayer = players.get(turnPlayer);
-			if (!nowPlayer.isMove()) {
-				nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
-				nowPlayer.setNextField(nowPlayer.getCurrentField());
-				turnPlayer = (turnPlayer + 1) % players.size();
-				changeTurn = true;
-			} else if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
-				if (tick == 30) {
-					Bounds field = Main.getGameScene().getBoard().getFields()
-							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
-							.localToScene(Main.getGameScene().getBoard().getFields()
-									.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
-									.getBoundsInLocal());
-					Field g = Main.getGameScene().getBoard().getFields()
-							.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
 
-					double centerY = g.getHeight() / 2;
-
-					SharedObjectHolder.footstepSound.play(effectSound * mainSound);
-					nowPlayer.setLayoutX(
-							field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
-					nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
-					nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
-//					Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
-					nowPlayer.doAction();
-					Main.getGameScene().update();
-					tick = 0;
-				} else {
-					tick++;
-				}
-				if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
-					turnPlayer = (turnPlayer + 1) % players.size();
-					changeTurn = true;
-				}
-			}
 			if (players.size() == 1) {
 				winnerName = players.get(0).getName();
 				Main.setState(StateScene.SWAPENDSCENE);
+			} else {
+
+				Player nowPlayer = players.get(turnPlayer);
+
+				if (!nowPlayer.isMove()) {
+					nowPlayer.setNotMoveCount(nowPlayer.getNotMoveCount() - 1);
+					nowPlayer.setNextField(nowPlayer.getCurrentField());
+					turnPlayer = (turnPlayer + 1) % players.size();
+					changeTurn = true;
+				} else if (nowPlayer.getCurrentField() != nowPlayer.getNextField()) {
+					if (tick == 30) {
+						Bounds field = Main.getGameScene().getBoard().getFields()
+								.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
+								.localToScene(Main.getGameScene().getBoard().getFields()
+										.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield())
+										.getBoundsInLocal());
+						Field g = Main.getGameScene().getBoard().getFields()
+								.get((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+
+						double centerY = g.getHeight() / 2;
+
+						SharedObjectHolder.footstepSound.play(effectSound * mainSound);
+						nowPlayer.setLayoutX(
+								field.getMinX() + nowPlayer.getCenterPx() + players.indexOf(nowPlayer) * (20) - startX);
+						nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
+						nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
+
+						nowPlayer.doAction();
+
+						Main.getGameScene().update();
+						tick = 0;
+					} else {
+						tick++;
+					}
+					if (nowPlayer.getCurrentField() == nowPlayer.getNextField()) {
+						if (!nowPlayer.isBankrupt()) {
+							turnPlayer = (turnPlayer + 1) % players.size();
+							changeTurn = true;
+						} else {
+							if (turnPlayer == players.size()) {
+								turnPlayer = 0;
+								changeTurn = true;
+							} else {
+								changeTurn = true;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -73,6 +90,7 @@ public class LogicGame {
 	public static void setUpPlayer() {
 		int n = StartScene.getPlayer();
 		players = new ArrayList<Player>();
+
 		if (n == 1) {
 			players.add(
 					new Player("ONE", 15000, SharedObjectHolder.characterColors.get(1), SharedObjectHolder.yellowPawn));
@@ -158,20 +176,43 @@ public class LogicGame {
 	// when bankrupt or lose the game use this method
 	public static void goodByeMyFriend(Player player) {
 		player.setVisible(false);
+		player.setBankrupt(true);
 		players.remove(player);
 		for (int i = 0; i < player.getAssets().size(); i++) {
 			player.getAssets().get(i).setOwner(null);
 		}
+		for (int i = 0; i < Main.getGameScene().getBoard().getFields().size(); i++) {
+			Field nowField = Main.getGameScene().getBoard().getFields().get(i);
+			if (nowField.getActionable() instanceof Asset) {
+				Asset asset = (Asset) nowField.getActionable();
+				if (asset.getOwner() == null) {
+					if (nowField instanceof HLandField) {
+						HLandField hLandField = (HLandField) nowField;
+						hLandField.setOwnerColor();
+					} else if (nowField instanceof VLandField) {
+						VLandField vLandField = (VLandField) nowField;
+						vLandField.setOwnerColor();
+					}
+				}
+			}
+		}
+		player.setMoney(0);
+		for (int i = 0; i < Main.getGameScene().getAssetShows().size(); i++) {
+			if (Main.getGameScene().getAssetShows().get(i).getPlayer() == player) {
+				Main.getGameScene().getAssetShows().get(i).setUpBankruptPlayer();
+			}
+		}
+		SharedObjectHolder.bankruptSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 	}
 
 	public static void resetLogicGame() {
-		players = new ArrayList<Player>();
+		mainSound = 1.0;
+		BGSound = 1.0;
+		effectSound = 1.0;
 		changeTurn = true;
 		tick = 0;
+		turnPlayer = 0;
 		setUpPlayer();
-		Main.getGameScene().setUpAssetShow();
-		Main.getGameScene().setUpUserControl();
-		Main.getGameScene().setUpLogDisplay();
 	}
 
 	public static String getWinnerName() {

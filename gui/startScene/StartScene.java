@@ -17,6 +17,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import logic.LogicGame;
 import sharedObject.SharedObjectHolder;
 
 public class StartScene extends Scene {
@@ -39,11 +40,11 @@ public class StartScene extends Scene {
 		ImageView clickedThreePlayer = new ImageView(SharedObjectHolder.clickedThreePlayer);
 		ImageView clickedFourPlayer = new ImageView(SharedObjectHolder.clickedFourPlayer);
 		VBox vBox = new VBox();
-		
+
 		Button start_button = new Button("");
 		start_button.setGraphic(startButton);
 		start_button.setStyle("-fx-background-color: transparent");
-		Button onePlayer = new Button("",onePlayerButton);
+		Button onePlayer = new Button("", onePlayerButton);
 		Button twoPlayer = new Button("", twoPlayerButton);
 		Button threePlayer = new Button("", threePlayerButton);
 		Button fourPlayer = new Button("", fourPlayerButton);
@@ -51,8 +52,8 @@ public class StartScene extends Scene {
 		twoPlayer.setStyle("-fx-background-color: transparent");
 		threePlayer.setStyle("-fx-background-color: transparent");
 		fourPlayer.setStyle("-fx-background-color: transparent");
-		
-		vBox.getChildren().addAll(start_button,onePlayer,twoPlayer, threePlayer, fourPlayer);
+
+		vBox.getChildren().addAll(start_button, onePlayer, twoPlayer, threePlayer, fourPlayer);
 		vBox.setAlignment(Pos.CENTER);
 		pane.setRight(vBox);
 		BorderPane.setMargin(vBox, new Insets(100, 100, 100, 100));
@@ -60,7 +61,6 @@ public class StartScene extends Scene {
 		twoPlayer.setVisible(false);
 		threePlayer.setVisible(false);
 		fourPlayer.setVisible(false);
-		
 
 		start_button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -70,8 +70,9 @@ public class StartScene extends Scene {
 				onePlayer.setVisible(true);
 				twoPlayer.setVisible(true);
 				threePlayer.setVisible(true);
-				fourPlayer.setVisible(true);		
-				
+				fourPlayer.setVisible(true);
+				SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
+
 				onePlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
@@ -124,12 +125,13 @@ public class StartScene extends Scene {
 
 					}
 				});
-				
+
 				onePlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
 						player = 1;
 						Main.setState(StateScene.SWAPGAMESCENE);
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					}
 				});
 
@@ -138,6 +140,7 @@ public class StartScene extends Scene {
 					public void handle(MouseEvent e) {
 						player = 2;
 						Main.setState(StateScene.SWAPGAMESCENE);
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					}
 				});
 
@@ -146,6 +149,7 @@ public class StartScene extends Scene {
 					public void handle(MouseEvent e) {
 						player = 3;
 						Main.setState(StateScene.SWAPGAMESCENE);
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					}
 				});
 
@@ -154,12 +158,13 @@ public class StartScene extends Scene {
 					public void handle(MouseEvent e) {
 						player = 4;
 						Main.setState(StateScene.SWAPGAMESCENE);
+						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 					}
 				});
 
 			}
 		});
-	
+
 		vBox.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
