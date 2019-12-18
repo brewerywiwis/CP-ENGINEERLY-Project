@@ -86,7 +86,7 @@ public class DiceField extends VBox {
 						Main.getGameScene().getLogDisplay()
 								.add(String.format("%d: Player %s has roll a dice and get %d point.", n + 1,
 										LogicGame.getNowPlayer().getName(), point));
-						LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(1);
+						LogicGame.getPlayers().get(LogicGame.getTurnPlayer()).moveTo(point);
 						LogicGame.setChangeTurn(false);
 					}
 				}

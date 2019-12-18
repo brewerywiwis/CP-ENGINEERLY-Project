@@ -14,8 +14,8 @@ import logic.SpecialAsset;
 
 public class CornerField extends Field {
 
-	private final double width = 130;
-	private final double height = 130;
+	private final double width = 140;
+	private final double height = 140;
 
 	public CornerField(SpecialAsset asset, Image img) {
 		super();

@@ -40,12 +40,12 @@ public class AssetShow extends StackPane {
 
 		ImageView nameShowBG = new ImageView(SharedObjectHolder.nameShowBG);
 		ImageView moneyShowBG = new ImageView(SharedObjectHolder.moneyShowBG);
-		name = new Label("Player Name: " + player.getName());
-		money = new Label("         Money: " + String.valueOf(player.getMoney()));
-		name.setFont(Font.font("Verdana", 22));
-		name.setTextFill(Color.OLIVE);
-		money.setFont(Font.font("Verdana", 22));
-		money.setTextFill(Color.OLIVE);
+		name = new Label("Player: " + player.getName());
+		money = new Label("      " + String.valueOf(player.getMoney()));
+		name.setFont(Font.font("Verdana", 18));
+		name.setTextFill(Color.DARKOLIVEGREEN);
+		money.setFont(Font.font("Verdana", 18));
+		money.setTextFill(Color.DARKOLIVEGREEN);
 
 		StackPane nameShow = new StackPane();
 		nameShow.getChildren().addAll(nameShowBG, name);
@@ -57,24 +57,23 @@ public class AssetShow extends StackPane {
 		description.setAlignment(Pos.CENTER);
 		description.add(nameShow, 0, 0);
 		description.add(moneyShow, 0, 1);
-		setMinWidth(220);
 
 		hRoot.getChildren().add(description);
-		hRoot.setPadding(new Insets(30));
-		hRoot.setSpacing(20);
+		hRoot.setPadding(new Insets(25,20,30,20));
+		hRoot.setSpacing(10);
 		hRoot.setBackground(new Background(new BackgroundImage(SharedObjectHolder.assetShowBG,
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
-//		hRoot.setMinHeight(100));
+//		hRoot.setMinHeight(100);
 //		hRoot.setMaxHeight(100);
 //		hRoot.setMinWidth(200);
-//		hRoot.setMaxWidth(200);
+//		hRoot.setMaxWidth(100);
 		getChildren().add(hRoot);
 	}
 
 	public void update() {
 		// TODO Auto-generated method stub
-		money.setText("         Money: " + String.valueOf(player.getMoney()));
+		money.setText("      " + String.valueOf(player.getMoney()));
 	}
 
 	public void setUpBankruptPlayer() {

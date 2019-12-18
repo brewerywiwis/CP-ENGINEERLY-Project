@@ -7,6 +7,7 @@ import field.Field;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import sharedObject.SharedObjectHolder;
@@ -25,16 +26,42 @@ public class ChanceCard extends Deck {
 			int n = Main.getGameScene().getLogDisplay().getSize();
 			Main.getGameScene().getLogDisplay()
 					.add(String.format("%d: Player %s is getting Chance Card.", n + 1, nowPlayer.getName()));
-
+			int cardNumber = drawAndEffect();
+			System.out.println(cardNumber);
+			
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-					alert.setHeaderText("Player " + nowPlayer.getName() + " get Chance Card.");
+					alert.setHeaderText(
+							"Player " + nowPlayer.getName() + " get Chance Card with " + cardNumber + " number.");
 					alert.setContentText(null);
-					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
+					
+					Image cardImage = null;
+					if (cardNumber == 0) {
+						cardImage = SharedObjectHolder.chance0;
+					} else if (cardNumber == 1) {
+						cardImage = SharedObjectHolder.chance1;
+					} else if (cardNumber == 2) {
+						cardImage = SharedObjectHolder.chance2;
+					} else if (cardNumber == 3) {
+						cardImage = SharedObjectHolder.chance3;
+					} else if (cardNumber == 4) {
+						cardImage = SharedObjectHolder.chance4;
+					} else if (cardNumber == 5) {
+						cardImage = SharedObjectHolder.chance5;
+					} else if (cardNumber == 6) {
+						cardImage = SharedObjectHolder.chance6;
+					} else if (cardNumber == 7) {
+						cardImage = SharedObjectHolder.chance7;
+					} else if (cardNumber == 8) {
+						cardImage = SharedObjectHolder.chance8;
+					} else if (cardNumber == 9) {
+						cardImage = SharedObjectHolder.chance9;
+					}
+					ImageView img = new ImageView(cardImage);
 					img.setFitHeight(460);
 					img.setFitWidth(325);
 					alert.getDialogPane().setGraphic(img);
@@ -47,9 +74,7 @@ public class ChanceCard extends Deck {
 					}
 				}
 			});
-			System.out.println(drawAndEffect());
 
-			drawAndEffect();
 		}
 	}
 
@@ -72,7 +97,6 @@ public class ChanceCard extends Deck {
 					asset.owner.addMoney(1400);
 				} else {
 					asset.owner.addMoney(1400);
-					LogicGame.goodByeMyFriend(nowPlayer);
 				}
 			}
 			break;
@@ -99,17 +123,18 @@ public class ChanceCard extends Deck {
 					asset.owner.addMoney(1300);
 				} else {
 					asset.owner.addMoney(1300);
-					LogicGame.goodByeMyFriend(nowPlayer);
 				}
 			}
 			break;
 		}
 		case 4: {
-			showPayInformation(nowPlayer, 4000);
 			nowPlayer.setNextField(17);
+			field.Field field = Main.getGameScene().getBoard().getFields().get(17);
+			Asset asset = (Asset) field.getActionable();
+			showPayInformation(asset, nowPlayer, 4000);
 			if (nowPlayer.getMoney() >= 4000) {
 				nowPlayer.payMoney(4000);
-			} else {
+			}else if (asset.getOwner() == null || nowPlayer==asset.owner || (asset.getOwner()!=null && nowPlayer.getMoney() >= asset.getPrice())){
 				LogicGame.goodByeMyFriend(nowPlayer);
 			}
 			break;
@@ -125,13 +150,12 @@ public class ChanceCard extends Deck {
 					asset.owner.addMoney(1200);
 				} else {
 					asset.owner.addMoney(1200);
-					LogicGame.goodByeMyFriend(nowPlayer);
 				}
 			}
 			break;
 		}
 		case 6: {
-			showPayInformation(nowPlayer, 3500);
+			showPayInformation(null,nowPlayer, 3500);
 			if (nowPlayer.getMoney() >= 3500) {
 				nowPlayer.payMoney(3500);
 			} else {
@@ -150,7 +174,6 @@ public class ChanceCard extends Deck {
 					asset.owner.addMoney(1250);
 				} else {
 					asset.owner.addMoney(1250);
-					LogicGame.goodByeMyFriend(nowPlayer);
 				}
 			}
 			break;
@@ -167,7 +190,6 @@ public class ChanceCard extends Deck {
 					asset.owner.addMoney(400);
 				} else {
 					asset.owner.addMoney(400);
-					LogicGame.goodByeMyFriend(nowPlayer);
 				}
 			}
 			break;
@@ -183,7 +205,6 @@ public class ChanceCard extends Deck {
 					asset.owner.addMoney(300);
 				} else {
 					asset.owner.addMoney(300);
-					LogicGame.goodByeMyFriend(nowPlayer);
 				}
 			}
 			break;
@@ -191,124 +212,5 @@ public class ChanceCard extends Deck {
 
 		}
 		return n;
-	}
-
-	public void showPayAndAddInformation(Asset asset, Player nowPlayer, int price) {
-		int n = Main.getGameScene().getLogDisplay().getSize();
-		double prevMoney = nowPlayer.getMoney();
-		if (nowPlayer.getMoney() >= price) {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information Dialog");
-					alert.setContentText(String.format("Player %s pays money to Player %s\n(%f -> %f).",
-							nowPlayer.getName(), asset.getOwner().getName(), prevMoney, prevMoney - price));
-					alert.setHeaderText(null);
-
-					SharedObjectHolder.babyCrySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-					}
-				}
-			});
-			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s pays money to Player %s (%f -> %f).",
-					n + 1, nowPlayer.getName(), asset.getOwner().getName(), prevMoney, prevMoney - price));
-		} else {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information Dialog");
-					alert.setHeaderText(null);
-					alert.setContentText(String.format("Player %s is bankrupt!", nowPlayer.getName()));
-					SharedObjectHolder.alertSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-					}
-				}
-			});
-			Main.getGameScene().getLogDisplay()
-					.add(String.format("%d: Player %s is bankrupt.", n + 1, nowPlayer.getName()));
-
-		}
-	}
-
-	public void showPayInformation(Player nowPlayer, int price) {
-		int n = Main.getGameScene().getLogDisplay().getSize();
-		double prevMoney = nowPlayer.getMoney();
-		if (nowPlayer.getMoney() >= price) {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information Dialog");
-					alert.setContentText(String.format("Player %s pays %d\n(%f -> %f).", nowPlayer.getName(), price,
-							prevMoney, prevMoney - price));
-					alert.setHeaderText(null);
-
-					SharedObjectHolder.babyCrySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-					}
-				}
-			});
-			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s pays %d (%f -> %f).", n + 1,
-					nowPlayer.getName(), price, prevMoney, prevMoney - price));
-		} else {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information Dialog");
-					alert.setHeaderText(null);
-					alert.setContentText(String.format("Player %s is bankrupt!", nowPlayer.getName()));
-					SharedObjectHolder.alertSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-					}
-				}
-			});
-			Main.getGameScene().getLogDisplay()
-					.add(String.format("%d: Player %s is bankrupt.", n + 1, nowPlayer.getName()));
-
-		}
-	}
-
-	public void showAddInformation(Player nowPlayer, int price) {
-		int n = Main.getGameScene().getLogDisplay().getSize();
-		double prevMoney = nowPlayer.getMoney();
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Information Dialog");
-				alert.setContentText(String.format("Player %s receives %d\n(%f -> %f).", nowPlayer.getName(), price,
-						prevMoney, prevMoney + price));
-				alert.setHeaderText(null);
-
-				SharedObjectHolder.treasureSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == ButtonType.OK) {
-					SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-				}
-			}
-		});
-		Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s receives %d (%f -> %f).", n + 1,
-				nowPlayer.getName(), price, prevMoney, prevMoney + price));
 	}
 }

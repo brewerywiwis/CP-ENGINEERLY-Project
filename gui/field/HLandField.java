@@ -23,8 +23,8 @@ import sharedObject.SharedObjectHolder;
 public class HLandField extends Field {
 
 	private VBox vStore;
-	private final double width = 130;
-	private final double height = 90;
+	private final double width = 140;
+	private final double height = 100;
 
 	public HLandField(Actionable actionable, Direction dir) {
 		super();
