@@ -5,7 +5,15 @@ import gameScene.CheckException;
 import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -37,9 +45,8 @@ public class Main extends Application {
 		primaryStage.setResizable(true);
 		primaryStage.setMaximized(true);
 //		primaryStage.setAlwaysOnTop(true);
-		primaryStage.show();
-		gameStop = false;
 
+		gameStop = false;
 		gameLoop = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
@@ -48,6 +55,7 @@ public class Main extends Application {
 					StartScene.resetStartScene();
 					primaryStage.setScene(StartScene.scene);
 					setState(StateScene.STARTSCENE);
+					break;
 				}
 				case STARTSCENE: {
 					SharedObjectHolder.BGGameMusic.stop();
@@ -92,6 +100,7 @@ public class Main extends Application {
 			}
 		};
 		gameLoop.start();
+		primaryStage.show();
 	}
 
 	@Override
