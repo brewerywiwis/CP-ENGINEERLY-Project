@@ -23,8 +23,8 @@ import sharedObject.SharedObjectHolder;
 public class VLandField extends Field {
 
 	private HBox hStore;
-	private final double width = 90;
-	private final double height = 130;
+	private final double width = 100;
+	private final double height = 140;
 
 	public VLandField(Actionable actionable, Direction dir) {
 		super();
@@ -32,7 +32,7 @@ public class VLandField extends Field {
 
 		if (actionable instanceof Asset) {
 			Asset asset = (Asset) actionable;
-			Label lPrice = new Label(String.format("฿%d", asset.getPrice()));
+			Label lPrice = new Label(String.format("THB%d", asset.getPrice()));
 			Label lName = new Label(asset.getName());
 			lPrice.setFont(new Font(18));
 			lName.setFont(new Font(20));

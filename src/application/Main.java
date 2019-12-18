@@ -107,7 +107,6 @@ public class Main extends Application {
 	public void stop() {
 		SharedObjectHolder.epicWinSound.stop();
 		setState(StateScene.DIE);
-
 	}
 
 	public static void main(String[] args) {
