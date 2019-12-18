@@ -59,15 +59,11 @@ public class AssetShow extends StackPane {
 		description.add(moneyShow, 0, 1);
 
 		hRoot.getChildren().add(description);
-		hRoot.setPadding(new Insets(25,20,30,20));
+		hRoot.setPadding(new Insets(25, 20, 30, 20));
 		hRoot.setSpacing(10);
 		hRoot.setBackground(new Background(new BackgroundImage(SharedObjectHolder.assetShowBG,
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false))));
-//		hRoot.setMinHeight(100);
-//		hRoot.setMaxHeight(100);
-//		hRoot.setMinWidth(200);
-//		hRoot.setMaxWidth(100);
 		getChildren().add(hRoot);
 	}
 
@@ -77,7 +73,7 @@ public class AssetShow extends StackPane {
 	}
 
 	public void setUpBankruptPlayer() {
-		Rectangle film = new Rectangle(getWidth() - 22, getHeight() - 10, Color.LIGHTGRAY);
+		Rectangle film = new Rectangle(getWidth() - 3, getHeight() - 15, Color.LIGHTGRAY);
 		film.setOpacity(0.6);
 		getChildren().add(film);
 		money.setText("         Money: " + String.valueOf(player.getMoney()));

@@ -23,7 +23,7 @@ public abstract class Deck implements Actionable {
 
 	public void resetDeck() {
 		deck = createDeck();
-		// shuffle();
+		shuffle();
 	}
 
 	// if deck non empty return int of card, return -99

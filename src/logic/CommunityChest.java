@@ -3,6 +3,7 @@ package logic;
 import java.util.Optional;
 
 import application.Main;
+import field.Field;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -142,7 +143,7 @@ public class CommunityChest extends Deck {
 		}
 		case 8: {
 			nowPlayer.setNextField(22);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(22);
+			Field field = Main.getGameScene().getBoard().getFields().get(22);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 120);
@@ -157,7 +158,7 @@ public class CommunityChest extends Deck {
 		}
 		case 9: {
 			nowPlayer.setNextField(19);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(19);
+			Field field = Main.getGameScene().getBoard().getFields().get(19);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 150);

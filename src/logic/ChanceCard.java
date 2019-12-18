@@ -28,7 +28,7 @@ public class ChanceCard extends Deck {
 					.add(String.format("%d: Player %s is getting Chance Card.", n + 1, nowPlayer.getName()));
 			int cardNumber = drawAndEffect();
 			System.out.println(cardNumber);
-			
+
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
@@ -38,7 +38,7 @@ public class ChanceCard extends Deck {
 					alert.setHeaderText(
 							"Player " + nowPlayer.getName() + " get Chance Card with " + cardNumber + " number.");
 					alert.setContentText(null);
-					
+
 					Image cardImage = null;
 					if (cardNumber == 0) {
 						cardImage = SharedObjectHolder.chance0;
@@ -88,7 +88,7 @@ public class ChanceCard extends Deck {
 		switch (n) {
 		case 0: {
 			nowPlayer.setNextField(22);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(22);
+			Field field = Main.getGameScene().getBoard().getFields().get(22);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 1400);
@@ -114,7 +114,7 @@ public class ChanceCard extends Deck {
 		}
 		case 3: {
 			nowPlayer.setNextField(11);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(11);
+			Field field = Main.getGameScene().getBoard().getFields().get(11);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 1300);
@@ -129,19 +129,20 @@ public class ChanceCard extends Deck {
 		}
 		case 4: {
 			nowPlayer.setNextField(17);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(17);
+			Field field = Main.getGameScene().getBoard().getFields().get(17);
 			Asset asset = (Asset) field.getActionable();
 			showPayInformation(asset, nowPlayer, 4000);
 			if (nowPlayer.getMoney() >= 4000) {
 				nowPlayer.payMoney(4000);
-			}else if (asset.getOwner() == null || nowPlayer==asset.owner || (asset.getOwner()!=null && nowPlayer.getMoney() >= asset.getPrice())){
+			} else if (asset.getOwner() == null || nowPlayer == asset.owner
+					|| (asset.getOwner() != null && nowPlayer.getMoney() >= asset.getPrice())) {
 				LogicGame.goodByeMyFriend(nowPlayer);
 			}
 			break;
 		}
 		case 5: {
 			nowPlayer.setNextField(21);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(21);
+			Field field = Main.getGameScene().getBoard().getFields().get(21);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 1200);
@@ -155,7 +156,7 @@ public class ChanceCard extends Deck {
 			break;
 		}
 		case 6: {
-			showPayInformation(null,nowPlayer, 3500);
+			showPayInformation(null, nowPlayer, 3500);
 			if (nowPlayer.getMoney() >= 3500) {
 				nowPlayer.payMoney(3500);
 			} else {
@@ -165,7 +166,7 @@ public class ChanceCard extends Deck {
 		}
 		case 7: {
 			nowPlayer.setNextField(19);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(19);
+			Field field = Main.getGameScene().getBoard().getFields().get(19);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 1250);
@@ -181,7 +182,7 @@ public class ChanceCard extends Deck {
 
 		case 8: {
 			nowPlayer.setNextField(11);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(11);
+			Field field = Main.getGameScene().getBoard().getFields().get(11);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 400);
@@ -196,7 +197,7 @@ public class ChanceCard extends Deck {
 		}
 		case 9: {
 			nowPlayer.setNextField(20);
-			field.Field field = Main.getGameScene().getBoard().getFields().get(20);
+			Field field = Main.getGameScene().getBoard().getFields().get(20);
 			Asset asset = (Asset) field.getActionable();
 			if (asset.owner != null && asset.owner != nowPlayer) {
 				showPayAndAddInformation(asset, nowPlayer, 300);

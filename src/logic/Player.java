@@ -202,9 +202,10 @@ public class Player extends ImageView implements Actionable {
 						// buy washer and gear
 					}
 					// doAction for Actionable
-				} else {
+				} else if (field.getActionable() instanceof Deck) {
 					int n = Main.getGameScene().getLogDisplay().getSize();
 					field.getActionable().doAction();
+					
 					if (player.isBankrupt) {
 
 						Platform.runLater(new Runnable() {
