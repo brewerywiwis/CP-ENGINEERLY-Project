@@ -34,11 +34,6 @@ public class ChanceCard extends Deck {
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText("Player " + nowPlayer.getName() + " get Chance Card.");
 					alert.setContentText(null);
-<<<<<<< HEAD
-=======
-
-					//
->>>>>>> 4df53ae7534c22815d665e279b8c54ce82ec5c25
 					ImageView img = new ImageView(SharedObjectHolder.chanceCardV);
 					img.setFitHeight(460);
 					img.setFitWidth(325);
@@ -66,7 +61,6 @@ public class ChanceCard extends Deck {
 		int n = this.pickCard();
 		// prepare for implement effect each effect card
 		switch (n) {
-<<<<<<< HEAD
 		case 0: {
 			nowPlayer.setNextField(22);
 			field.Field field = Main.getGameScene().getBoard().getFields().get(22);
@@ -194,50 +188,7 @@ public class ChanceCard extends Deck {
 			}
 			break;
 		}
-=======
-//		case 0: {
-//			LogicGame.getNowPlayer().payMoney(1400);
-//			LogicGame.getNowPlayer().setNextField(6);
-//			break;
-//		}
-//		case 1: {
-//			LogicGame.getNowPlayer().addMoney(200);
-//			break;
-//		}
-//		case 2: {
-//			LogicGame.getNowPlayer().addMoney(1000);
-//			break;
-//		}
-//		case 3: {
-//			LogicGame.getNowPlayer().payMoney(1300);
-//			break;
-//		}
-//		case 4: {
-//			LogicGame.getNowPlayer().payMoney(4000);
-//			break;
-//		}
-//		case 5: {
-//			LogicGame.getNowPlayer().payMoney(1200);
-//			break;
-//		}
-//		case 6: {
-//			LogicGame.getNowPlayer().payMoney(3500);
-//			break;
-//		}
-//		case 7: {
-//			LogicGame.getNowPlayer().payMoney(1250);
-//			break;
-//		}
-//
-//		case 8: {
-//			LogicGame.getNowPlayer().payMoney(1250);
-//			break;
-//		}
-//		case 9: {
-//			LogicGame.getNowPlayer().payMoney(300);
-//			break;
-//		}
->>>>>>> 4df53ae7534c22815d665e279b8c54ce82ec5c25
+
 		}
 		return n;
 	}
@@ -299,8 +250,8 @@ public class ChanceCard extends Deck {
 					// TODO Auto-generated method stub
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
-					alert.setContentText(String.format("Player %s pays %d\n(%f -> %f).",
-							nowPlayer.getName(), price, prevMoney, prevMoney - price));
+					alert.setContentText(String.format("Player %s pays %d\n(%f -> %f).", nowPlayer.getName(), price,
+							prevMoney, prevMoney - price));
 					alert.setHeaderText(null);
 
 					SharedObjectHolder.babyCrySound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
@@ -311,8 +262,8 @@ public class ChanceCard extends Deck {
 					}
 				}
 			});
-			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s pays %d (%f -> %f).",
-					n + 1, nowPlayer.getName(), price, prevMoney, prevMoney - price));
+			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s pays %d (%f -> %f).", n + 1,
+					nowPlayer.getName(), price, prevMoney, prevMoney - price));
 		} else {
 			Platform.runLater(new Runnable() {
 				@Override
@@ -339,25 +290,25 @@ public class ChanceCard extends Deck {
 	public void showAddInformation(Player nowPlayer, int price) {
 		int n = Main.getGameScene().getLogDisplay().getSize();
 		double prevMoney = nowPlayer.getMoney();
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information Dialog");
-					alert.setContentText(String.format("Player %s receives %d\n(%f -> %f).",
-							nowPlayer.getName(), price, prevMoney, prevMoney + price));
-					alert.setHeaderText(null);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information Dialog");
+				alert.setContentText(String.format("Player %s receives %d\n(%f -> %f).", nowPlayer.getName(), price,
+						prevMoney, prevMoney + price));
+				alert.setHeaderText(null);
 
-					SharedObjectHolder.treasureSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
+				SharedObjectHolder.treasureSound.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK) {
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-					}
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == ButtonType.OK) {
+					SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 				}
-			});
-			Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s receives %d (%f -> %f).",
-					n + 1, nowPlayer.getName(), price, prevMoney, prevMoney + price));
+			}
+		});
+		Main.getGameScene().getLogDisplay().add(String.format("%d: Player %s receives %d (%f -> %f).", n + 1,
+				nowPlayer.getName(), price, prevMoney, prevMoney + price));
 	}
 }

@@ -63,7 +63,6 @@ public class SharedObjectHolder {
 	public static Image chance7;
 	public static Image chance8;
 	public static Image chance9;
-<<<<<<< HEAD
 	public static Image chest0;
 	public static Image chest1;
 	public static Image chest2;
@@ -74,14 +73,12 @@ public class SharedObjectHolder {
 	public static Image chest7;
 	public static Image chest8;
 	public static Image chest9;
-=======
 	public static Image diceOne;
 	public static Image diceTwo;
 	public static Image diceThree;
 	public static Image diceFour;
 	public static Image diceFive;
 	public static Image diceSix;
->>>>>>> 4df53ae7534c22815d665e279b8c54ce82ec5c25
 	public static AudioClip footstepSound;
 	public static AudioClip buttonSound;
 	public static AudioClip alertSound;
@@ -164,7 +161,6 @@ public class SharedObjectHolder {
 			chance7 = new Image(new FileInputStream("./res/Graphics/chance7.png"));
 			chance8 = new Image(new FileInputStream("./res/Graphics/chance8.png"));
 			chance9 = new Image(new FileInputStream("./res/Graphics/chance9.png"));
-<<<<<<< HEAD
 			chest0 = new Image(new FileInputStream("./res/Graphics/chest0.png"));
 			chest1 = new Image(new FileInputStream("./res/Graphics/chest1.png"));
 			chest2 = new Image(new FileInputStream("./res/Graphics/chest2.png"));
@@ -175,14 +171,12 @@ public class SharedObjectHolder {
 			chest7 = new Image(new FileInputStream("./res/Graphics/chest7.png"));
 			chest8 = new Image(new FileInputStream("./res/Graphics/chest8.png"));
 			chest9 = new Image(new FileInputStream("./res/Graphics/chest9.png"));
-=======
 			diceOne = new Image(new FileInputStream("./res/Graphics/diceOne.png"));
 			diceTwo = new Image(new FileInputStream("./res/Graphics/diceTwo.png"));
 			diceThree = new Image(new FileInputStream("./res/Graphics/diceThree.png"));
 			diceFour = new Image(new FileInputStream("./res/Graphics/diceFour.png"));
 			diceFive = new Image(new FileInputStream("./res/Graphics/diceFive.png"));
 			diceSix = new Image(new FileInputStream("./res/Graphics/diceSix.png"));
->>>>>>> 4df53ae7534c22815d665e279b8c54ce82ec5c25
 			footstepSound = new AudioClip(ClassLoader.getSystemResource("Sounds/footstep.mp3").toExternalForm());
 			buttonSound = new AudioClip(ClassLoader.getSystemResource("Sounds/button-11.wav").toExternalForm());
 			alertSound = new AudioClip(ClassLoader.getSystemResource("Sounds/alert.mp3").toExternalForm());
