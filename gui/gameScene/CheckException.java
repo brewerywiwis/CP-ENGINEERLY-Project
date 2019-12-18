@@ -1,5 +1,6 @@
 
 package gameScene;
+
 public class CheckException extends Exception {
 	/**
 	 * 

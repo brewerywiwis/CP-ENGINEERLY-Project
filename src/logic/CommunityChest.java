@@ -27,7 +27,7 @@ public class CommunityChest extends Deck {
 			Main.getGameScene().getLogDisplay()
 					.add(String.format("%d: Player %s is getting Community Chest card.", n + 1, nowPlayer.getName()));
 			int cardNumber = drawAndEffect();
-			System.out.println(cardNumber);
+			
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
@@ -80,7 +80,6 @@ public class CommunityChest extends Deck {
 	@Override
 	public int drawAndEffect() {
 		// TODO Auto-generated method stub
-		System.out.println("DO COMMUNITY CHEST DRAW");
 		Player nowPlayer = LogicGame.getNowPlayer();
 		int n = this.pickCard();
 		// prepare for implement effect each effect card

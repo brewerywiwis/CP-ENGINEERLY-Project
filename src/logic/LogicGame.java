@@ -62,7 +62,6 @@ public class LogicGame {
 						nowPlayer.setLayoutY(field.getMinY() + centerY - nowPlayer.getCenterPy());
 						nowPlayer.setCurrentField((nowPlayer.getCurrentField() + 1) % BoardPane.getNumoffield());
 
-//						Main.getGameScene().getBoard().getFields().get(nowPlayer.getCurrentField()).doAction();
 						nowPlayer.doAction();
 
 						Main.getGameScene().update();

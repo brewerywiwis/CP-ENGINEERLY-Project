@@ -27,7 +27,6 @@ public class ChanceCard extends Deck {
 			Main.getGameScene().getLogDisplay()
 					.add(String.format("%d: Player %s is getting Chance Card.", n + 1, nowPlayer.getName()));
 			int cardNumber = drawAndEffect();
-			System.out.println(cardNumber);
 
 			Platform.runLater(new Runnable() {
 				@Override
@@ -81,7 +80,6 @@ public class ChanceCard extends Deck {
 	@Override
 	public int drawAndEffect() {
 		// TODO Auto-generated method stub
-		System.out.println("DO CHANCE CARD DRAW");
 		Player nowPlayer = LogicGame.getNowPlayer();
 		int n = this.pickCard();
 		// prepare for implement effect each effect card

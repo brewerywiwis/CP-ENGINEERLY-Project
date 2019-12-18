@@ -198,14 +198,12 @@ public class Player extends ImageView implements Actionable {
 									.add(String.format("%d: Player %s is bankrupt.", n + 1, getName()));
 
 						}
-					} else if (asset.getOwner() == this) {
-						// buy washer and gear
 					}
 					// doAction for Actionable
 				} else if (field.getActionable() instanceof Deck) {
 					int n = Main.getGameScene().getLogDisplay().getSize();
 					field.getActionable().doAction();
-					
+
 					if (player.isBankrupt) {
 
 						Platform.runLater(new Runnable() {

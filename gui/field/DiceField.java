@@ -66,7 +66,6 @@ public class DiceField extends VBox {
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				System.out.println("MOUSE PRESSED ROLL BUTTON");
 				roll.setGraphic(new ImageView(SharedObjectHolder.pushRoll));
 			}
 
@@ -76,7 +75,6 @@ public class DiceField extends VBox {
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				System.out.println("MOUSE RELEASED ROLL BUTTON");
 				roll.setGraphic(new ImageView(SharedObjectHolder.pullRoll));
 				if (!Main.isGameStop()) {
 					int point = Dice.roll();
