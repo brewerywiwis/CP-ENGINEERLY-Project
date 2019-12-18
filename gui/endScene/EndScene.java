@@ -26,11 +26,11 @@ public class EndScene extends Scene {
 	private static BorderPane pane;
 	static {
 		pane = new BorderPane();
-		scene = new EndScene(pane, Main.displayX, Main.displayY);
+		scene = new EndScene(pane);
 	}
 
-	public EndScene(Parent p, double w, double h) {
-		super(p, w, h);
+	public EndScene(Parent p) {
+		super(p);
 		// TODO Auto-generated constructor stub
 		ImageView playAgain = new ImageView(SharedObjectHolder.playAgain);
 		ImageView clickedPlayAgain = new ImageView(SharedObjectHolder.clickedPlayAgain);

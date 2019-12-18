@@ -5,7 +5,15 @@ import gameScene.CheckException;
 import gameScene.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -14,8 +22,6 @@ import sharedObject.SharedObjectHolder;
 import startScene.StartScene;
 
 public class Main extends Application {
-	public static final int displayX = 1080, displayY = 720;
-	public static final int borderX = 220, borderY = 40;
 	public static double centerXPosition;
 	public static double centerYPosition;
 	private static GameScene gameScene;
@@ -37,9 +43,8 @@ public class Main extends Application {
 		primaryStage.setResizable(true);
 		primaryStage.setMaximized(true);
 //		primaryStage.setAlwaysOnTop(true);
-		primaryStage.show();
-		gameStop = false;
 
+		gameStop = false;
 		gameLoop = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
@@ -48,6 +53,9 @@ public class Main extends Application {
 					StartScene.resetStartScene();
 					primaryStage.setScene(StartScene.scene);
 					setState(StateScene.STARTSCENE);
+					primaryStage.setMaximized(false);
+					primaryStage.setMaximized(true);
+					break;
 				}
 				case STARTSCENE: {
 					SharedObjectHolder.BGGameMusic.stop();
@@ -81,6 +89,8 @@ public class Main extends Application {
 					SharedObjectHolder.epicWinSound.play(LogicGame.getBGSound() * LogicGame.getMainSound());
 					SharedObjectHolder.BGGameMusic.stop();
 					setState(StateScene.ENDSCENE);
+					primaryStage.setMaximized(false);
+					primaryStage.setMaximized(true);
 					break;
 				}
 				case ENDSCENE: {
@@ -92,13 +102,13 @@ public class Main extends Application {
 			}
 		};
 		gameLoop.start();
+		primaryStage.show();
 	}
 
 	@Override
 	public void stop() {
 		SharedObjectHolder.epicWinSound.stop();
 		setState(StateScene.DIE);
-
 	}
 
 	public static void main(String[] args) {

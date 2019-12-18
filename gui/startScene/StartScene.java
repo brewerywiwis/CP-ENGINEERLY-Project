@@ -26,16 +26,14 @@ public class StartScene extends Scene {
 	private static BorderPane pane;
 	private static int player;
 
-	public StartScene(Parent p, double w, double h) {
-		super(p, w, h);
+	public StartScene(Parent p) {
+		super(p);
 
 		ImageView startButton = new ImageView(SharedObjectHolder.startButton);
 		ImageView clickedStartButton = new ImageView(SharedObjectHolder.clickedStartButton);
-		ImageView onePlayerButton = new ImageView(SharedObjectHolder.onePlayerButton);
 		ImageView twoPlayerButton = new ImageView(SharedObjectHolder.twoPlayerButton);
 		ImageView threePlayerButton = new ImageView(SharedObjectHolder.threePlayerButton);
 		ImageView fourPlayerButton = new ImageView(SharedObjectHolder.fourPlayerButton);
-		ImageView clickedOnePlayer = new ImageView(SharedObjectHolder.clickedOnePlayer);
 		ImageView clickedTwoPlayer = new ImageView(SharedObjectHolder.clickedTwoPlayer);
 		ImageView clickedThreePlayer = new ImageView(SharedObjectHolder.clickedThreePlayer);
 		ImageView clickedFourPlayer = new ImageView(SharedObjectHolder.clickedFourPlayer);
@@ -44,20 +42,17 @@ public class StartScene extends Scene {
 		Button start_button = new Button("");
 		start_button.setGraphic(startButton);
 		start_button.setStyle("-fx-background-color: transparent");
-		Button onePlayer = new Button("", onePlayerButton);
 		Button twoPlayer = new Button("", twoPlayerButton);
 		Button threePlayer = new Button("", threePlayerButton);
 		Button fourPlayer = new Button("", fourPlayerButton);
-		onePlayer.setStyle("-fx-background-color: transparent");
 		twoPlayer.setStyle("-fx-background-color: transparent");
 		threePlayer.setStyle("-fx-background-color: transparent");
 		fourPlayer.setStyle("-fx-background-color: transparent");
 
-		vBox.getChildren().addAll(start_button, onePlayer, twoPlayer, threePlayer, fourPlayer);
+		vBox.getChildren().addAll(start_button, twoPlayer, threePlayer, fourPlayer);
 		vBox.setAlignment(Pos.CENTER);
 		pane.setRight(vBox);
 		BorderPane.setMargin(vBox, new Insets(100, 100, 100, 100));
-		onePlayer.setVisible(false);
 		twoPlayer.setVisible(false);
 		threePlayer.setVisible(false);
 		fourPlayer.setVisible(false);
@@ -67,25 +62,11 @@ public class StartScene extends Scene {
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				start_button.setGraphic(clickedStartButton);
-				onePlayer.setVisible(true);
 				twoPlayer.setVisible(true);
 				threePlayer.setVisible(true);
 				fourPlayer.setVisible(true);
 				SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
 
-				onePlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent e) {
-						onePlayer.setGraphic(clickedOnePlayer);
-					}
-				});
-				onePlayer.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent e) {
-						onePlayer.setGraphic(onePlayerButton);
-
-					}
-				});
 				twoPlayer.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
@@ -126,15 +107,6 @@ public class StartScene extends Scene {
 					}
 				});
 
-				onePlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent e) {
-						player = 1;
-						Main.setState(StateScene.SWAPGAMESCENE);
-						SharedObjectHolder.buttonLight.play(LogicGame.getEffectSound() * LogicGame.getMainSound());
-					}
-				});
-
 				twoPlayer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
@@ -169,7 +141,6 @@ public class StartScene extends Scene {
 			@Override
 			public void handle(MouseEvent arg0) {
 				start_button.setGraphic(startButton);
-				onePlayer.setVisible(false);
 				twoPlayer.setVisible(false);
 				threePlayer.setVisible(false);
 				fourPlayer.setVisible(false);
@@ -184,7 +155,7 @@ public class StartScene extends Scene {
 
 	public static void resetStartScene() {
 		pane = new BorderPane();
-		scene = new StartScene(pane, Main.displayX, Main.displayY);
+		scene = new StartScene(pane);
 		SharedObjectHolder.epicWinSound.stop();
 	}
 
